@@ -578,6 +578,21 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114857519669017094, guid: 198551454399ba74f806cf5b35c730da,
+        type: 2}
+      propertyPath: m_selectedFaces.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114857519669017094, guid: 198551454399ba74f806cf5b35c730da,
+        type: 2}
+      propertyPath: m_SelectedEdges.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114857519669017094, guid: 198551454399ba74f806cf5b35c730da,
+        type: 2}
+      propertyPath: m_selectedTriangles.Array.size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4806605275920666, guid: 198551454399ba74f806cf5b35c730da, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -690,6 +705,10 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 264134847}
+    - target: {fileID: 4631662487812350, guid: 198551454399ba74f806cf5b35c730da, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 198551454399ba74f806cf5b35c730da, type: 2}
   m_IsPrefabParent: 0
