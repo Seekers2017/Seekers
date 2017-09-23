@@ -51,8 +51,8 @@ public class SpawnerScript : MonoBehaviour
         ////////////////////////////////////////////////////////////////////////////////
 
         SpawnRandItem();
-        minRespawnTime = 2.0f;
-        maxRespawnTime = 5.0f;
+        minRespawnTime = 1.0f;
+        maxRespawnTime = 3.0f;
         itemPickedUpTimes = 0;
     }
 	

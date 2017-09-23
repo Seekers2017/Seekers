@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class HealthKit : Item
 {
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Awake ()
 	{
-		
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		
+
 	}
 }

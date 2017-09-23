@@ -113,7 +113,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-8550
+  m_Name: pb_Mesh-1000
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -241,7 +241,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-8554
+  m_Name: pb_Mesh-1006
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -447,7 +447,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 751547623}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 48.38, y: 1, z: 47.3}
+  m_LocalPosition: {x: 48.38, y: 1, z: 43.456}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -499,7 +499,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-8558
+  m_Name: pb_Mesh-1050
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -808,7 +808,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-8548
+  m_Name: pb_Mesh-1070
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -936,7 +936,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-8552
+  m_Name: pb_Mesh-1002
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -1064,7 +1064,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-8556
+  m_Name: pb_Mesh-1004
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -1228,14 +1228,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723741308d9d6d846916357aa6dea51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthKitRate: 0
-  bumperRate: 0
-  speedBoostRate: 0
-  minRespawnTime: 2
-  maxRespawnTime: 5
-  healthKit: {fileID: 1426479822184982, guid: 45c7cb51e47f2504aa26c94cafec127a, type: 2}
+  minRespawnTime: 1
+  maxRespawnTime: 3
   bumper: {fileID: 1899561557164346, guid: 6a99a6e9717aa7b4c91db434f3936cf3, type: 2}
-  speedBoost: {fileID: 1470238171786302, guid: 80b3627e8f1d0124095730721b23fa68, type: 2}
+  healthKit: {fileID: 1573150625315640, guid: 164bac9677d5f7749bee1871ae410f01, type: 2}
+  speedBoost: {fileID: 1967259474145056, guid: e6875938238a0b440a45a9a35fff0f22, type: 2}
 --- !u!135 &1667801883
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1246,8 +1243,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 2
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &1980943624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1325,8 +1322,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1980943624}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45.870422, y: 4.77, z: 55.174484}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 51.5, y: 4.77, z: 55.174484}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
