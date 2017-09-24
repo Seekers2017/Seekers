@@ -1230,7 +1230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minRespawnTime: 1
   maxRespawnTime: 3
-  bumper: {fileID: 1899561557164346, guid: 6a99a6e9717aa7b4c91db434f3936cf3, type: 2}
+  bumper: {fileID: 1285575398205456, guid: f24f90f5c9969094bbb10175189de41e, type: 2}
   healthKit: {fileID: 1573150625315640, guid: 164bac9677d5f7749bee1871ae410f01, type: 2}
   speedBoost: {fileID: 1967259474145056, guid: e6875938238a0b440a45a9a35fff0f22, type: 2}
 --- !u!135 &1667801883
