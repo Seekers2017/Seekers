@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: 723741308d9d6d846916357aa6dea51b
-timeCreated: 1506059075
+timeCreated: 1506405803
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bumper: {fileID: 1285575398205456, guid: f24f90f5c9969094bbb10175189de41e, type: 2}
+  - healthKit: {fileID: 1573150625315640, guid: 164bac9677d5f7749bee1871ae410f01,
+      type: 2}
+  - speedBoost: {fileID: 1967259474145056, guid: e6875938238a0b440a45a9a35fff0f22,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

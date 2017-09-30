@@ -1,6 +1,6 @@
 ﻿public enum ItemNum
 {
-    Bumper,
     HeathKit,
+    Bumper,
     SpeedBoost
 }
