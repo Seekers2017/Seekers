@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour {
 
+
+
     //Variables
     public float rotateSpeed = 10.0f;
     public bool debug;
@@ -21,11 +23,25 @@ public class CameraControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+
+        
+
         if (debug == true)
         {
             //Rotate the camera
             transform.Rotate(Input.GetAxis("RightHorizontal") * Vector3.up * Time.deltaTime * rotateSpeed);
             transform.Rotate(Input.GetAxis("RightVertical") * Vector3.right * Time.deltaTime * rotateSpeed);
+
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(0))
+            {
+                RaycastHit hit = new RaycastHit();
+                Ray r = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));
+
+                if (Physics.Raycast(r, out hit, 100))
+                {
+                    target = hit.transform;
+                }
+            }
         }
     }
 
@@ -33,6 +49,9 @@ public class CameraControl : MonoBehaviour {
     {
         if (debug == false)
         {
+
+           
+
             //Set the ideal pos is the target's position
             Vector3 targetForward = target.forward;
             targetForward.y = 0.0f;
