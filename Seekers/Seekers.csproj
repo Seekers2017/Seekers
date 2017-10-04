@@ -100,11 +100,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Car\Scripts\BumperScript.cs" />
+    <Compile Include="Assets\Car\Scripts\CheckPointScript.cs" />
     <Compile Include="Assets\Car\Scripts\HealthKitScript.cs" />
     <Compile Include="Assets\Car\Scripts\ItemEnumScript.cs" />
     <Compile Include="Assets\Car\Scripts\ItemMovementScript.cs" />
     <Compile Include="Assets\Car\Scripts\ItemScript.cs" />
     <Compile Include="Assets\Car\Scripts\SpawnerScript.cs" />
+    <Compile Include="Assets\Car\Scripts\SpawnerSetScript.cs" />
     <Compile Include="Assets\Car\Scripts\SpawnManagerScript.cs" />
     <Compile Include="Assets\Car\Scripts\SpeedBoostScript.cs" />
     <Compile Include="Assets\OBJExport\OBJExporter.cs" />
