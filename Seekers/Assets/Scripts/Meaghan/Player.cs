@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
     //Bumper (collisions)
     //Items  (collisions and effects)
     //Drifting (turning bug)
+    //Wheeeeeeeellllzzzzzz
 
 
     //Variables
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour {
     public float rotation = 200.0f; 
     public float negativeDrift = 0.25f;
     public float positiveDrift = 2.0f;
+    public float turnRotation = 50.0f;
     public float driftSpeed = 0.25f;
     public float driftRotation = 100.0f;
     public float driftHopVelocity = 2.0f;
@@ -25,6 +27,8 @@ public class Player : MonoBehaviour {
 
     [Header("Do Not Alter")]
     public Transform playerMesh;
+    public WheelCollider leftWheel;
+    public WheelCollider rightWheel;
 
     //Private
     private bool canStoreTurn;
@@ -90,7 +94,11 @@ public class Player : MonoBehaviour {
         }
 
         //Turn based on rotation and the turn (turn is what direction it's turning)
-        rb.AddTorque(transform.up * rotation * (turn / 2.0f));
+        //rb.AddTorque(transform.up * rotation * (turn / 2.0f));
+
+        //Left and right wheel turning
+        leftWheel.steerAngle = turn * turnRotation;
+        rightWheel.steerAngle = turn * turnRotation;
 
         //Slurp rotation
         playerMesh.transform.rotation = Quaternion.Slerp(playerMesh.transform.rotation, targetRotation, Time.fixedDeltaTime * 2.0f);
@@ -98,22 +106,22 @@ public class Player : MonoBehaviour {
         //If the "A" button is pressed
         if (Input.GetButton("Fire1"))
         {
-            if(canMove == true)
-            {
-                //Move forward
-                rb.AddForce(transform.forward * speed * Time.fixedDeltaTime);
-            }
-            else
-            {
-                rb.AddForce(Vector3.zero);
-            }
-            
+            //Move forward
+            //rb.AddForce(transform.forward * speed * Time.fixedDeltaTime); 
+
+            //Wheel move forward
+            leftWheel.motorTorque = speed;
+            rightWheel.motorTorque = speed;
         }
         //If the "B" button is pressed
         else if (Input.GetButton("Fire2"))
         {
             //Move backward
-            rb.AddForce((transform.forward * -1.0f) * speed * Time.fixedDeltaTime);
+            //rb.AddForce((transform.forward * -1.0f) * speed * Time.fixedDeltaTime);
+
+            //Wheel move forward
+            leftWheel.motorTorque = -speed;
+            rightWheel.motorTorque = -speed;
         }
 
         //Drift mechanic
