@@ -6,11 +6,17 @@ using System;
 public class SpawnerSetScript : MonoBehaviour
 {
     public uint spawnerCount;
+    public uint healthKitRate;
+    public uint bumperRate;
+    public uint speedBoostRate;
+
+    public float minRespawnTime;
+    public float maxRespawnTime;
 
     [SerializeField]
     private GameObject spawner;
-    private List<Vector3> spawnerPos;
-    private List<GameObject> spawnerObj;
+    private List<Vector3> spawnerPosList;
+    private List<GameObject> spawnerObjList;
     private Vector3 rightPos;
     private Vector3 leftPos;
     private float disToRight;
@@ -19,10 +25,10 @@ public class SpawnerSetScript : MonoBehaviour
 	void Awake ()
     {
         //new a Dyanmic Array List to store our spawner positions
-        spawnerPos = new List<Vector3>();
+        spawnerPosList = new List<Vector3>();
 
         //new a Dyanmic Array List to store our actual spawner objects
-        spawnerObj = new List<GameObject>();
+        spawnerObjList = new List<GameObject>();
 
         //get the distance from the centre axis to the rightmost
         disToRight = transform.localScale.x / 2.0f;
@@ -35,6 +41,8 @@ public class SpawnerSetScript : MonoBehaviour
         leftPos = gameObject.transform.right * -disToRight;
 
         SpawnerSetGenerator();
+
+        ChildSpawnerValueRegulator();
     }
 	
 	// Update is called once per frame
@@ -43,11 +51,11 @@ public class SpawnerSetScript : MonoBehaviour
       
     }
 
-    //Generate spawners based on the stored in the List<Vector3> spawnerPos
+    //Generate spawners based on the stored in the List<Vector3> spawnerPosList
     private void SpawnerSetGenerator()
     {
         //Activate SpawnerPosGenerator() to generate positions
-        SpawnerPosGenerator(spawnerPos);
+        SpawnerPosGenerator(spawnerPosList);
 
         //reset THIS box's scale, otherwise the sale of the meshes will be stretched along with THIS box
         transform.localScale = Vector3.one;
@@ -61,10 +69,10 @@ public class SpawnerSetScript : MonoBehaviour
             newSpawner = Instantiate(spawner, Vector3.zero, Quaternion.identity);
             //Set the sapwner's parent to THIS box 
             newSpawner.transform.SetParent(transform, false);
-            //Now we can assign the positions in the spawnerPos List
-            newSpawner.transform.localPosition = spawnerPos[i];
-            //Finally, Add it to the spawnerObj List
-            spawnerObj.Add(newSpawner);
+            //Now we can assign the positions in the spawnerPosList List
+            newSpawner.transform.localPosition = spawnerPosList[i];
+            //Finally, Add it to the spawnerObjList List
+            spawnerObjList.Add(newSpawner);
         }
     }
 
@@ -88,7 +96,7 @@ public class SpawnerSetScript : MonoBehaviour
                 Vector3 currGapPos = Vector3.zero;
 
                 //Add left pos + half length of the gap to the list
-                //with even number of spawner, we need to place it in the mid of the grid -> [ x ][ x ]
+                //with even number of spawner, we need to place it in the mid of the grid -> [ x ][ x ][ x ][ x ]
                 //Therefore, the first position has to be half length
                 a_List.Add(leftPos + gameObject.transform.right * (gapLength / 2));
                 //store the current gap position
@@ -128,6 +136,20 @@ public class SpawnerSetScript : MonoBehaviour
                     a_List.Add( leftPos + (i * gameObject.transform.right * factor) );
                 }
             }
+        }
+    }
+
+    //Preset Children Sapwners' Value
+    private void ChildSpawnerValueRegulator()
+    {
+        for (int i = 0; i < spawnerCount; i++)
+        {
+            gameObject.transform.GetChild(i).GetComponent<SpawnerScript>().healthKitRate = healthKitRate;
+            gameObject.transform.GetChild(i).GetComponent<SpawnerScript>().bumperRate = bumperRate;
+            gameObject.transform.GetChild(i).GetComponent<SpawnerScript>().speedBoostRate = speedBoostRate;
+
+            gameObject.transform.GetChild(i).GetComponent<SpawnerScript>().minRespawnTime = minRespawnTime;
+            gameObject.transform.GetChild(i).GetComponent<SpawnerScript>().maxRespawnTime = maxRespawnTime;
         }
     }
 }

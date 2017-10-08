@@ -49,12 +49,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1985803918356334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 723741308d9d6d846916357aa6dea51b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c0d752e1bf01cb4dbb390510df1470f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   healthKitRate: 1
-  bumperRate: 3
-  speedBoostRate: 6
+  bumperRate: 1
+  speedBoostRate: 1
   minRespawnTime: 0
   maxRespawnTime: 1
   bumper: {fileID: 1285575398205456, guid: f24f90f5c9969094bbb10175189de41e, type: 2}

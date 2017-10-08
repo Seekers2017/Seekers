@@ -12,6 +12,7 @@ TagManager:
   - Mother Node
   - Border
   - Ground
+  - CheckpointSet
   layers:
   - Default
   - TransparentFX

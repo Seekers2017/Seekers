@@ -79,12 +79,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1862848316683474}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b762e930bf502d04fbc6ca47404737e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a0e08d9079d7ea4893b1a29b4eaca6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hthKitSpawnLmt: 0
-  bumperSpawnLmt: 0
-  spdBstSpawnLmt: 0
+  spawnerCount: 0
+  spawner: {fileID: 0}
 --- !u!114 &114117473853270144
 MonoBehaviour:
   m_ObjectHideFlags: 1

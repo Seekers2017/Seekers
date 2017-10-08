@@ -45,13 +45,10 @@ public class SpawnerScript : MonoBehaviour
     [SerializeField]
     private GameObject speedBoost;
 
-    private SpawnManagerScript spawnManager;
-
-    // Use this for initialization
     void Start()
     {
         ///////////////////////////////////////////////////////////////////////////////////////////
-        // HOW TO COMUNICATE WITH OTHER CLASSES                                                  //
+        ///HOW TO COMUNICATE WITH OTHER CLASSES                                                  //
         // find object by name.                                                                  //
         // GameObject.Find("Player").GetComponent<SpawnManagerScript>();                         //
         //                                                                                       //
@@ -61,11 +58,14 @@ public class SpawnerScript : MonoBehaviour
         // find by type (too powerful + inefficient)                                             //
         // FindObjectOfType<SpawnManagerScript>();                                               //
         //                                                                                       //
+        // get access to our spawn manager script                                                //
+        // First thing you have to get the OBJECT, then grab the COMPONENT.                      //
+        // Lastly, assign it to a variable (base on type) declared.                              //
+        // spawnManager = transform.parent.GetComponent<SpawnManagerScript>();                   //
+        //                                                                                       //
         ///////////////////////////////////////////////////////////////////////////////////////////
 
-        //get access to our spawn manager script
-        //First thing you have to get the OBJECT, then grab the COMPONENT. Lastly, assign it to a variable (base on type) declared.
-        spawnManager = transform.parent.GetComponent<SpawnManagerScript>();
+
 
         itemSpawnRateList.Add(healthKitRate);    //index 0
         itemSpawnRateList.Add(bumperRate);       //index 1
