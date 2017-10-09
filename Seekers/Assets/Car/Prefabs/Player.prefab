@@ -689,12 +689,15 @@ MonoBehaviour:
   rotation: 200
   negativeDrift: 0.25
   positiveDrift: 2
+  turnRotation: 50
   driftSpeed: 0.25
   driftRotation: 100
   driftHopVelocity: 2
   jumpSpeed: 1000
   jumpAmount: 0.1
   playerMesh: {fileID: 4947165997775366}
+  leftWheel: {fileID: 0}
+  rightWheel: {fileID: 0}
 --- !u!136 &136585063068936574
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4879155677391336}
-  - component: {fileID: 114693266239407734}
   - component: {fileID: 135725350863063046}
+  - component: {fileID: 114454571308417606}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114693266239407734
+--- !u!114 &114454571308417606
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -52,11 +52,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0d752e1bf01cb4dbb390510df1470f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthKitRate: 1
-  bumperRate: 1
-  speedBoostRate: 1
+  healthKitRate: 0
+  bumperRate: 0
+  speedBoostRate: 0
   minRespawnTime: 0
-  maxRespawnTime: 1
+  maxRespawnTime: 0
   bumper: {fileID: 1285575398205456, guid: f24f90f5c9969094bbb10175189de41e, type: 2}
   healthKit: {fileID: 1573150625315640, guid: 164bac9677d5f7749bee1871ae410f01, type: 2}
   speedBoost: {fileID: 1967259474145056, guid: e6875938238a0b440a45a9a35fff0f22, type: 2}

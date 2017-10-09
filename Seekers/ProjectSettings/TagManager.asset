@@ -13,6 +13,7 @@ TagManager:
   - Border
   - Ground
   - CheckpointSet
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
