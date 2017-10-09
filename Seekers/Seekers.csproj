@@ -99,16 +99,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Car\Scripts\BumperScript.cs" />
-    <Compile Include="Assets\Car\Scripts\CheckPointScript.cs" />
-    <Compile Include="Assets\Car\Scripts\HealthKitScript.cs" />
-    <Compile Include="Assets\Car\Scripts\ItemEnumScript.cs" />
-    <Compile Include="Assets\Car\Scripts\ItemMovementScript.cs" />
-    <Compile Include="Assets\Car\Scripts\ItemScript.cs" />
-    <Compile Include="Assets\Car\Scripts\SpawnerScript.cs" />
-    <Compile Include="Assets\Car\Scripts\SpawnerSetScript.cs" />
-    <Compile Include="Assets\Car\Scripts\SpawnManagerScript.cs" />
-    <Compile Include="Assets\Car\Scripts\SpeedBoostScript.cs" />
     <Compile Include="Assets\OBJExport\OBJExporter.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\Scripts\CameraControls.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\Scripts\IcoBumpin.cs" />
@@ -121,7 +111,9 @@
     <Compile Include="Assets\Scripts\Meaghan\Node.cs" />
     <Compile Include="Assets\Scripts\Meaghan\NodeManage.cs" />
     <Compile Include="Assets\Scripts\Meaghan\Player.cs" />
+    <Compile Include="Assets\Scripts\Meaghan\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Ryan\BumperScript.cs" />
+    <Compile Include="Assets\Scripts\Ryan\CarCheckpointScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\CheckPointScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\HealthKitScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\ItemEnumScript.cs" />
@@ -131,7 +123,6 @@
     <Compile Include="Assets\Scripts\Ryan\SpawnerSetScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\SpawnManagerScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\SpeedBoostScript.cs" />
-    <Compile Include="Assets\WheelPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Car\Particles\Delete me.txt" />

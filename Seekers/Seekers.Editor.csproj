@@ -156,7 +156,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Car\Scripts\Editor\SpawnerCustomInspector.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\About\Editor\pb_AboutWindow.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\About\Editor\pb_UpdateAvailable.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\About\Editor\pb_UpdateCheck.cs" />
@@ -206,6 +205,7 @@
     <Compile Include="Assets\ProCore\ProBuilder\Editor\pb_MissingScriptEditor.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\Editor\pb_Preferences.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\Editor\pb_ScenePostProcessor.cs" />
+    <Compile Include="Assets\Scripts\Ryan\Editor\SpawnerCustomInspector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Car\Particles\Delete me.txt" />
