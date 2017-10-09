@@ -7,13 +7,13 @@ public class CameraControl : MonoBehaviour {
 
 
     //Variables
-    public float rotateSpeed = 10.0f;
+    public float rotateSpeed = 40.0f;
     public bool debug;
     public Transform target;
-    public float height;
-    public float distance;
+    public float height = 0.5f;
+    public float distance = 2.0f;
     private Vector3 idealPos;
-    public float cameraSpeed;
+    public float cameraSpeed = 10.0f;
 
     // Use this for initialization
     void Start ()
