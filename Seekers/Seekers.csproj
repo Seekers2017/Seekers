@@ -111,7 +111,6 @@
     <Compile Include="Assets\Scripts\Meaghan\Node.cs" />
     <Compile Include="Assets\Scripts\Meaghan\NodeManage.cs" />
     <Compile Include="Assets\Scripts\Meaghan\Player.cs" />
-    <Compile Include="Assets\Scripts\Meaghan\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Ryan\BumperScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\CarCheckpointScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\CheckPointScript.cs" />

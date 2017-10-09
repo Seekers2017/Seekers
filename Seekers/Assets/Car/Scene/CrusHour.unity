@@ -342,8 +342,8 @@ GameObject:
   m_Component:
   - component: {fileID: 124138038}
   - component: {fileID: 124138037}
-  - component: {fileID: 124138036}
   - component: {fileID: 124138035}
+  - component: {fileID: 124138036}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -366,15 +366,24 @@ BoxCollider:
 --- !u!114 &124138036
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114330641325067876, guid: 26f918dd24d93fe4281f1c3cef5ddf1b,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 124138034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23c5d16de2342cc439233c25313dad1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 53dfb97d6d869c64fa9ba5f78f6417c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 3500
+  rotation: 200
+  negativeDrift: 0.25
+  positiveDrift: 2
+  driftSpeed: 0.25
+  driftRotation: 100
+  driftHopVelocity: 2
+  jumpSpeed: 1000
+  jumpAmount: 0.15
+  playerMesh: {fileID: 0}
 --- !u!54 &124138037
 Rigidbody:
   m_ObjectHideFlags: 0
