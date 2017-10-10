@@ -5,10 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     //TODO:
-    //Bumper (collisions)
+    //Spike (collisions)
     //Items  (collisions and effects)
     //Drifting (turning bug)
-    //This is a comment
+    //Hit counter
 
     //Variables
     //Public
@@ -17,7 +17,6 @@ public class Player : MonoBehaviour {
     public float rotation = 200.0f; 
     public float negativeDrift = 0.25f;
     public float positiveDrift = 2.0f;
-    public float driftSpeed = 0.25f;
     public float driftRotation = 100.0f;
     public float driftHopVelocity = 2.0f;
     public float jumpSpeed = 1000.0f;
@@ -28,6 +27,7 @@ public class Player : MonoBehaviour {
 
     //Private
     private bool canStoreTurn;
+    private float driftSpeed;
     private float prevTurn;
     private bool isDriftingRight;
     private bool isDriftingLeft;
@@ -35,92 +35,72 @@ public class Player : MonoBehaviour {
     private bool canRotate;
     private Rigidbody rb;
     private float turn;
-    private bool canJump;
-    private float storePrevYpos;
     private bool canStoreYPos;
+    private float storePrevYpos;
+    private float timer;
+
+
+    //Change to enum?
+    private bool canJump;
     private bool grounded;
     private bool hasJumped;
     private bool falling;
     private bool canMove;
+    private bool slowed;
+    private bool drifting;
 
 
-    // Use this for initialization
+    //Use this for initialization
     void Start ()
     {
         rb = GetComponent<Rigidbody>();
         canStoreTurn = true;
         canRotate = true;
-        canJump = true;
+        canJump = false;
         canStoreYPos = true;
         grounded = true;
+        drifting = false;
         canMove = true;
         falling = false;
     }
 	
-	// Update is called once per frame
+	//Update is called once per frame
 	void FixedUpdate ()
-    {   
+    {
         //Get the horizontal axis
-        turn = Input.GetAxis("Horizontal");
+        turn = Input.GetAxis("Horizontal") * rotation * Mathf.Deg2Rad;
+        
 
-        //Check if it is drifting before you apply turn
-        if (isDriftingRight == true)
-        {
-            //Restrict turn based on what direction you're travelling
-            if (turn < 0.0f)
-            {
-                turn *= negativeDrift;
-            }
-            else if (turn > 0.0f)
-            {
-                turn *= positiveDrift;
-            }
+        DriftingSpeed();
+       
+       //If it isn't drifting
+       if(drifting == false)
+       {
+            //Turn based on rotation and the turn (turn is what direction it's turning)
+            transform.Rotate(Vector3.up, turn);
         }
-        else if (isDriftingLeft == true)
-        {
-            //Restrict turn based on what direction you're travelling
-            if (turn < 0.0f)
-            {
-                turn *= positiveDrift;
-            }
-            else if (turn > 0.0f)
-            {
-                turn *= negativeDrift;
-            }
-        }
+        
 
-        //Turn based on rotation and the turn (turn is what direction it's turning)
-        rb.AddTorque(transform.up * rotation * (turn / 2.0f));
+        //rb.AddTorque(transform.up * rotation * (turn / 2.0f));
 
         //Slurp rotation
         playerMesh.transform.rotation = Quaternion.Slerp(playerMesh.transform.rotation, targetRotation, Time.fixedDeltaTime * 2.0f);
 
-        //If the "A" button is pressed
-        if (Input.GetButton("Fire1"))
-        {
-            if(canMove == true)
-            {
-                //Move forward
-                rb.AddForce(transform.forward * speed * Time.fixedDeltaTime);
-            }
-            else
-            {
-                rb.AddForce(Vector3.zero);
-            }
-            
-        }
-        //If the "B" button is pressed
-        else if (Input.GetButton("Fire2"))
-        {
-            //Move backward
-            rb.AddForce((transform.forward * -1.0f) * speed * Time.fixedDeltaTime);
-        }
+        Movement();
 
+        Drifting();
+    }
+
+
+    void Drifting()
+    {
         //Drift mechanic
         //If the right trigger is pressed
         if (Input.GetAxis("Right Trigger") == 1)
         {
-            if(canJump == true)
+            drifting = true;
+
+            if (canJump == true)
             {
                 //Don't push the player forward
                 canMove = false;
@@ -161,7 +141,7 @@ public class Player : MonoBehaviour {
             }
 
             //If we can't jump
-            if(canJump == false)
+            if (canJump == false)
             {
                 canMove = true;
 
@@ -179,7 +159,7 @@ public class Player : MonoBehaviour {
                     if (canRotate == true)
                     {
                         //Makes the 
-                        if(prevTurn > 0.0f && prevTurn < 1.0f)
+                        if (prevTurn > 0.0f && prevTurn < 1.0f)
                         {
                             prevTurn = 1.0f;
                         }
@@ -214,11 +194,11 @@ public class Player : MonoBehaviour {
 
                 }
             }
-           
+
         }
 
-        
-        if(Input.GetAxis("Right Trigger") != 1)
+
+        if (Input.GetAxis("Right Trigger") != 1)
         {
             //Setting variables if the tigger is not pressed back to non drifitng state
             playerMesh.transform.localRotation = Quaternion.identity;
@@ -227,22 +207,68 @@ public class Player : MonoBehaviour {
             isDriftingLeft = false;
             canRotate = true;
             canStoreYPos = true;
-            canJump = true;
+            canJump = false;
             hasJumped = false;
             falling = false;
+            drifting = false;
         }
-
-
-        //Lock the X axis
-        if (transform.rotation.x != 0)
+    }
+    void Movement()
+    {
+        //If the "A" button is pressed
+        if (Input.GetButton("Fire1"))
         {
-            transform.rotation = new Quaternion(0, transform.rotation.y, transform.rotation.z, transform.rotation.w);
+            if (canMove == true)
+            {
+                //Move forward
+                rb.AddForce(transform.forward * speed * Time.fixedDeltaTime);
+            }
+            else
+            {
+                rb.AddForce(Vector3.zero);
+            }
+
+        }
+        //If the "B" button is pressed
+        else if (Input.GetButton("Fire2"))
+        {
+            //Move backward
+            rb.AddForce((transform.forward * -1.0f) * speed * Time.fixedDeltaTime);
         }
     }
 
+    void DriftingSpeed()
+    {
+
+        //Check if it is drifting before you apply turn
+        if (isDriftingRight == true)
+        {
+            //Restrict turn based on what direction you're travelling
+            if (turn < 0.0f)
+            {
+                driftSpeed = turn * negativeDrift;
+            }
+            else if (turn > 0.0f)
+            {
+                driftSpeed = turn * positiveDrift;
+            }
+        }
+        else if (isDriftingLeft == true)
+        {
+            //Restrict turn based on what direction you're travelling
+            if (turn < 0.0f)
+            {
+                driftSpeed = turn * positiveDrift;
+            }
+            else if (turn > 0.0f)
+            {
+                driftSpeed = turn * negativeDrift;
+            }
+        }
+    }
 
     void OnCollisionEnter(Collision a_other)
-    {
+    { 
         //If you have jumped, check the collision
         if(hasJumped == true)
         {
