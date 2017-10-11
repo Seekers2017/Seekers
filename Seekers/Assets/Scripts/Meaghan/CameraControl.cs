@@ -59,10 +59,10 @@ public class CameraControl : MonoBehaviour {
             idealPos = target.position + Vector3.up * height - targetForward * distance;
 
             //Move the camera based on idealPos
-            transform.position = idealPos;// Vector3.Lerp(transform.position, idealPos, Time.deltaTime * cameraSpeed);
+            transform.position = idealPos; /* Vector3.Lerp(transform.position, idealPos, Time.deltaTime * cameraSpeed); */
 
             Vector3 vecToPlayer = target.position - transform.position;
-            transform.rotation = Quaternion.LookRotation(vecToPlayer.normalized); //point camera z along vector to player
+            transform.rotation = Quaternion.LookRotation(vecToPlayer.normalized);// Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vecToPlayer.normalized), Time.deltaTime * rotateSpeed); //point camera z along vector to player
         }
     }
 }

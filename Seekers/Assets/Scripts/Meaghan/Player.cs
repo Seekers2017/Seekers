@@ -21,6 +21,7 @@ public class Player : MonoBehaviour {
     public float driftHopVelocity = 2.0f;
     public float jumpSpeed = 1000.0f;
     public float jumpAmount = 0.15f;
+    public float driftReduction = 2.0f;
 
     [Header("Do Not Alter")]
     public Transform playerMesh;
@@ -76,15 +77,17 @@ public class Player : MonoBehaviour {
        //If it isn't drifting
        if(drifting == false)
        {
+  
             //Turn based on rotation and the turn (turn is what direction it's turning)
             transform.Rotate(Vector3.up, turn);
+            targetRotation = transform.rotation;
         }
         
 
         //rb.AddTorque(transform.up * rotation * (turn / 2.0f));
 
         //Slurp rotation
-        playerMesh.transform.rotation = Quaternion.Slerp(playerMesh.transform.rotation, targetRotation, Time.fixedDeltaTime * 2.0f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 2.0f);
 
         Movement();
 
@@ -169,15 +172,18 @@ public class Player : MonoBehaviour {
                         }
 
                         //Drift
-                        targetRotation = transform.rotation * Quaternion.Euler(new Vector3(0.0f, driftRotation * prevTurn, 0.0f));
-                        canRotate = false;
+                       // targetRotation = transform.rotation * Quaternion.Euler(new Vector3(0.0f, driftRotation * prevTurn * -1.0f, 0.0f));
+                       // canRotate = false;
                     }
 
+
+                    //Drift
+                    targetRotation = transform.rotation * Quaternion.Euler(new Vector3(0.0f, driftRotation * prevTurn, 0.0f));
                     //If right turn
                     if (prevTurn > 0.0f)
                     {
                         //Add a diagonal force and restrict the forward velocity
-                        rb.AddForce((transform.forward + transform.right).normalized * speed * driftSpeed * Time.fixedDeltaTime);
+                        rb.AddForce((transform.forward).normalized * 20.0f * positiveDrift * Time.fixedDeltaTime);
 
                         //It's drifting
                         isDriftingRight = true;
@@ -186,7 +192,8 @@ public class Player : MonoBehaviour {
                     if (prevTurn < 0.0f)
                     {
                         //Add a diagonal force and restrict the forward velocity
-                        rb.AddForce((transform.forward + transform.right).normalized * speed * driftSpeed * Time.fixedDeltaTime);
+                        //Add a diagonal force and restrict the forward velocity
+                        rb.AddForce((transform.forward).normalized * 20.0f * negativeDrift * Time.fixedDeltaTime);
 
                         //It's drifting
                         isDriftingLeft = true;
@@ -220,8 +227,17 @@ public class Player : MonoBehaviour {
         {
             if (canMove == true)
             {
-                //Move forward
-                rb.AddForce(transform.forward * speed * Time.fixedDeltaTime);
+                if(drifting == false)
+                {
+                    //Move forward
+                    rb.AddForce(transform.forward * speed * Time.fixedDeltaTime);
+                }
+                else
+                {
+                    //Move forward
+                    rb.AddForce(transform.forward * (speed / driftReduction) * Time.fixedDeltaTime);
+                }
+                
             }
             else
             {
