@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23922353092322360}
   - component: {fileID: 95778173782301232}
   - component: {fileID: 114969047308321768}
-  - component: {fileID: 65551595958951484}
+  - component: {fileID: 135154380422716478}
   m_Layer: 0
   m_Name: Bumper_Symbol_v001
   m_TagString: BumperItem
@@ -83,18 +83,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1285575398205456}
   m_Mesh: {fileID: 4300000, guid: 7a1cc1d21c5842b46b8f081a2745dc47, type: 3}
---- !u!65 &65551595958951484
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1285575398205456}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.0147436, y: 3.338058, z: 0.8350751}
-  m_Center: {x: 0, y: 1.9566214, z: 0}
 --- !u!95 &95778173782301232
 Animator:
   serializedVersion: 3
@@ -124,3 +112,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 0
+--- !u!135 &135154380422716478
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1285575398205456}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.2
+  m_Center: {x: 0, y: 2, z: 0}

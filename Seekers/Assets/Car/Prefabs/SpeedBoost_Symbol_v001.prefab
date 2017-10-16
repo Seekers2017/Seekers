@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23043300001136744}
   - component: {fileID: 95400854590855720}
   - component: {fileID: 114252382237230560}
-  - component: {fileID: 65303946678504966}
+  - component: {fileID: 135018127837099534}
   m_Layer: 0
   m_Name: SpeedBoost_Symbol_v001
   m_TagString: SpeedBoost
@@ -83,18 +83,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1967259474145056}
   m_Mesh: {fileID: 4300000, guid: 9857de266b181d44db34900e2ff3ee56, type: 3}
---- !u!65 &65303946678504966
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1967259474145056}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.9464185, y: 3.7918491, z: 1.1525759}
-  m_Center: {x: 0, y: 2.1199126, z: 0}
 --- !u!95 &95400854590855720
 Animator:
   serializedVersion: 3
@@ -124,3 +112,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 0
+--- !u!135 &135018127837099534
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1967259474145056}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.2
+  m_Center: {x: 0, y: 2, z: 0}
