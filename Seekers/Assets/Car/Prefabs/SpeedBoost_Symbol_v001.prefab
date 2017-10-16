@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114252382237230560}
   m_Layer: 0
   m_Name: SpeedBoost_Symbol_v001
-  m_TagString: Untagged
+  m_TagString: SpeedBoost
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

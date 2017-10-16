@@ -5,10 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     //TODO:
-    //Spike (collisions)
     //Items  (collisions and effects)
-    //Drifting (turning bug)
     //Hit counter
+    //Realistic car movement (default turning is too high)
+    //Create entity class
+    //Raycasting to the walls to detect position on the track
+    //
 
     //Variables
     //Public
@@ -22,9 +24,19 @@ public class Player : MonoBehaviour {
     public float jumpSpeed = 1000.0f;
     public float jumpAmount = 0.15f;
     public float driftReduction = 2.0f;
+    public int maxHits = 3;
+    public float maxRespawnTime = 3.0f;
+    public float turnReduction = 2.0f;
+    public float maxBoostTimer = 1.0f;
+    public float boostSpeed = 500.0f;
+
 
     [Header("Do Not Alter")]
     public Transform playerMesh;
+    public GameObject frontBumper;
+    public GameObject leftBumper;
+    public GameObject rearBumper;
+    public GameObject rightBumper;
 
     //Private
     private bool canStoreTurn;
@@ -39,7 +51,12 @@ public class Player : MonoBehaviour {
     private bool canStoreYPos;
     private float storePrevYpos;
     private float timer;
-
+    private int playerHit;
+    private float centreValue;
+    
+    private bool hasBumper;
+    private bool hasItem;
+    private float boostTimer;
 
     //Change to enum?
     private bool canJump;
@@ -47,7 +64,6 @@ public class Player : MonoBehaviour {
     private bool hasJumped;
     private bool falling;
     private bool canMove;
-    private bool slowed;
     private bool drifting;
 
 
@@ -63,6 +79,11 @@ public class Player : MonoBehaviour {
         drifting = false;
         canMove = true;
         falling = false;
+        hasItem = false;
+
+        rightBumper.gameObject.SetActive(false);
+        leftBumper.gameObject.SetActive(false);
+        rearBumper.gameObject.SetActive(false);
     }
 	
 	//Update is called once per frame
@@ -70,7 +91,6 @@ public class Player : MonoBehaviour {
     {
         //Get the horizontal axis
         turn = Input.GetAxis("Horizontal") * rotation * Mathf.Deg2Rad;
-        
 
         DriftingSpeed();
        
@@ -79,7 +99,7 @@ public class Player : MonoBehaviour {
        {
   
             //Turn based on rotation and the turn (turn is what direction it's turning)
-            transform.Rotate(Vector3.up, turn);
+            transform.Rotate(Vector3.up, (turn / turnReduction));
             targetRotation = transform.rotation;
         }
         
@@ -88,12 +108,82 @@ public class Player : MonoBehaviour {
 
         //Slurp rotation
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 2.0f);
-
+        
+        //Various functions
         Movement();
-
         Drifting();
+        Respawn();
+        Items();
     }
 
+
+    void Items()
+    {
+        //Depending on whether or not they have an item
+        if(hasItem == true)
+        {
+            //If they are holdinbg the bumper
+            if(hasBumper == true)
+            {
+                if(Input.GetButtonDown("Fire3"))
+                {
+                    leftBumper.SetActive(true);
+                    hasItem = false;
+                }
+            }
+            else
+            {
+                if(Input.GetButtonDown("Fire3"))
+                {
+                    //They have the speed boost
+                    boostTimer += Time.fixedDeltaTime;
+
+                    //Go faster
+                    speed += boostSpeed;
+
+                    //Go slower
+                    if (boostTimer >= maxBoostTimer)
+                    {
+                        speed -= boostSpeed;
+
+                        //Return out
+                        hasItem = false;
+                    }
+                }
+                
+            }
+          
+        }
+
+    }
+
+
+    void Respawn()
+    {
+        //TODO:
+        //Centre spawning ( leave until later)
+        //Invisible Object 
+
+
+        //If the player has exceeded hit amounts
+        if(playerHit >= maxHits)
+        {
+            //Start the timer
+            timer += Time.fixedDeltaTime;
+
+            //It's not active
+            //gameObject.SetActive(false);
+
+            //Respawn the player based on time
+            if(timer >= maxRespawnTime)
+            {
+                //gameObject.SetActive(true);
+                transform.position = new Vector3((transform.position.x - 3.0f), transform.position.y, transform.position.z);
+            }
+
+
+        }
+    }
 
     void Drifting()
     {
@@ -294,6 +384,23 @@ public class Player : MonoBehaviour {
                 grounded = true;
             }
         } 
+
+        
+    }
+
+    void OnTriggerEnter(Collider a_other)
+    {
+        //If they are the items
+        if(a_other.tag == "BumperItem")
+        {
+            hasItem = true;
+            hasBumper = true;
+        }
+        else if(a_other.tag == "SpeedBoost")
+        {
+            hasItem = true;
+            hasBumper = false;
+        }
     }
 }
 

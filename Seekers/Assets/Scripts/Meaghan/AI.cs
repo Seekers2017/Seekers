@@ -25,7 +25,6 @@ public class AI : MonoBehaviour {
     private bool avoidingBox = false;
     private float avoidMultiplier = 0.0f;
     private bool canDetect = true;
-    private float targetSteerAngle = 0;
 
     // Use this for initialization
     void Start ()
