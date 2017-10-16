@@ -114,14 +114,12 @@
     <Compile Include="Assets\Scripts\Ryan\BumperScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\CarCheckpointScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\CheckPointScript.cs" />
-    <Compile Include="Assets\Scripts\Ryan\HealthKitScript.cs" />
+    <Compile Include="Assets\Scripts\Ryan\IngameUIScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\ItemEnumScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\ItemMovementScript.cs" />
-    <Compile Include="Assets\Scripts\Ryan\ItemScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\SpawnerScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\SpawnerSetScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\SpawnManagerScript.cs" />
-    <Compile Include="Assets\Scripts\Ryan\SpeedBoostScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Car\Particles\Delete me.txt" />
