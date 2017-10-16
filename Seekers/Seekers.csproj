@@ -113,7 +113,6 @@
     <Compile Include="Assets\Scripts\Meaghan\Player.cs" />
     <Compile Include="Assets\Scripts\Ryan\BumperScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\CarCheckpointScript.cs" />
-    <Compile Include="Assets\Scripts\Ryan\CheckPointScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\IngameUIScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\ItemEnumScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\ItemMovementScript.cs" />
@@ -124,7 +123,6 @@
   <ItemGroup>
     <None Include="Assets\Car\Particles\Delete me.txt" />
     <None Include="Assets\Car\Shaders\Delete me.txt" />
-    <None Include="Assets\Car\Sprites\Delete me.txt" />
     <None Include="Assets\Car\Textures\Delete me.txt" />
     <None Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\README.txt" />
     <None Include="Assets\ProCore\ProBuilder\About\Font\SIL Open Font License.txt" />
