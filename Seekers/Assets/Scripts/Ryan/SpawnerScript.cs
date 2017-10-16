@@ -45,6 +45,8 @@ public class SpawnerScript : MonoBehaviour
     [SerializeField]
     private GameObject speedBoost;
 
+    private IngameUIScript inGameUIScript;
+
     void Start()
     {
         ///////////////////////////////////////////////////////////////////////////////////////////
@@ -66,6 +68,8 @@ public class SpawnerScript : MonoBehaviour
         ///////////////////////////////////////////////////////////////////////////////////////////
 
 
+        //get the in-game ui script
+        inGameUIScript = FindObjectOfType<IngameUIScript>();
 
         itemSpawnRateList.Add(healthKitRate);    //index 0
         itemSpawnRateList.Add(bumperRate);       //index 1
@@ -154,15 +158,36 @@ public class SpawnerScript : MonoBehaviour
         ///////////////////////////////////////////////////////////////////////////////////
     }
 
+    //Call this when the player collects the item
+    //destroy the item, and reset the spawner
+    public void Collect()
+    {
+        isSpawned = false;
+        isPickedUp = true;
+        timeUntilRespawn = Random.Range(minRespawnTime, maxRespawnTime);
+
+        Destroy(gameObject.transform.GetChild(0).gameObject);
+
+        //tell the ui that you've collected this item type (MOVE THIS LINE INTO WHERE THE PLAYER COLLECTS IT)
+        inGameUIScript.SetCollectedItem(currActivatedItemNum);
+
+        totalPickedUpTimes++;
+    }
+
+
     //As long as player object stays in the spawner's collision range, triggers this function
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other) //instead of doing this, let Player call Collect
     {
         if (other.tag == "Player" && isSpawned == true)
         {
             isSpawned = false;
             isPickedUp = true;
             timeUntilRespawn = Random.Range(minRespawnTime, maxRespawnTime);
+            
             Destroy(gameObject.transform.GetChild(0).gameObject);
+ 
+            //tell the ui that you've collected this item type (MOVE THIS LINE INTO WHERE THE PLAYER COLLECTS IT)
+            inGameUIScript.SetCollectedItem(currActivatedItemNum);
 
             totalPickedUpTimes++;
 

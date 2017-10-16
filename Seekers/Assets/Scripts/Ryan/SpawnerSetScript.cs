@@ -70,7 +70,7 @@ public class SpawnerSetScript : MonoBehaviour
             //Set the sapwner's parent to THIS box 
             newSpawner.transform.SetParent(transform, false);
             //Now we can assign the positions in the spawnerPosList List
-            newSpawner.transform.localPosition = spawnerPosList[i];
+            newSpawner.transform.position = spawnerPosList[i];
             //Finally, Add it to the spawnerObjList List
             spawnerObjList.Add(newSpawner);
         }

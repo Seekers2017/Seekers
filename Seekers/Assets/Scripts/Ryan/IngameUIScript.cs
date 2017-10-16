@@ -5,11 +5,14 @@ using UnityEngine;
 public class IngameUIScript : MonoBehaviour
 {
     private int currLap;
+    private GameObject playerObject;
 
     private Sprite lapCountSprite;
     private Sprite rankSprite;
+    private Sprite itemSprite;
     private Sprite[] lapSpriteList;
     private Sprite[] rankSpriteList;
+    private Sprite[] itemSpriteList;
 
 	// Use this for initialization
 	void Start ()
@@ -18,9 +21,11 @@ public class IngameUIScript : MonoBehaviour
 
         lapCountSprite = gameObject.transform.Find("lapCount").GetComponent<Sprite>();
         rankSprite = gameObject.transform.Find("rank").GetComponent<Sprite>();
+        itemSprite = gameObject.transform.Find("itemIcon").GetComponent<Sprite>();
 
         lapSpriteList = Resources.LoadAll<Sprite>("LapSprites");
         rankSpriteList = Resources.LoadAll<Sprite>("RankSprites");
+        itemSpriteList = Resources.LoadAll<Sprite>("ItemIconSprites");
     }
 	
 	// Update is called once per frame
@@ -29,5 +34,26 @@ public class IngameUIScript : MonoBehaviour
         lapCountSprite = lapSpriteList[currLap - 1];
     }
 
-    //private CheckItem
+    private void OnTriggerEnter(Collider other)
+    {
+       
+    }
+
+    private void CheckItemUsed()
+    {
+        //if
+    }
+
+    public void SetCollectedItem(ItemNum collectedItemType)
+    {
+        if (collectedItemType == ItemNum.Bumper)
+        {
+            itemSprite = itemSpriteList[1];
+        }
+
+        if (collectedItemType == ItemNum.SpeedBoost)
+        {
+            itemSprite = itemSpriteList[2];
+        }
+    }
 }
