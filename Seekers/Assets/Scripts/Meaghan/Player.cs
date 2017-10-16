@@ -53,7 +53,7 @@ public class Player : MonoBehaviour {
     private float timer;
     private int playerHit;
     private float centreValue;
-    
+    private int bumperSelect = 0;
     private bool hasBumper;
     private bool hasItem;
     private float boostTimer;
@@ -125,9 +125,37 @@ public class Player : MonoBehaviour {
             //If they are holdinbg the bumper
             if(hasBumper == true)
             {
+                if(Input.GetButtonDown("LeftBumper"))
+                {
+                    //If it is greater than three, make it zero
+                    //Otherwise add each time the button is pressed
+                    if(bumperSelect > 3)
+                    {
+                        bumperSelect = 0;
+                    }
+                    else
+                    {
+                        bumperSelect++;
+                    }
+                }
+
                 if(Input.GetButtonDown("Fire3"))
                 {
-                    leftBumper.SetActive(true);
+                    //Check what number it is then spawn based on the number
+                    if(bumperSelect == 0)
+                    {
+                        leftBumper.SetActive(true);
+                    }
+                    else if(bumperSelect == 1)
+                    {
+                        rightBumper.SetActive(true);
+                    }
+                    else if(bumperSelect == 2)
+                    {
+                        rearBumper.SetActive(true);
+                    }
+
+                    //Doesn't have an item anymore
                     hasItem = false;
                 }
             }
@@ -375,17 +403,10 @@ public class Player : MonoBehaviour {
 
     void OnCollisionEnter(Collision a_other)
     { 
-        //If you have jumped, check the collision
-        if(hasJumped == true)
+        if(a_other.transform.tag == ("AI"))
         {
-            //If it is the track edge
-            if (a_other.collider.gameObject.CompareTag("Ground"))
-            {
-                grounded = true;
-            }
-        } 
-
-        
+            a_other.gameObject.GetComponent<AI>().transform.position = Vector3.zero;
+        }
     }
 
     void OnTriggerEnter(Collider a_other)
