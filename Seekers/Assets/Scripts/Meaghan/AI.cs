@@ -8,6 +8,8 @@ public class AI : MonoBehaviour {
     [Header("General")]
     public float speed = 20.0f;
     public float rotation = 5.0f;
+    public int maxHits;
+    public int hits;
     private Rigidbody rb;
     private float accelTimer;
     private Node targetNode;
@@ -58,7 +60,7 @@ public class AI : MonoBehaviour {
         {
             //Get the direction then move to the direction
             Vector3 moveDirection = targetNode.gameObject.transform.position - transform.position;
-            transform.rotation = Quaternion.LookRotation(rb.velocity);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rb.velocity), rotation * Time.fixedDeltaTime);
         
             //Move towards node
             rb.AddForce(moveDirection.normalized * speed * Time.fixedDeltaTime);

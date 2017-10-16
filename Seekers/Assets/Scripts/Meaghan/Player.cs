@@ -10,7 +10,8 @@ public class Player : MonoBehaviour {
     //Realistic car movement (default turning is too high)
     //Create entity class
     //Raycasting to the walls to detect position on the track
-    //
+    //Change pivot point of car
+    //Slerp turning rotation
 
     //Variables
     //Public
@@ -39,11 +40,8 @@ public class Player : MonoBehaviour {
     public GameObject rightBumper;
 
     //Private
-    private bool canStoreTurn;
     private float driftSpeed;
     private float prevTurn;
-    private bool isDriftingRight;
-    private bool isDriftingLeft;
     private Quaternion targetRotation;
     private bool canRotate;
     private Rigidbody rb;
@@ -57,8 +55,9 @@ public class Player : MonoBehaviour {
     private bool hasBumper;
     private bool hasItem;
     private float boostTimer;
+    private bool canStoreTurn;
 
-    //Change to enum?
+    //Change to enum
     private bool canJump;
     private bool grounded;
     private bool hasJumped;
@@ -71,7 +70,6 @@ public class Player : MonoBehaviour {
     void Start ()
     {
         rb = GetComponent<Rigidbody>();
-        canStoreTurn = true;
         canRotate = true;
         canJump = false;
         canStoreYPos = true;
@@ -80,6 +78,7 @@ public class Player : MonoBehaviour {
         canMove = true;
         falling = false;
         hasItem = false;
+        canStoreTurn = true;
 
         rightBumper.gameObject.SetActive(false);
         leftBumper.gameObject.SetActive(false);
@@ -91,8 +90,6 @@ public class Player : MonoBehaviour {
     {
         //Get the horizontal axis
         turn = Input.GetAxis("Horizontal") * rotation * Mathf.Deg2Rad;
-
-        DriftingSpeed();
        
        //If it isn't drifting
        if(drifting == false)
@@ -144,14 +141,20 @@ public class Player : MonoBehaviour {
                     //Check what number it is then spawn based on the number
                     if(bumperSelect == 0)
                     {
+                        leftBumper.GetComponent<BumperScript>().isAlive = true;
+                        leftBumper.GetComponent<BumperScript>().lifeSpan = 5.0f;
                         leftBumper.SetActive(true);
                     }
                     else if(bumperSelect == 1)
                     {
+                        rightBumper.GetComponent<BumperScript>().isAlive = true;
+                        rightBumper.GetComponent<BumperScript>().lifeSpan = 5.0f;
                         rightBumper.SetActive(true);
                     }
                     else if(bumperSelect == 2)
                     {
+                        rearBumper.GetComponent<BumperScript>().isAlive = true;
+                        rearBumper.GetComponent<BumperScript>().lifeSpan = 5.0f;
                         rearBumper.SetActive(true);
                     }
 
@@ -182,9 +185,13 @@ public class Player : MonoBehaviour {
             }
           
         }
+        else
+        {
+            //Reset
+            bumperSelect = 0;
+        }
 
     }
-
 
     void Respawn()
     {
@@ -277,44 +284,30 @@ public class Player : MonoBehaviour {
 
                 if (canStoreTurn == false)
                 {
-                    if (canRotate == true)
+                    //Clamps turn
+                    if (prevTurn > 0.0f && prevTurn < 1.0f)
                     {
-                        //Makes the 
-                        if (prevTurn > 0.0f && prevTurn < 1.0f)
-                        {
-                            prevTurn = 1.0f;
-                        }
-                        else if (prevTurn < 0.0f && prevTurn > -1.0f)
-                        {
-                            prevTurn = -1.0f;
-                        }
-
-                        //Drift
-                       // targetRotation = transform.rotation * Quaternion.Euler(new Vector3(0.0f, driftRotation * prevTurn * -1.0f, 0.0f));
-                       // canRotate = false;
+                        prevTurn = 1.0f;
+                    }
+                    else if (prevTurn < 0.0f && prevTurn > -1.0f)
+                    {
+                        prevTurn = -1.0f;
                     }
 
-
                     //Drift
-                    targetRotation = transform.rotation * Quaternion.Euler(new Vector3(0.0f, driftRotation * prevTurn, 0.0f));
+                    targetRotation = transform.rotation * Quaternion.Euler(new Vector3(0.0f, driftRotation * prevTurn * -1.0f, 0.0f));
+
                     //If right turn
                     if (prevTurn > 0.0f)
                     {
                         //Add a diagonal force and restrict the forward velocity
                         rb.AddForce((transform.forward).normalized * 20.0f * positiveDrift * Time.fixedDeltaTime);
-
-                        //It's drifting
-                        isDriftingRight = true;
                     }
                     //Else if left turn
                     if (prevTurn < 0.0f)
                     {
                         //Add a diagonal force and restrict the forward velocity
-                        //Add a diagonal force and restrict the forward velocity
-                        rb.AddForce((transform.forward).normalized * 20.0f * negativeDrift * Time.fixedDeltaTime);
-
-                        //It's drifting
-                        isDriftingLeft = true;
+                        rb.AddForce((transform.forward).normalized * 20.0f * -positiveDrift * Time.fixedDeltaTime);
                     }
 
                 }
@@ -327,10 +320,8 @@ public class Player : MonoBehaviour {
         {
             //Setting variables if the tigger is not pressed back to non drifitng state
             playerMesh.transform.localRotation = Quaternion.identity;
-            canStoreTurn = true;
-            isDriftingRight = false;
-            isDriftingLeft = false;
             canRotate = true;
+            canStoreTurn = true;
             canStoreYPos = true;
             canJump = false;
             hasJumped = false;
@@ -338,6 +329,7 @@ public class Player : MonoBehaviour {
             drifting = false;
         }
     }
+
     void Movement()
     {
         //If the "A" button is pressed
@@ -371,35 +363,7 @@ public class Player : MonoBehaviour {
         }
     }
 
-    void DriftingSpeed()
-    {
 
-        //Check if it is drifting before you apply turn
-        if (isDriftingRight == true)
-        {
-            //Restrict turn based on what direction you're travelling
-            if (turn < 0.0f)
-            {
-                driftSpeed = turn * negativeDrift;
-            }
-            else if (turn > 0.0f)
-            {
-                driftSpeed = turn * positiveDrift;
-            }
-        }
-        else if (isDriftingLeft == true)
-        {
-            //Restrict turn based on what direction you're travelling
-            if (turn < 0.0f)
-            {
-                driftSpeed = turn * positiveDrift;
-            }
-            else if (turn > 0.0f)
-            {
-                driftSpeed = turn * negativeDrift;
-            }
-        }
-    }
 
     void OnCollisionEnter(Collision a_other)
     { 

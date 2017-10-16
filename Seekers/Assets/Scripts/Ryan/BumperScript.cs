@@ -5,7 +5,9 @@ using UnityEngine;
 public class BumperScript : MonoBehaviour
 {
     public bool isFrontBumper;
-    private bool isAlive;
+
+    //Getter and setter later
+    public bool isAlive;
 
     public float lifeSpan;
     
@@ -21,16 +23,41 @@ public class BumperScript : MonoBehaviour
         CheckBumperLiveSpan();
     }
 
-    //Set up what will happen after collision
-    private void OnTriggerEnter(Collider other)
+   ////Set up what will happen after collision
+   //private void OnTriggerEnter(Collider other)
+   //{
+   //    //if the collision target is a Bumper and it's alive
+   //    if (other.CompareTag("Bumper") && isFrontBumper == false)
+   //    {
+   //        //set isAlive to false
+   //        other.gameObject.GetComponent<BumperScript>().isAlive = false;
+   //        //Destroy the bumper
+   //        gameObject.SetActive(false);
+   //    }
+   //}
+
+    void OnCollisionEnter(Collision a_other)
     {
-        //if the collision target is a Bumper and it's alive
-        if (other.CompareTag("Bumper") && isFrontBumper == false)
+        if (a_other.transform.tag == ("Bumper"))
         {
             //set isAlive to false
-            other.gameObject.GetComponent<BumperScript>().isAlive = false;
-            //Destroy the bumper
-            Destroy(other.transform.gameObject);
+            if(a_other.gameObject.GetComponent<BumperScript>().isFrontBumper == false)
+            {
+                a_other.gameObject.GetComponent<BumperScript>().isAlive = false;
+                a_other.gameObject.GetComponent<BumperScript>().gameObject.SetActive(false);
+            }
+            
+            if(isFrontBumper == false)
+            {
+                //Destroy the bumper
+                isAlive = false;
+                gameObject.SetActive(false);
+            }
+        }
+
+        if (a_other.transform.tag == ("AI"))
+        {
+            a_other.gameObject.GetComponent<AI>().hits++;
         }
     }
 
@@ -39,7 +66,7 @@ public class BumperScript : MonoBehaviour
         if (lifeSpan <= 0 && isAlive == true && isFrontBumper == false)
         {
             isAlive = false;
-            Destroy(this);
+            gameObject.SetActive(false);
         }
         else
         {
