@@ -67,10 +67,15 @@ public class SpawnerSetScript : MonoBehaviour
         {
             //Instantiate a spawner in the world's centre
             newSpawner = Instantiate(spawner, Vector3.zero, Quaternion.identity);
+
             //Set the sapwner's parent to THIS box 
             newSpawner.transform.SetParent(transform, false);
+
             //Now we can assign the positions in the spawnerPosList List
-            newSpawner.transform.position = spawnerPosList[i];
+            //don't forget to add parent object's transform to the positions
+            //because "SetParent" won't snap the objects to their parents.
+            newSpawner.transform.position = spawnerPosList[i] + transform.position;
+
             //Finally, Add it to the spawnerObjList List
             spawnerObjList.Add(newSpawner);
         }
