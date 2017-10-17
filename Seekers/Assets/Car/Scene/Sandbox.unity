@@ -4727,7 +4727,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4877662717092682, guid: 9112258dfc48d4445a6395f6ee1e0c31, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 75.83423
+      value: 76.8
       objectReference: {fileID: 0}
     - target: {fileID: 4877662717092682, guid: 9112258dfc48d4445a6395f6ee1e0c31, type: 2}
       propertyPath: m_LocalPosition.y
@@ -4735,7 +4735,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4877662717092682, guid: 9112258dfc48d4445a6395f6ee1e0c31, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 22.9236
+      value: 23.9
       objectReference: {fileID: 0}
     - target: {fileID: 4877662717092682, guid: 9112258dfc48d4445a6395f6ee1e0c31, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5066,6 +5066,7 @@ MonoBehaviour:
   height: 2.5
   distance: 4
   cameraSpeed: 10
+  upAngle: 0.2
 --- !u!124 &933338510
 Behaviour:
   m_ObjectHideFlags: 0
@@ -10021,7 +10022,12 @@ MonoBehaviour:
   speed: 3000
   rotation: 5
   maxHits: 0
-  hits: 0
+  boostSpeed: 500
+  frontBumper: {fileID: 0}
+  leftBumper: {fileID: 0}
+  rearBumper: {fileID: 0}
+  rightBumper: {fileID: 0}
+  maxBoostTimer: 1
   sensorLength: 5
   frontSensorPos: {x: 0, y: 0.2, z: 0.5}
   frontSideSensorPos: 0.2
@@ -10157,6 +10163,7 @@ MonoBehaviour:
   height: 2.26
   distance: 6.15
   cameraSpeed: 10
+  upAngle: 0.2
 --- !u!124 &1513446206
 Behaviour:
   m_ObjectHideFlags: 0
