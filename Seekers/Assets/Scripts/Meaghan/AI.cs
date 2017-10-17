@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI : Entity {
+public class AI : Entity
+{
 
     //Variables
     [Header("General")]
@@ -24,17 +25,16 @@ public class AI : Entity {
     private float avoidMultiplier = 0.0f;
     private bool canDetect = true;
     private float itemTimer;
-    private bool alterBumperNumber;
 
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         nodeManage = GameObject.FindGameObjectWithTag("Mother Node").GetComponent<NodeManage>();
-        alterBumperNumber = true;
-        rightBumper.gameObject.SetActive(false);
-        leftBumper.gameObject.SetActive(false);
-        rearBumper.gameObject.SetActive(false);
+
+        leftBumper.SetActive(false);
+        rightBumper.SetActive(false);
+        rearBumper.SetActive(false);
     }
 
 
@@ -43,7 +43,6 @@ public class AI : Entity {
     {
         //Functions
         Sensors();
-        Items();
 
         //Clamp speed
         if (rb.velocity.magnitude > speed)
@@ -60,9 +59,9 @@ public class AI : Entity {
         //Start the timer
         accelTimer += Time.fixedDeltaTime;
 
-        if(hasItem == true)
+        if (speed > maxSpeed)
         {
-            itemTimer += Time.fixedDeltaTime;
+            speed = maxSpeed;
         }
 
 
@@ -77,92 +76,13 @@ public class AI : Entity {
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rb.velocity), rotation * Time.fixedDeltaTime);
             }
-                
+
             //Move towards node
             rb.AddForce(moveDirection.normalized * speed * Time.fixedDeltaTime);
         }
     }
 
-    private void Items()
-    {
-        //If we have an item
-        if(hasItem == true)
-        {
-            
 
-            //Bumper
-            if(hasBumper == true)
-            {
-                
-
-                if (itemTimer > 0.5f)
-                {
-                    int a = 1;
-                }
-                //Check what number it is then spawn based on the number
-                if (bumperSelect == 0)
-                {
-                    
-                    leftBumper.GetComponent<BumperScript>().isAlive = true;
-                    leftBumper.GetComponent<BumperScript>().lifeSpan = 5.0f;
-                    leftBumper.SetActive(true);
-                }
-                else if (bumperSelect == 1)
-                {
-                    
-                    rightBumper.GetComponent<BumperScript>().isAlive = true;
-                    rightBumper.GetComponent<BumperScript>().lifeSpan = 5.0f;
-                    rightBumper.SetActive(true);
-                }
-                else if (bumperSelect == 2)
-                {
-                   
-                    rearBumper.GetComponent<BumperScript>().isAlive = true;
-                    rearBumper.GetComponent<BumperScript>().lifeSpan = 5.0f;
-                    rearBumper.SetActive(true);
-                }
-
-
-                if (itemTimer > 2.0f)
-                {
-                    
-                }
-
-                //Doesn't have an item anymore
-                hasItem = false;
-            }
-            else
-            {
-
-                if (itemTimer > 2.0f)
-                {
-                    //They have the speed boost
-                    boostTimer += Time.fixedDeltaTime;
-
-                    //Go faster
-                    speed += boostSpeed;
-
-                    //Go slower
-                    if (boostTimer >= maxBoostTimer)
-                    {
-                        speed -= boostSpeed;
-
-                        //Return out
-                        hasItem = false;
-                    }
-                }
-                
-            }
-        }
-        else
-        {
-            //Reset
-            bumperSelect = 0;
-            boostTimer = 0.0f;
-            itemTimer = 0.0f;
-            alterBumperNumber = true;
-        }
-    }
 
 
     private void Sensors()
@@ -170,14 +90,14 @@ public class AI : Entity {
         //Create variables
         RaycastHit hit;
         Vector3 sensorStartPos = transform.position;
-        
+
 
         //Initialising
         sensorStartPos += transform.forward * frontSensorPos.z;
         sensorStartPos += transform.up * frontSensorPos.y;
         avoidingBox = false;
 
-        if(canDetect == true)
+        if (canDetect == true)
         {
             //Front right sensor
             sensorStartPos += transform.right * frontSideSensorPos;
@@ -258,7 +178,7 @@ public class AI : Entity {
 
             }
         }
-       
+
     }
 
     void OnCollisionEnter(Collision a_other)
@@ -275,7 +195,7 @@ public class AI : Entity {
     {
 
         //If we have collided with the node
-        if(a_other.CompareTag("Node"))
+        if (a_other.CompareTag("Node"))
         {
             Node nodeScript = a_other.GetComponent<Node>();
 
@@ -285,26 +205,6 @@ public class AI : Entity {
                 //We've reached the node we were trying to get to
                 //Change targetNode to nextNode
                 targetNode = targetNode.next;
-            }
-        }
-
-        //If they are the items
-        if (a_other.tag == "BumperItem")
-        {
-            if (hasItem != true)
-            {
-                bumperSelect = Random.Range(0, 3);
-                hasItem = true;
-                hasBumper = true;
-            }
-
-        }
-        else if (a_other.tag == "SpeedBoost")
-        {
-            if (hasItem != true)
-            {
-                hasItem = true;
-                hasBumper = false;
             }
         }
     }

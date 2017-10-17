@@ -176,9 +176,9 @@ public class SpawnerScript : MonoBehaviour
 
 
     //As long as player object stays in the spawner's collision range, triggers this function
-    private void OnTriggerStay(Collider other) //instead of doing this, let Player call Collect
+    private void OnTriggerEnter(Collider other) //instead of doing this, let Player call Collect
     {
-        if (other.tag == "Player" && isSpawned == true)
+        if (other.tag == "Player" || other.tag == "AI" && isSpawned == true)
         {
             isSpawned = false;
             isPickedUp = true;
