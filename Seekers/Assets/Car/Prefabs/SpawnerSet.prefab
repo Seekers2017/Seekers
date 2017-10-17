@@ -35,13 +35,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1177671170912222}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.2588186, z: -0, w: 0.965926}
+  m_LocalPosition: {x: 35.95, y: 0, z: 29.03}
+  m_LocalScale: {x: 17, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 30.000002, z: 0}
 --- !u!23 &23047351781805906
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -93,4 +93,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnerCount: 3
+  healthKitRate: 0
+  bumperRate: 5
+  speedBoostRate: 5
+  minRespawnTime: 5
+  maxRespawnTime: 10
   spawner: {fileID: 1985803918356334, guid: b9afbac00b59c92408310783760185c7, type: 2}
