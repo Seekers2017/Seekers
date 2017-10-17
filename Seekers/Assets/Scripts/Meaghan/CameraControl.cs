@@ -14,6 +14,7 @@ public class CameraControl : MonoBehaviour {
     public float distance = 2.0f;
     private Vector3 idealPos;
     public float cameraSpeed = 10.0f;
+    public float upAngle = 0.2f;
 
     // Use this for initialization
     void Start ()
@@ -62,7 +63,7 @@ public class CameraControl : MonoBehaviour {
             transform.position = idealPos; /* Vector3.Lerp(transform.position, idealPos, Time.deltaTime * cameraSpeed); */
 
             Vector3 vecToPlayer = target.position - transform.position;
-            transform.rotation = Quaternion.LookRotation(vecToPlayer.normalized);// Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vecToPlayer.normalized), Time.deltaTime * rotateSpeed); //point camera z along vector to player
+            transform.rotation = Quaternion.LookRotation(vecToPlayer.normalized + Vector3.up * upAngle);// Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vecToPlayer.normalized), Time.deltaTime * rotateSpeed); //point camera z along vector to player
         }
     }
 }

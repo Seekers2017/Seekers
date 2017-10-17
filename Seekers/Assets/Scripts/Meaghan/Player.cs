@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : Entity {
 
     //TODO:
     //Items  (collisions and effects)
@@ -16,8 +16,6 @@ public class Player : MonoBehaviour {
     //Variables
     //Public
     [Header("Alter")]
-    public float speed = 3500.0f;
-    public float rotation = 200.0f; 
     public float negativeDrift = 0.25f;
     public float positiveDrift = 2.0f;
     public float driftRotation = 100.0f;
@@ -25,19 +23,14 @@ public class Player : MonoBehaviour {
     public float jumpSpeed = 1000.0f;
     public float jumpAmount = 0.15f;
     public float driftReduction = 2.0f;
-    public int maxHits = 3;
     public float maxRespawnTime = 3.0f;
     public float turnReduction = 2.0f;
-    public float maxBoostTimer = 1.0f;
-    public float boostSpeed = 500.0f;
+    public float turnSpeed = 500.0f;
 
 
     [Header("Do Not Alter")]
     public Transform playerMesh;
-    public GameObject frontBumper;
-    public GameObject leftBumper;
-    public GameObject rearBumper;
-    public GameObject rightBumper;
+    
 
     //Private
     private float driftSpeed;
@@ -51,11 +44,8 @@ public class Player : MonoBehaviour {
     private float timer;
     private int playerHit;
     private float centreValue;
-    private int bumperSelect = 0;
-    private bool hasBumper;
-    private bool hasItem;
-    private float boostTimer;
     private bool canStoreTurn;
+
 
     //Change to enum
     private bool canJump;
@@ -90,17 +80,16 @@ public class Player : MonoBehaviour {
     {
         //Get the horizontal axis
         turn = Input.GetAxis("Horizontal") * rotation * Mathf.Deg2Rad;
+
+        
        
        //If it isn't drifting
        if(drifting == false)
        {
-  
             //Turn based on rotation and the turn (turn is what direction it's turning)
-            transform.Rotate(Vector3.up, (turn / turnReduction));
-            targetRotation = transform.rotation;
+            targetRotation = Quaternion.Euler(Vector3.up * (turn / turnReduction) * turnSpeed * Time.fixedDeltaTime ) * transform.rotation;
         }
         
-
         //rb.AddTorque(transform.up * rotation * (turn / 2.0f));
 
         //Slurp rotation
@@ -189,6 +178,7 @@ public class Player : MonoBehaviour {
         {
             //Reset
             bumperSelect = 0;
+            boostTimer = 0.0f;
         }
 
     }
@@ -369,22 +359,29 @@ public class Player : MonoBehaviour {
     { 
         if(a_other.transform.tag == ("AI"))
         {
-            a_other.gameObject.GetComponent<AI>().transform.position = Vector3.zero;
+           
         }
     }
 
     void OnTriggerEnter(Collider a_other)
     {
         //If they are the items
-        if(a_other.tag == "BumperItem")
+        if (a_other.tag == "BumperItem")
         {
-            hasItem = true;
-            hasBumper = true;
+            if (hasItem != true)
+            {
+                hasItem = true;
+                hasBumper = true;
+            }
+
         }
-        else if(a_other.tag == "SpeedBoost")
+        else if (a_other.tag == "SpeedBoost")
         {
-            hasItem = true;
-            hasBumper = false;
+            if (hasItem != true)
+            {
+                hasItem = true;
+                hasBumper = false;
+            }
         }
     }
 }

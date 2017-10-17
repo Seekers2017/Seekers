@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI : MonoBehaviour {
+public class AI : Entity {
 
     //Variables
     [Header("General")]
-    public float speed = 20.0f;
-    public float rotation = 5.0f;
-    public int maxHits;
-    public int hits;
     private Rigidbody rb;
     private float accelTimer;
     private Node targetNode;
@@ -27,27 +23,36 @@ public class AI : MonoBehaviour {
     private bool avoidingBox = false;
     private float avoidMultiplier = 0.0f;
     private bool canDetect = true;
+    private float itemTimer;
+    private bool alterBumperNumber;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         rb = GetComponent<Rigidbody>();
         nodeManage = GameObject.FindGameObjectWithTag("Mother Node").GetComponent<NodeManage>();
+        alterBumperNumber = true;
+        rightBumper.gameObject.SetActive(false);
+        leftBumper.gameObject.SetActive(false);
+        rearBumper.gameObject.SetActive(false);
     }
-	
 
-	// Update is called once per frame
-	void FixedUpdate ()
+
+    // Update is called once per frame
+    void FixedUpdate()
     {
+        //Functions
         Sensors();
+        Items();
 
-        if(rb.velocity.magnitude > speed)
+        //Clamp speed
+        if (rb.velocity.magnitude > speed)
         {
             rb.velocity = rb.velocity.normalized * speed;
         }
 
-
-        if(targetNode == null)
+        //Restart the following
+        if (targetNode == null)
         {
             targetNode = nodeManage.nodeList[0];
         }
@@ -55,17 +60,109 @@ public class AI : MonoBehaviour {
         //Start the timer
         accelTimer += Time.fixedDeltaTime;
 
+        if(hasItem == true)
+        {
+            itemTimer += Time.fixedDeltaTime;
+        }
+
+
         //If the timer is greater than 3 seconds
-        if(accelTimer > 3.0f)
+        if (accelTimer > 3.0f)
         {
             //Get the direction then move to the direction
             Vector3 moveDirection = targetNode.gameObject.transform.position - transform.position;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rb.velocity), rotation * Time.fixedDeltaTime);
-        
+
+            //Rotation
+            if (rb.velocity.magnitude > 5.0f)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rb.velocity), rotation * Time.fixedDeltaTime);
+            }
+                
             //Move towards node
             rb.AddForce(moveDirection.normalized * speed * Time.fixedDeltaTime);
         }
-	}
+    }
+
+    private void Items()
+    {
+        //If we have an item
+        if(hasItem == true)
+        {
+            
+
+            //Bumper
+            if(hasBumper == true)
+            {
+                
+
+                if (itemTimer > 0.5f)
+                {
+                    int a = 1;
+                }
+                //Check what number it is then spawn based on the number
+                if (bumperSelect == 0)
+                {
+                    
+                    leftBumper.GetComponent<BumperScript>().isAlive = true;
+                    leftBumper.GetComponent<BumperScript>().lifeSpan = 5.0f;
+                    leftBumper.SetActive(true);
+                }
+                else if (bumperSelect == 1)
+                {
+                    
+                    rightBumper.GetComponent<BumperScript>().isAlive = true;
+                    rightBumper.GetComponent<BumperScript>().lifeSpan = 5.0f;
+                    rightBumper.SetActive(true);
+                }
+                else if (bumperSelect == 2)
+                {
+                   
+                    rearBumper.GetComponent<BumperScript>().isAlive = true;
+                    rearBumper.GetComponent<BumperScript>().lifeSpan = 5.0f;
+                    rearBumper.SetActive(true);
+                }
+
+
+                if (itemTimer > 2.0f)
+                {
+                    
+                }
+
+                //Doesn't have an item anymore
+                hasItem = false;
+            }
+            else
+            {
+
+                if (itemTimer > 2.0f)
+                {
+                    //They have the speed boost
+                    boostTimer += Time.fixedDeltaTime;
+
+                    //Go faster
+                    speed += boostSpeed;
+
+                    //Go slower
+                    if (boostTimer >= maxBoostTimer)
+                    {
+                        speed -= boostSpeed;
+
+                        //Return out
+                        hasItem = false;
+                    }
+                }
+                
+            }
+        }
+        else
+        {
+            //Reset
+            bumperSelect = 0;
+            boostTimer = 0.0f;
+            itemTimer = 0.0f;
+            alterBumperNumber = true;
+        }
+    }
 
 
     private void Sensors()
@@ -188,6 +285,26 @@ public class AI : MonoBehaviour {
                 //We've reached the node we were trying to get to
                 //Change targetNode to nextNode
                 targetNode = targetNode.next;
+            }
+        }
+
+        //If they are the items
+        if (a_other.tag == "BumperItem")
+        {
+            if (hasItem != true)
+            {
+                bumperSelect = Random.Range(0, 3);
+                hasItem = true;
+                hasBumper = true;
+            }
+
+        }
+        else if (a_other.tag == "SpeedBoost")
+        {
+            if (hasItem != true)
+            {
+                hasItem = true;
+                hasBumper = false;
             }
         }
     }
