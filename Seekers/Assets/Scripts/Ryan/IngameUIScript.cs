@@ -1,59 +1,68 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IngameUIScript : MonoBehaviour
 {
     private int currLap;
-    private GameObject playerObject;
+    private Entity entity;
 
-    private Sprite lapCountSprite;
-    private Sprite rankSprite;
-    private Sprite itemSprite;
+    private Image lapCountSprite;
+    private Image rankSprite;
+    private Image itemSprite;
     private Sprite[] lapSpriteList;
     private Sprite[] rankSpriteList;
     private Sprite[] itemSpriteList;
 
+    private CarCheckpointScript checkpointScript;
 	// Use this for initialization
 	void Start ()
     {
-        currLap = GameObject.FindGameObjectWithTag("Player").GetComponent<CarCheckpointScript>().currLap;
+        entity = GameObject.FindObjectOfType<Entity>();
 
-        lapCountSprite = gameObject.transform.Find("lapCount").GetComponent<Sprite>();
-        rankSprite = gameObject.transform.Find("rank").GetComponent<Sprite>();
-        itemSprite = gameObject.transform.Find("itemIcon").GetComponent<Sprite>();
+        checkpointScript = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<CarCheckpointScript>();
 
         lapSpriteList = Resources.LoadAll<Sprite>("LapSprites");
         rankSpriteList = Resources.LoadAll<Sprite>("RankSprites");
         itemSpriteList = Resources.LoadAll<Sprite>("ItemIconSprites");
+
+        lapCountSprite = gameObject.transform.Find("lapCount").GetComponent<Image>();
+        rankSprite = gameObject.transform.Find("rank").GetComponent<Image>();
+        itemSprite = gameObject.transform.Find("itemIcon").GetComponent<Image>();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        lapCountSprite = lapSpriteList[currLap - 1];
-    }
+        currLap = checkpointScript.currLap;
 
-    private void OnTriggerEnter(Collider other)
-    {
-       
-    }
+        lapCountSprite.sprite = lapSpriteList[currLap-1];
 
-    private void CheckItemUsed()
-    {
-        //if
+        if (entity.HasItem == false)
+        {
+            itemSprite.color = new Color(1, 1, 1, 0);
+        }
     }
 
     public void SetCollectedItem(ItemNum collectedItemType)
     {
+        if (collectedItemType == ItemNum.HeathKit)
+        {
+            itemSprite.color = new Color(1, 1, 1, 1);
+            itemSprite.sprite = itemSpriteList[0];
+        }
+
         if (collectedItemType == ItemNum.Bumper)
         {
-            itemSprite = itemSpriteList[1];
+            itemSprite.color = new Color(1, 1, 1, 1);
+            itemSprite.sprite = itemSpriteList[1];
         }
 
         if (collectedItemType == ItemNum.SpeedBoost)
         {
-            itemSprite = itemSpriteList[2];
+            itemSprite.color = new Color(1, 1, 1, 1);
+            itemSprite.sprite = itemSpriteList[2];
         }
     }
 }

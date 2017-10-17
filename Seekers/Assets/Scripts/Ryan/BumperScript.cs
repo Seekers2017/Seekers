@@ -57,7 +57,7 @@ public class BumperScript : MonoBehaviour
 
         if (a_other.transform.tag == ("AI"))
         {
-            a_other.gameObject.GetComponent<AI>().hits++;
+            a_other.gameObject.GetComponent<AI>().Hits++;
         }
     }
 
