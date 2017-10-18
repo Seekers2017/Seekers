@@ -774,13 +774,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d3a05e20ef25bb4aad3c73d07eabebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3500
+  speed: 4500
   rotation: 200
   maxHits: 3
   boostSpeed: 5500
   maxBoostTimer: 1
   maxSpeed: 5500
-  isAI: 0
+  maxLifeSpan: 5
   frontBumper: {fileID: 811544275}
   leftBumper: {fileID: 1022774912}
   rearBumper: {fileID: 538229842}
@@ -790,7 +790,7 @@ MonoBehaviour:
   turnSpeed: 500
   driftRotation: 100
   driftReduction: 2
-  driftSpeed: 0
+  driftSpeed: 20
 --- !u!1 &144310401
 GameObject:
   m_ObjectHideFlags: 0
@@ -1974,18 +1974,12 @@ MonoBehaviour:
   boostSpeed: 500
   maxBoostTimer: 1
   maxSpeed: 4000
-  isAI: 0
+  maxLifeSpan: 5
   frontBumper: {fileID: 869770321}
   leftBumper: {fileID: 797996037}
   rearBumper: {fileID: 288036896}
   rightBumper: {fileID: 2078982407}
-  sensorLength: 5
-  frontSensorPos: {x: 0, y: 0.2, z: 0.5}
-  frontSideSensorPos: 0.2
-  frontSensorAngle: 30
-  angledTurn: 1.5
-  straightTurn: 4
-  steerSpeed: 100
+  itemSpawnTime: 2
 --- !u!1 &424841499
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,7 +2264,7 @@ GameObject:
   - component: {fileID: 484396756}
   - component: {fileID: 484396755}
   - component: {fileID: 484396754}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Checkpoint (1)
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
@@ -2617,7 +2611,7 @@ GameObject:
   - component: {fileID: 550870187}
   - component: {fileID: 550870186}
   - component: {fileID: 550870185}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Checkpoint (3)
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
@@ -5756,7 +5750,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294966271
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -7009,7 +7003,7 @@ GameObject:
   - component: {fileID: 886866483}
   - component: {fileID: 886866482}
   - component: {fileID: 886866481}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Checkpoint (4)
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
@@ -8646,7 +8640,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1492463494916806, guid: 3c375f9273952bc47bffe6ba87d5e64f, type: 2}
       propertyPath: m_Layer
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c375f9273952bc47bffe6ba87d5e64f, type: 2}
@@ -8663,7 +8657,7 @@ GameObject:
   - component: {fileID: 1120272070}
   - component: {fileID: 1120272069}
   - component: {fileID: 1120272068}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Checkpoint (5)
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
@@ -9589,7 +9583,7 @@ GameObject:
   - component: {fileID: 1161992421}
   - component: {fileID: 1161992420}
   - component: {fileID: 1161992419}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Checkpoint (6)
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
@@ -10384,6 +10378,51 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224039841142597356, guid: 80ef263b96aba5f4791f8f483e80aa8f,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.813
+      objectReference: {fileID: 0}
+    - target: {fileID: 224039841142597356, guid: 80ef263b96aba5f4791f8f483e80aa8f,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.43400002
+      objectReference: {fileID: 0}
+    - target: {fileID: 224039841142597356, guid: 80ef263b96aba5f4791f8f483e80aa8f,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 115
+      objectReference: {fileID: 0}
+    - target: {fileID: 224039841142597356, guid: 80ef263b96aba5f4791f8f483e80aa8f,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 62
+      objectReference: {fileID: 0}
+    - target: {fileID: 224039841142597356, guid: 80ef263b96aba5f4791f8f483e80aa8f,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 172.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224039841142597356, guid: 80ef263b96aba5f4791f8f483e80aa8f,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 141.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 224039841142597356, guid: 80ef263b96aba5f4791f8f483e80aa8f,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224039841142597356, guid: 80ef263b96aba5f4791f8f483e80aa8f,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224039841142597356, guid: 80ef263b96aba5f4791f8f483e80aa8f,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0.813
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80ef263b96aba5f4791f8f483e80aa8f, type: 2}
@@ -14115,7 +14154,7 @@ GameObject:
   - component: {fileID: 1904319952}
   - component: {fileID: 1904319951}
   - component: {fileID: 1904319950}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Checkpoint (2)
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
@@ -15052,12 +15091,12 @@ Prefab:
     - target: {fileID: 114893641197173236, guid: ee45c6a3d93e2a94b8f49c88cd5faaeb,
         type: 2}
       propertyPath: bumperRate
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114893641197173236, guid: ee45c6a3d93e2a94b8f49c88cd5faaeb,
         type: 2}
       propertyPath: speedBoostRate
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114893641197173236, guid: ee45c6a3d93e2a94b8f49c88cd5faaeb,
         type: 2}

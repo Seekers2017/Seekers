@@ -19,15 +19,22 @@ public class Entity : MonoBehaviour {
 
     //Variables
     [Header("General")]
-    public float speed;
-    public float rotation;
-    public int maxHits;
-    public float boostSpeed = 500.0f;
-    public float maxBoostTimer = 1.0f;
-    public float maxSpeed = 4000.0f;
-
     [SerializeField]
-    private bool isAI;
+    protected float speed;
+    [SerializeField]
+    protected float rotation;
+    [SerializeField]
+    protected int maxHits;
+    [SerializeField]
+    protected float boostSpeed = 500.0f;
+    [SerializeField]
+    protected float maxBoostTimer = 1.0f;
+    [SerializeField]
+    protected float maxSpeed = 4000.0f;
+    [SerializeField]
+    private float maxLifeSpan = 5.0f;
+
+
 
     [Header("Do Not Tamper With")]
     [SerializeField]
@@ -38,6 +45,8 @@ public class Entity : MonoBehaviour {
     protected GameObject rearBumper;
     [SerializeField]
     protected GameObject rightBumper;
+    
+
 
     //He attac, but he also protec (the variables)
     protected int hits;
@@ -66,9 +75,8 @@ public class Entity : MonoBehaviour {
     {
         //Set the bumper to active
         a_bumper.GetComponent<BumperScript>().isAlive = true;
-        a_bumper.GetComponent<BumperScript>().lifeSpan = 5.0f;
+        a_bumper.GetComponent<BumperScript>().lifeSpan = maxLifeSpan;
         a_bumper.SetActive(true);
-        hasItem = false;
     }
 
 
@@ -87,18 +95,17 @@ public class Entity : MonoBehaviour {
 
             Debug.Log("Timer has gone off");
 
-            //Return out
             boostTimer = 0.0f;
-            hasItem = false;
         }
     }
 
 
-    void OnTriggerEnter(Collider a_other)
+    protected virtual void OnTriggerEnter(Collider a_other)
     {
         //If they are the items
         if (a_other.tag == "BumperItem")
         {
+            //IF do not have item, get item
             if (hasItem != true)
             {
                 hasItem = true;
@@ -108,6 +115,7 @@ public class Entity : MonoBehaviour {
         }
         else if (a_other.tag == "SpeedBoost")
         {
+            //If they have item, get item
             if (hasItem != true)
             {
                 hasItem = true;

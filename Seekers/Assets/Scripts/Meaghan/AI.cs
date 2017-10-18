@@ -6,21 +6,22 @@ public class AI : Entity
 {
 
     //Variables
-    [Header("General")]
+    [SerializeField]
+    private float itemSpawnTime = 2.0f;
+
     private Rigidbody rb;
     private float accelTimer;
     private Node targetNode;
     private NodeManage nodeManage;
 
     //Variables for steering
-    [Header("Steering")]
-    public float sensorLength = 5.0f;
-    public Vector3 frontSensorPos = new Vector3(0.0f, 0.2f, 0.5f);
-    public float frontSideSensorPos = 0.2f;
-    public float frontSensorAngle = 30.0f;
-    public float angledTurn = 1.5f;
-    public float straightTurn = 4.0f;
-    public float steerSpeed = 100.0f;
+    private float sensorLength = 5.0f;
+    private Vector3 frontSensorPos = new Vector3(0.0f, 0.2f, 0.5f);
+    private float frontSideSensorPos = 0.2f;
+    private float frontSensorAngle = 30.0f;
+    private float angledTurn = 1.5f;
+    private float straightTurn = 4.0f;
+    private  float steerSpeed = 100.0f;
     private bool avoidingBox = false;
     private float avoidMultiplier = 0.0f;
     private bool canDetect = true;
@@ -82,7 +83,56 @@ public class AI : Entity
         }
     }
 
+    void Update()
+    {
+        Items();
+    }
 
+    private void Items()
+    {
+        if (hasItem == true)
+        {
+            itemTimer += Time.deltaTime;
+
+            if (hasBumper == true)
+            {
+                bumperSelect = Random.Range(0, 3);
+
+                if (itemTimer > itemSpawnTime)
+                {
+                    //Input the selection to the car
+                    if (bumperSelect == 0)
+                    {
+                        Bumper(leftBumper);
+                        itemTimer = 0.0f;
+                        hasItem = false;
+                    }
+                    else if (bumperSelect == 1)
+                    {
+                        Bumper(rightBumper);
+                        itemTimer = 0.0f;
+                        hasItem = false;
+                    }
+                    else if (bumperSelect == 2)
+                    {
+                        Bumper(rearBumper);
+                        itemTimer = 0.0f;
+                        hasItem = false;
+                    }
+                }
+            }
+            else
+            {
+                if (itemTimer > itemSpawnTime)
+                {
+                    //Go fast
+                    SpeedBoost();
+                    itemTimer = 0.0f;
+                    hasItem = false;
+                }
+            }
+        }
+    }
 
 
     private void Sensors()
@@ -191,8 +241,9 @@ public class AI : Entity
         }
     }
 
-    void OnTriggerEnter(Collider a_other)
+    protected override void OnTriggerEnter(Collider a_other)
     {
+        base.OnTriggerEnter(a_other);
 
         //If we have collided with the node
         if (a_other.CompareTag("Node"))
