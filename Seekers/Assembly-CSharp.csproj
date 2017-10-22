@@ -58,13 +58,26 @@
      <Compile Include="Assets\ProCore\ProBuilder\API Examples\Procedural Mesh\ExtrudeRandomEdges.cs" />
      <Compile Include="Assets\ProCore\ProBuilder\API Examples\Runtime Editing\RuntimeEdit.cs" />
      <Compile Include="Assets\ProCore\ProBuilder\API Examples\Vertex Colors\HighlightNearestFace.cs" />
+     <Compile Include="Assets\Scripts\Meaghan\AI.cs" />
+     <Compile Include="Assets\Scripts\Meaghan\CameraControl.cs" />
+     <Compile Include="Assets\Scripts\Meaghan\Entity.cs" />
+     <Compile Include="Assets\Scripts\Meaghan\Node.cs" />
+     <Compile Include="Assets\Scripts\Meaghan\NodeManage.cs" />
+     <Compile Include="Assets\Scripts\Meaghan\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Ryan\BumperScript.cs" />
+     <Compile Include="Assets\Scripts\Ryan\CarCheckpointScript.cs" />
+     <Compile Include="Assets\Scripts\Ryan\IngameUIScript.cs" />
+     <Compile Include="Assets\Scripts\Ryan\ItemEnumScript.cs" />
+     <Compile Include="Assets\Scripts\Ryan\ItemMovementScript.cs" />
+     <Compile Include="Assets\Scripts\Ryan\SpawnerScript.cs" />
+     <Compile Include="Assets\Scripts\Ryan\SpawnerSetScript.cs" />
+     <Compile Include="Assets\Scripts\Ryan\SpawnManagerScript.cs" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_TransparentOverlay.shader" />
      <None Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\README.txt" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_SelectionPicker.shader" />
      <None Include="Assets\ProCore\ProBuilder\About\changelog.txt" />
      <None Include="Assets\ProCore\ProBuilder\Shader\DiffuseVertexColor.shader" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_FaceHighlight.shader" />
-     <None Include="Assets\Car\Sprites\Delete me.txt" />
      <None Include="Assets\ProCore\ProBuilder\Shader\UnlitSolidColor.shader" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_ReferenceUnlit.shader" />
      <None Include="Assets\ProCore\ProBuilder\Shader\DiffuseTextureBlend.shader" />
@@ -72,7 +85,6 @@
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_VertexPicker.shader" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_HideVertices.shader" />
      <None Include="Assets\ProCore\ProBuilder\About\ThirdPartyLicenses.txt" />
-     <None Include="Assets\Car\Meshes\Delete me.txt" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_UnlitVertexColor.shader" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_FacePicker.shader" />
      <None Include="Assets\Car\Textures\Delete me.txt" />
@@ -80,7 +92,6 @@
      <None Include="Assets\ProCore\ProBuilder\About\pc_AboutEntry_ProBuilder.txt" />
      <None Include="Assets\Car\Particles\Delete me.txt" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_VertexShader.shader" />
-     <None Include="Assets\Car\Scripts\Delete me.txt" />
      <None Include="Assets\Car\Shaders\Delete me.txt" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_ScrollHighlight.shader" />
      <None Include="Assets\ProCore\ProBuilder\readme.txt" />
@@ -106,19 +117,19 @@
  <HintPath>C:/Program Files/Unity2017/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderCore-Unity5">
- <HintPath>C:/Users/s170997/Desktop/Seekers/Seekers_FinalProject.git/trunk/Seekers/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
+ <HintPath>C:/Users/s170997.AIE/Desktop/Crush/Seekers/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderMeshOps-Unity5">
- <HintPath>C:/Users/s170997/Desktop/Seekers/Seekers_FinalProject.git/trunk/Seekers/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
+ <HintPath>C:/Users/s170997.AIE/Desktop/Crush/Seekers/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="KdTreeLib">
- <HintPath>C:/Users/s170997/Desktop/Seekers/Seekers_FinalProject.git/trunk/Seekers/Assets/ProCore/ProBuilder/Classes/ClassesLib/KdTreeLib.dll</HintPath>
+ <HintPath>C:/Users/s170997.AIE/Desktop/Crush/Seekers/Assets/ProCore/ProBuilder/Classes/ClassesLib/KdTreeLib.dll</HintPath>
  </Reference>
  <Reference Include="pb_Stl">
- <HintPath>C:/Users/s170997/Desktop/Seekers/Seekers_FinalProject.git/trunk/Seekers/Assets/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
+ <HintPath>C:/Users/s170997.AIE/Desktop/Crush/Seekers/Assets/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
  </Reference>
  <Reference Include="Poly2Tri">
- <HintPath>C:/Users/s170997/Desktop/Seekers/Seekers_FinalProject.git/trunk/Seekers/Assets/ProCore/ProBuilder/Classes/ClassesLib/Poly2Tri.dll</HintPath>
+ <HintPath>C:/Users/s170997.AIE/Desktop/Crush/Seekers/Assets/ProCore/ProBuilder/Classes/ClassesLib/Poly2Tri.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
