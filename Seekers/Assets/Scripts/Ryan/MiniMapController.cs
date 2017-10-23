@@ -22,6 +22,7 @@ public class MiniMapController : MonoBehaviour
     [SerializeField]
     public Camera mapCamera;
 
+    private Canvas canvas;
     //Create a list to store map objects by the class we created above
     private static List<MapObject> mapObjectList = new List<MapObject>();
 
@@ -78,18 +79,25 @@ public class MiniMapController : MonoBehaviour
             //the range will between 0~1 because of WorldToViewportPoint's nature
             Vector3 screenPos = mapCamera.WorldToViewportPoint(mapObject.owner.transform.position);
             //parent the object to the mini map rectangle
-            mapObject.icon.transform.SetParent(transform);
+             mapObject.icon.transform.SetParent(transform);
             //get the rectangle transform
             RectTransform rectTrans = GetComponent<RectTransform>();
+
             //get position of four corners of the rectangle
             //and store them into an array
             Vector3[] corners = new Vector3[4];
             rectTrans.GetWorldCorners(corners);
 
-            //blow the x and y up by rectangle's width and height
+            //Set up the width and height ration by rectangle's width and height times canvas' factor,
+            //then devided by Screen's width and height
+            float widthRatio = (rectTrans.rect.width * canvas.scaleFactor) / Screen.width;
+            float heightRatio = (rectTrans.rect.height * canvas.scaleFactor) / Screen.height;
+
+            //blow the x and y up by ration of the height and width to the screen
             //plus the length from the corner of the whole screen to the corner 0 of the rectangle
-            screenPos.x = screenPos.x * rectTrans.rect.width + corners[0].x;
-            screenPos.y = screenPos.y * rectTrans.rect.height + corners[0].y;
+            screenPos.x = screenPos.x * Screen.width * widthRatio + corners[0].x;
+            screenPos.y = screenPos.y * Screen.height * heightRatio + corners[0].y;
+
             //always display the icons most front to any other UI object
             screenPos.z = 0;
             //aplly screen pos to object's icon position
@@ -97,6 +105,10 @@ public class MiniMapController : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        canvas = transform.parent.GetComponent<Canvas>();
+    }
     void Update()
     {
         //draw map in update
