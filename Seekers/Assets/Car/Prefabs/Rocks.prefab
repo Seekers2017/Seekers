@@ -1364,6 +1364,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4722650478450396}
+  - component: {fileID: 64162366699702678}
   m_Layer: 0
   m_Name: SmallRock_01
   m_TagString: Box
@@ -1381,6 +1382,7 @@ GameObject:
   - component: {fileID: 4188666235035014}
   - component: {fileID: 33253167553804812}
   - component: {fileID: 23243587070153596}
+  - component: {fileID: 64911245755988154}
   m_Layer: 0
   m_Name: MediumRock_01
   m_TagString: Box
@@ -1675,6 +1677,7 @@ GameObject:
   - component: {fileID: 4232788953130622}
   - component: {fileID: 33566698641694704}
   - component: {fileID: 23365131250656010}
+  - component: {fileID: 64174777983022364}
   m_Layer: 0
   m_Name: LargeRock_01
   m_TagString: Box
@@ -1905,6 +1908,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4042522224652800}
+  - component: {fileID: 64533782117048718}
   m_Layer: 0
   m_Name: TinyRock_01
   m_TagString: Box
@@ -2384,8 +2388,8 @@ Transform:
   - {fileID: 4258804915319328}
   - {fileID: 4267329964190640}
   - {fileID: 4057562626946634}
-  - {fileID: 4693984296853580}
   - {fileID: 4121336674807322}
+  - {fileID: 4693984296853580}
   m_Father: {fileID: 4988645907726176}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2520,7 +2524,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4042522224652800}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4130183342834480
 Transform:
@@ -3671,12 +3675,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1945258647282108}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 12, y: 0, z: 12}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 4042522224652800}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4709905681883340
 Transform:
@@ -5171,6 +5175,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1536707952166284}
   m_Mesh: {fileID: 4300000, guid: a8cd3ba2235f9dc45880c1f7e856337b, type: 3}
+--- !u!64 &64162366699702678
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1611537082399038}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 0}
+--- !u!64 &64174777983022364
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1767247716412778}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: a8cd3ba2235f9dc45880c1f7e856337b, type: 3}
 --- !u!64 &64177056744629614
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -5269,6 +5301,20 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: b48fc36ede54ca14d87fd9d1384fb179, type: 3}
+--- !u!64 &64533782117048718
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1886379815716728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 0}
 --- !u!64 &64608028232523978
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -5353,3 +5399,17 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: a8cd3ba2235f9dc45880c1f7e856337b, type: 3}
+--- !u!64 &64911245755988154
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1616366292809598}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: b48fc36ede54ca14d87fd9d1384fb179, type: 3}
