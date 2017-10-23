@@ -122,6 +122,8 @@
     <Compile Include="Assets\Scripts\Ryan\IngameUIScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\ItemEnumScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\ItemMovementScript.cs" />
+    <Compile Include="Assets\Scripts\Ryan\MakeMapObject.cs" />
+    <Compile Include="Assets\Scripts\Ryan\MiniMapController.cs" />
     <Compile Include="Assets\Scripts\Ryan\SpawnerScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\SpawnerSetScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\SpawnManagerScript.cs" />

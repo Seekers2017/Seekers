@@ -31,10 +31,12 @@ public class WheelDrive : MonoBehaviour
 	public int stepsBelow = 5;
 	[Tooltip("Simulation sub-steps when the speed is below critical.")]
 	public int stepsAbove = 1;
-    [Tooltip("Increases the drag of the car while not moving")]
+    [Tooltip("Increases the drag of the car while not moving.")]
     public float dragAmount;
-    [Tooltip("Adds a drag to the drift")]
-    public float driftDrag = 2.5f;
+    [Tooltip("Increases the drift angle.")]
+    public float driftAngle = 2.5f;
+    [Tooltip("The maximum time for the timer that controls the drag after drifting.")]
+    public float releaseTimerMax = 2.5f;
 
     [Tooltip("The vehicle's drive type: rear-wheels drive, front-wheels drive or all-wheels drive.")]
 	public DriveType driveType;
@@ -42,6 +44,9 @@ public class WheelDrive : MonoBehaviour
     private WheelCollider[] wheels;
     private float speed;
     private bool drifting;
+    private bool releaseDrift;
+    private float releaseTimer;
+    
 
 
     private PlayerManager player;
@@ -78,9 +83,10 @@ public class WheelDrive : MonoBehaviour
         //Alters the angle of the car
 		float angle = maxAngle * Input.GetAxis("Horizontal");
 
-		foreach (WheelCollider wheel in wheels)
+		for(int wheelNum = 0; wheelNum < 4; ++wheelNum)
 		{
-            
+            WheelCollider wheel = wheels[wheelNum];
+            bool frontWheel = (wheelNum < 2); //if wheelnum is 0 or 1, it's a front wheel.
 
             //Maintain the RPM
             if (wheel.rpm > 500)
@@ -90,26 +96,28 @@ public class WheelDrive : MonoBehaviour
             if(Input.GetAxis("Right Trigger") == 1)
             {
                 drifting = true;
-                if (wheel.transform.localPosition.z > 0)
+                carRigidbody.angularDrag = 0.0f;
+                if (frontWheel)
                     wheel.steerAngle = 0.0f;
             }
             else
             {
                 drifting = false;
-                if (wheel.transform.localPosition.z < 0)
+                carRigidbody.angularDrag = 1.5f;
+                if (!frontWheel)
                     wheel.steerAngle = 0.0f;
             }
 
             // A simple car where front wheels steer while rear ones drive
             if(drifting == false)
             {
-                if (wheel.transform.localPosition.z > 0)
+                if (frontWheel)
                     wheel.steerAngle = angle;
             }
             else
             {
-                if (wheel.transform.localPosition.z < 0)
-                    wheel.steerAngle = -angle * driftDrag;
+                if (!frontWheel)
+                    wheel.steerAngle = -angle * driftAngle;
             }
             
 
@@ -127,16 +135,18 @@ public class WheelDrive : MonoBehaviour
             if(Input.GetButton("Fire1"))
             {
                 //Allow the car to move
-                wheel.brakeTorque = 0.0f;
+                //wheel.brakeTorque = 0.0f;
                 carRigidbody.drag = 0.0f;
+              
+
                 //Back wheels
-                if (wheel.transform.localPosition.z < 0 && driveType != DriveType.FrontWheelDrive)
+                if (!frontWheel && driveType != DriveType.FrontWheelDrive)
                 {
                     wheel.motorTorque = speed;
                 }
 
                 //Front wheels
-                if (wheel.transform.localPosition.z >= 0 && driveType != DriveType.RearWheelDrive)
+                if (frontWheel && driveType != DriveType.RearWheelDrive)
                 {
                     wheel.motorTorque = speed;
                 }
@@ -144,7 +154,7 @@ public class WheelDrive : MonoBehaviour
             else
             {
                 wheel.motorTorque = 0.0f;
-                wheel.brakeTorque = Mathf.Infinity;
+                //wheel.brakeTorque = Mathf.Infinity;
                 carRigidbody.drag = dragAmount;
             }
 			
