@@ -29,6 +29,11 @@ public class SpawnerScript : MonoBehaviour
     private bool isPickedUp;
 
     //Fetch items' Enum number from Enum class
+    public ItemNum CurrItem
+    {
+        get { return currActivatedItemNum; }
+    }
+
     private ItemNum currActivatedItemNum;
 
     //Monitor Pick Up Times for all items
@@ -169,7 +174,7 @@ public class SpawnerScript : MonoBehaviour
         Destroy(gameObject.transform.GetChild(0).gameObject);
 
         //tell the ui that you've collected this item type (MOVE THIS LINE INTO WHERE THE PLAYER COLLECTS IT)
-        inGameUIScript.SetCollectedItem(currActivatedItemNum);
+        //inGameUIScript.SetCollectedItem(currActivatedItemNum);
 
         totalPickedUpTimes++;
     }
@@ -178,24 +183,24 @@ public class SpawnerScript : MonoBehaviour
     //As long as player object stays in the spawner's collision range, triggers this function
     private void OnTriggerEnter(Collider other) //instead of doing this, let Player call Collect
     {
-        if (other.tag == "Player" || other.tag == "AI" && isSpawned == true)
-        {
-            isSpawned = false;
-            isPickedUp = true;
-            timeUntilRespawn = Random.Range(minRespawnTime, maxRespawnTime);
+        //if (other.tag == "Player" || other.tag == "AI" && isSpawned == true)
+        //{
+        //    isSpawned = false;
+        //    isPickedUp = true;
+        //    timeUntilRespawn = Random.Range(minRespawnTime, maxRespawnTime);
             
-            Destroy(gameObject.transform.GetChild(0).gameObject);
+        //    Destroy(gameObject.transform.GetChild(0).gameObject);
  
-            //tell the ui that you've collected this item type (MOVE THIS LINE INTO WHERE THE PLAYER COLLECTS IT)
-            inGameUIScript.SetCollectedItem(currActivatedItemNum);
+        //    //tell the ui that you've collected this item type (MOVE THIS LINE INTO WHERE THE PLAYER COLLECTS IT)
+        //    inGameUIScript.SetCollectedItem(currActivatedItemNum);
 
-            totalPickedUpTimes++;
+        //    totalPickedUpTimes++;
 
-            ////////////////////////////////////////////////////////////////////////////////////
-            //other.gameObject.GetComponent<PlayerScript>.giveItemEffects (currActivatedItem) //
-            ///we will do above line when the player class is done                            //
-            ////////////////////////////////////////////////////////////////////////////////////
-        }
+        //    ////////////////////////////////////////////////////////////////////////////////////
+        //    //other.gameObject.GetComponent<PlayerScript>.giveItemEffects (currActivatedItem) //
+        //    ///we will do above line when the player class is done                            //
+        //    ////////////////////////////////////////////////////////////////////////////////////
+        //}
     }
 
     //Generates a number based on the spawning rate

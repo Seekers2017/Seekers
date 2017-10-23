@@ -1127,7 +1127,6 @@ GameObject:
   - component: {fileID: 4239635077558326}
   - component: {fileID: 54133108664526090}
   - component: {fileID: 65491777307282162}
-  - component: {fileID: 114077058830672722}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Untagged
@@ -2325,7 +2324,6 @@ GameObject:
   - component: {fileID: 4124008437189416}
   - component: {fileID: 54689379565994948}
   - component: {fileID: 65707001415506146}
-  - component: {fileID: 114771041324317184}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -8999,27 +8997,6 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
---- !u!114 &114077058830672722
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1431088326749566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53dfb97d6d869c64fa9ba5f78f6417c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4500
-  rotation: 200
-  negativeDrift: 0.25
-  positiveDrift: 2
-  driftRotation: 600
-  driftHopVelocity: 2
-  jumpSpeed: 1000
-  jumpAmount: 0.15
-  driftReduction: 2
-  playerMesh: {fileID: 4513596729762016}
 --- !u!114 &114080570457338350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12046,15 +12023,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f130875a7f828cd41b3ba21ac4fd32bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHits: 0
+  maxLifeSpan: 5
+  maxBoostTimer: 1
+  frontBumper: {fileID: 0}
+  leftBumper: {fileID: 0}
+  rearBumper: {fileID: 0}
+  rightBumper: {fileID: 0}
+  itemSpawnTime: 2
+  boostSpeed: 500
+  maxSpeed: 4000
   speed: 3000
   rotation: 5
-  sensorLength: 5
-  frontSensorPos: {x: 0, y: 0.2, z: 0.5}
-  frontSideSensorPos: 0.2
-  frontSensorAngle: 30
-  angledTurn: 1.5
-  straightTurn: 4
-  steerSpeed: 100
 --- !u!114 &114217318795407056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12112,6 +12092,7 @@ MonoBehaviour:
   height: 2.5
   distance: 4
   cameraSpeed: 10
+  upAngle: 0.2
 --- !u!114 &114282870431743632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13135,6 +13116,7 @@ MonoBehaviour:
   height: 2.5
   distance: 4
   cameraSpeed: 10
+  upAngle: 0.2
 --- !u!114 &114565105650880128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14207,27 +14189,6 @@ MonoBehaviour:
   nodeValue: 0
   prev: {fileID: 0}
   next: {fileID: 0}
---- !u!114 &114771041324317184
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1948079416848826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53dfb97d6d869c64fa9ba5f78f6417c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4500
-  rotation: 200
-  negativeDrift: 0.25
-  positiveDrift: 2
-  driftRotation: 600
-  driftHopVelocity: 2
-  jumpSpeed: 1000
-  jumpAmount: 0.15
-  driftReduction: 2
-  playerMesh: {fileID: 4548745819362344}
 --- !u!114 &114771725124996944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14851,15 +14812,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f130875a7f828cd41b3ba21ac4fd32bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHits: 0
+  maxLifeSpan: 5
+  maxBoostTimer: 1
+  frontBumper: {fileID: 0}
+  leftBumper: {fileID: 0}
+  rearBumper: {fileID: 0}
+  rightBumper: {fileID: 0}
+  itemSpawnTime: 2
+  boostSpeed: 500
+  maxSpeed: 4000
   speed: 3000
   rotation: 5
-  sensorLength: 5
-  frontSensorPos: {x: 0, y: 0.2, z: 0.5}
-  frontSideSensorPos: 0.2
-  frontSensorAngle: 30
-  angledTurn: 1.5
-  straightTurn: 4
-  steerSpeed: 100
 --- !u!124 &124240665533780474
 Behaviour:
   m_ObjectHideFlags: 1

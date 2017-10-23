@@ -2,20 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerItemUse : Entity
-{
-    private enum PlayerState
-    {
-        STOPPED,
-        DRIVING,
-        REVERSING
-    }
+public class PlayerManager : Entity {
 
+
+    IngameUIScript uiScript;
 
 
     // Use this for initialization
     void Start()
     {
+        uiScript = FindObjectOfType<IngameUIScript>();
+
         leftBumper.SetActive(false);
         rightBumper.SetActive(false);
         rearBumper.SetActive(false);
@@ -74,5 +71,14 @@ public class PlayerItemUse : Entity
                 }
             }
         }
+    }
+
+    protected override void OnCollectItem(SpawnerScript item)
+    {
+        //Calls Entity's
+        base.OnCollectItem(item);
+
+        //Update the UI
+        uiScript.SetCollectedItem(item.CurrItem);
     }
 }

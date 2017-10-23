@@ -8,6 +8,14 @@ public class AI : Entity
     //Variables
     [SerializeField]
     private float itemSpawnTime = 2.0f;
+    [SerializeField]
+    protected float boostSpeed = 500.0f;
+    [SerializeField]
+    protected float maxSpeed = 4000.0f;
+    [SerializeField]
+    protected float speed;
+    [SerializeField]
+    protected float rotation;
 
     private Rigidbody rb;
     private float accelTimer;
@@ -243,6 +251,7 @@ public class AI : Entity
 
     protected override void OnTriggerEnter(Collider a_other)
     {
+        //Call base as well as doing it's own things
         base.OnTriggerEnter(a_other);
 
         //If we have collided with the node
@@ -258,5 +267,12 @@ public class AI : Entity
                 targetNode = targetNode.next;
             }
         }
+    }
+
+    protected override void OnCollectItem(SpawnerScript item)
+    {
+        base.OnCollectItem(item);
+
+        //other ai related stuff
     }
 }

@@ -6,33 +6,20 @@ public class Entity : MonoBehaviour {
 
     //TODO:
     //[PLAYER]
-    //Items  (collisions and effects)
-    //Hit counter
-    //Realistic car movement (default turning is too high)
-    //Create entity class
     //Raycasting to the walls to detect position on the track
-    //Change pivot point of car
-    //
     //[AI]
-    
+    //Improved movement 
+    //Radius check (if another car is nearby)
 
 
     //Variables
     [Header("General")]
     [SerializeField]
-    protected float speed;
-    [SerializeField]
-    protected float rotation;
-    [SerializeField]
     protected int maxHits;
     [SerializeField]
-    protected float boostSpeed = 500.0f;
+    protected float maxLifeSpan = 5.0f;
     [SerializeField]
     protected float maxBoostTimer = 1.0f;
-    [SerializeField]
-    protected float maxSpeed = 4000.0f;
-    [SerializeField]
-    private float maxLifeSpan = 5.0f;
 
 
 
@@ -70,6 +57,12 @@ public class Entity : MonoBehaviour {
         set { hasItem = value; }
     }
 
+    public bool IsBoosting
+    {
+        get { return isBoosting; }
+        set { isBoosting = value; }
+    }
+
 
     protected void Bumper(GameObject a_bumper)
     {
@@ -80,6 +73,7 @@ public class Entity : MonoBehaviour {
     }
 
 
+    //FIX TIMER BUG!!!!
     protected void SpeedBoost()
     {
         //They have the speed boost
@@ -104,12 +98,16 @@ public class Entity : MonoBehaviour {
     {
         //If they are the items
         if (a_other.tag == "BumperItem")
-        {
+        { 
+
             //IF do not have item, get item
             if (hasItem != true)
             {
                 hasItem = true;
                 hasBumper = true;
+
+                OnCollectItem(a_other.transform.parent.GetComponent<SpawnerScript>());
+
             }
 
         }
@@ -120,7 +118,15 @@ public class Entity : MonoBehaviour {
             {
                 hasItem = true;
                 hasBumper = false;
+
+                OnCollectItem(a_other.transform.parent.GetComponent<SpawnerScript>());
             }
         }
+    }
+
+    //Function runs when an item is collected
+    protected virtual void OnCollectItem(SpawnerScript item)
+    {
+        item.Collect();
     }
 }

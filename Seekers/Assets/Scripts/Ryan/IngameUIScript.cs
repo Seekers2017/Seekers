@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class IngameUIScript : MonoBehaviour
 {
     private int currLap;
-    private Entity entity;
+    private PlayerManager entity;
 
     private Image lapCountSprite;
     private Image rankSprite;
@@ -19,7 +19,7 @@ public class IngameUIScript : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        entity = GameObject.FindObjectOfType<Entity>();
+        entity = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<PlayerManager>();
 
         checkpointScript = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<CarCheckpointScript>();
 
