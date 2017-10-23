@@ -107,12 +107,13 @@
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Procedural Mesh\ExtrudeRandomEdges.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Runtime Editing\RuntimeEdit.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Vertex Colors\HighlightNearestFace.cs" />
-    <Compile Include="Assets\Scripts\Liam\FallingObject.cs" />
+    <Compile Include="Assets\Scripts\Liam_G\FallingObject.cs" />
     <Compile Include="Assets\Scripts\Meaghan\AI.cs" />
     <Compile Include="Assets\Scripts\Meaghan\CameraControl.cs" />
     <Compile Include="Assets\Scripts\Meaghan\Entity.cs" />
     <Compile Include="Assets\Scripts\Meaghan\Node.cs" />
     <Compile Include="Assets\Scripts\Meaghan\NodeManage.cs" />
+    <Compile Include="Assets\Scripts\Meaghan\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Ryan\BumperScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\CarCheckpointScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\IngameUIScript.cs" />
