@@ -35,8 +35,10 @@ public class WheelDrive : MonoBehaviour
     public float dragAmount;
     [Tooltip("Increases the drift angle.")]
     public float driftAngle = 2.5f;
+    [Tooltip("Increases the drift drag when it is released.")]
+    public float driftDrag = 2.5f;
     [Tooltip("The maximum time for the timer that controls the drag after drifting.")]
-    public float releaseTimerMax = 2.5f;
+    public float releaseTimerMax = 1f;
 
     [Tooltip("The vehicle's drive type: rear-wheels drive, front-wheels drive or all-wheels drive.")]
 	public DriveType driveType;
@@ -46,7 +48,8 @@ public class WheelDrive : MonoBehaviour
     private bool drifting;
     private bool releaseDrift;
     private float releaseTimer;
-    
+    private bool storeBackAngle;
+    private float driftWheelAngle;
 
 
     private PlayerManager player;
@@ -60,6 +63,7 @@ public class WheelDrive : MonoBehaviour
         wheels = GetComponentsInChildren<WheelCollider>();
         carRigidbody = GetComponent<Rigidbody>();
         drifting = false;
+        storeBackAngle = true;
 
         //Create the wheels
 		for (int i = 0; i < wheels.Length; ++i) 
@@ -95,34 +99,48 @@ public class WheelDrive : MonoBehaviour
 
             if(Input.GetAxis("Right Trigger") == 1)
             {
+                //Allow the car to drift with no drag
                 drifting = true;
                 carRigidbody.angularDrag = 0.0f;
-                if (frontWheel)
-                    wheel.steerAngle = 0.0f;
+                releaseTimerMax = 0.0f;
+
+                //Collect the back wheel angle
+                if (storeBackAngle == true)
+                {
+                    driftWheelAngle = -angle * driftAngle;
+                    storeBackAngle = false;
+                }
+
+                //Update the back wheel angles
+                if (!frontWheel)
+                    wheel.steerAngle = driftWheelAngle;
             }
             else
             {
+                //Reset values and start the drift drag timer
                 drifting = false;
-                carRigidbody.angularDrag = 1.5f;
                 if (!frontWheel)
                     wheel.steerAngle = 0.0f;
+
+                releaseTimer += Time.deltaTime;
+
+                if(releaseTimer > releaseTimerMax)
+                   releaseDrift = true;
             }
 
-            // A simple car where front wheels steer while rear ones drive
-            if(drifting == false)
-            {
-                if (frontWheel)
-                    wheel.steerAngle = angle;
-            }
+            //Change the angular drag depending on whether or not you have just released the drift button
+            if (releaseDrift == true)
+                carRigidbody.angularDrag = driftDrag;
             else
-            {
-                if (!frontWheel)
-                    wheel.steerAngle = -angle * driftAngle;
-            }
-            
+                carRigidbody.angularDrag = 0.0f;
+
+            //Update the front wheel angles
+            if (frontWheel)
+                wheel.steerAngle = angle;
+
 
             //Checking if they are boosting, increase torque
-            if(player.IsBoosting == true)
+            if (player.IsBoosting == true)
             {
                 speed = boostSpeed;
             }
@@ -135,7 +153,6 @@ public class WheelDrive : MonoBehaviour
             if(Input.GetButton("Fire1"))
             {
                 //Allow the car to move
-                //wheel.brakeTorque = 0.0f;
                 carRigidbody.drag = 0.0f;
               
 
@@ -154,7 +171,6 @@ public class WheelDrive : MonoBehaviour
             else
             {
                 wheel.motorTorque = 0.0f;
-                //wheel.brakeTorque = Mathf.Infinity;
                 carRigidbody.drag = dragAmount;
             }
 			
@@ -162,17 +178,13 @@ public class WheelDrive : MonoBehaviour
 			// Update visual wheels if any
 			if (wheelShape) 
 			{
-                if(drifting == false)
-                {
-                    Quaternion q;
-                    Vector3 p;
-                    wheel.GetWorldPose(out p, out q);
-
-                    // Assume that the only child of the wheelcollider is the wheel shape.
-                    Transform shapeTransform = wheel.transform.GetChild(0);
-                    shapeTransform.position = p;
-                    shapeTransform.rotation = q;
-                }
+                Quaternion q;
+                Vector3 p;
+                wheel.GetWorldPose(out p, out q);
+                // Assume that the only child of the wheelcollider is the wheel shape.
+                Transform shapeTransform = wheel.transform.GetChild(0);
+                shapeTransform.position = p;
+                shapeTransform.rotation = q;
 				
 			}
 		}

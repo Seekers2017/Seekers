@@ -6661,7 +6661,9 @@ MonoBehaviour:
   stepsBelow: 5
   stepsAbove: 1
   dragAmount: 1
-  driftDrag: 3.5
+  driftAngle: 3
+  driftDrag: 2.5
+  releaseTimerMax: 2.5
   driveType: 2
 --- !u!1 &1686275638
 GameObject:
