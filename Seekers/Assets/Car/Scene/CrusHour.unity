@@ -6663,7 +6663,8 @@ MonoBehaviour:
   dragAmount: 1
   driftAngle: 3
   driftDrag: 2.5
-  releaseTimerMax: 2.5
+  releaseTimerMax: 1
+  frontTyreDriftAngle: 2.5
   driveType: 2
 --- !u!1 &1686275638
 GameObject:

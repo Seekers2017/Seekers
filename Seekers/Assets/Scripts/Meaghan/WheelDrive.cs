@@ -39,6 +39,8 @@ public class WheelDrive : MonoBehaviour
     public float driftDrag = 2.5f;
     [Tooltip("The maximum time for the timer that controls the drag after drifting.")]
     public float releaseTimerMax = 1f;
+    [Tooltip("Alters the angle of the front tyres while drifting.")]
+    public float frontTyreDriftAngle;
 
     [Tooltip("The vehicle's drive type: rear-wheels drive, front-wheels drive or all-wheels drive.")]
 	public DriveType driveType;
@@ -119,13 +121,30 @@ public class WheelDrive : MonoBehaviour
             {
                 //Reset values and start the drift drag timer
                 drifting = false;
+            }
+
+            //Update the front wheel angles
+            if (drifting == false)
+            {
+                if (frontWheel)
+                    wheel.steerAngle = angle;
+
+                //Reset the drift angles
+                driftWheelAngle = 0.0f;
+                storeBackAngle = true;
                 if (!frontWheel)
                     wheel.steerAngle = 0.0f;
 
+                //Start timer
                 releaseTimer += Time.deltaTime;
 
-                if(releaseTimer > releaseTimerMax)
-                   releaseDrift = true;
+                if (releaseTimer > releaseTimerMax)
+                    releaseDrift = true;
+            }
+            else
+            {
+                if (frontWheel)
+                    wheel.steerAngle = angle * frontTyreDriftAngle;
             }
 
             //Change the angular drag depending on whether or not you have just released the drift button
@@ -133,11 +152,6 @@ public class WheelDrive : MonoBehaviour
                 carRigidbody.angularDrag = driftDrag;
             else
                 carRigidbody.angularDrag = 0.0f;
-
-            //Update the front wheel angles
-            if (frontWheel)
-                wheel.steerAngle = angle;
-
 
             //Checking if they are boosting, increase torque
             if (player.IsBoosting == true)
@@ -168,11 +182,31 @@ public class WheelDrive : MonoBehaviour
                     wheel.motorTorque = speed;
                 }
             }
+            else if (Input.GetButton("Fire2"))
+            {
+                //Allow the car to move
+                carRigidbody.drag = 0.0f;
+
+
+                //Back wheels
+                if (!frontWheel && driveType != DriveType.FrontWheelDrive)
+                {
+                    wheel.motorTorque = -speed;
+                }
+
+                //Front wheels
+                if (frontWheel && driveType != DriveType.RearWheelDrive)
+                {
+                    wheel.motorTorque = -speed;
+                }
+            }
             else
             {
                 wheel.motorTorque = 0.0f;
                 carRigidbody.drag = dragAmount;
             }
+
+
 			
 
 			// Update visual wheels if any
