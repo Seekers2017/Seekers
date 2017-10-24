@@ -4,66 +4,71 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour {
 
-
-
     //Variables
-    public float rotateSpeed = 40.0f;
-    public bool debug;
-    public Transform target;
-    public float height = 0.5f;
-    public float distance = 2.0f;
-    private Vector3 idealPos;
-    public float cameraSpeed = 10.0f;
-    public float upAngle = 0.2f;
+
+    [Tooltip("Decreases camera jitter.")]
+    [SerializeField]
+    private float smoothing = 100f;
+    [Tooltip("Smooths the camera turning on a drift")]
+    [SerializeField]
+    private float driftSmoothing = 0.2f;
+    [Tooltip("Camera position in the world.")]
+    [SerializeField]
+    private Transform positionTarget;
+    [Tooltip("What the camera should look at.")]
+    [SerializeField]
+    private Transform lookAtTarget;
+    [Tooltip("What the camera should look at while drifting.")]
+    [SerializeField]
+    private Transform driftTarget;
+    [Tooltip("Camera's Original Position")]
+    [SerializeField]
+    private Transform originalPos;
+
+
+    private WheelDrive playerWheelDrive;
+    private bool playerHasDrifted;
 
     // Use this for initialization
     void Start ()
     {
+        playerWheelDrive = GameObject.FindGameObjectWithTag("Player").GetComponent<WheelDrive>();
 	}
 	
-	// Update is called once per frame
-	void Update ()
-    {
-
-        
-
-        if (debug == true)
-        {
-            //Rotate the camera
-            transform.Rotate(Input.GetAxis("RightHorizontal") * Vector3.up * Time.deltaTime * rotateSpeed);
-            transform.Rotate(Input.GetAxis("RightVertical") * Vector3.right * Time.deltaTime * rotateSpeed);
-
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(0))
-            {
-                RaycastHit hit = new RaycastHit();
-                Ray r = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));
-
-                if (Physics.Raycast(r, out hit, 100))
-                {
-                    target = hit.transform;
-                }
-            }
-        }
-    }
-
     void LateUpdate()
     {
-        if (debug == false)
-        {
+        //Set the ideal pos is the target's position
+        transform.position = Vector3.Lerp(transform.position, positionTarget.position, Time.deltaTime * smoothing);
 
-           
 
-            //Set the ideal pos is the target's position
-            Vector3 targetForward = target.forward;
-            targetForward.y = 0.0f;
+       ////Altering the camera for a drift
+       //if (playerWheelDrive.Drifting == false)
+       //{ 
+       //    if(playerHasDrifted == false)
+       //    {
+       //        //Set the ideal pos is the target's position
+       //        transform.position = Vector3.Lerp(transform.position, positionTarget.position, Time.deltaTime * smoothing);
+       //    }
+       //    else
+       //    {
+       //        //Set the ideal pos is the target's position
+       //        transform.position = Vector3.Lerp(transform.position, positionTarget.position, Time.deltaTime * smoothing);
+       //
+       //        //Lerp the position to the drift camera position
+       //        positionTarget.transform.position = Vector3.Lerp(positionTarget.position, originalPos.transform.position, Time.deltaTime * driftSmoothing);
+       //    }
+       //}
+       //else
+       //{
+       //    //Set the ideal pos is the target's position
+       //    transform.position = Vector3.Lerp(transform.position, positionTarget.position, Time.deltaTime * smoothing);
+       //
+       //    //Lerp the position to the drift camera position
+       //    positionTarget.transform.position = Vector3.Lerp(positionTarget.position, driftTarget.position, Time.deltaTime * driftSmoothing);
+       //
+       //    playerHasDrifted = true;
+       //}
 
-            idealPos = target.position + Vector3.up * height - targetForward * distance;
-
-            //Move the camera based on idealPos
-            transform.position = idealPos; /* Vector3.Lerp(transform.position, idealPos, Time.deltaTime * cameraSpeed); */
-
-            Vector3 vecToPlayer = target.position - transform.position;
-            transform.rotation = Quaternion.LookRotation(vecToPlayer.normalized + Vector3.up * upAngle);// Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vecToPlayer.normalized), Time.deltaTime * rotateSpeed); //point camera z along vector to player
-        }
+        transform.LookAt(lookAtTarget);
     }
 }

@@ -58,6 +58,12 @@ public class WheelDrive : MonoBehaviour
     private Rigidbody carRigidbody;
 
 
+    public bool Drifting
+    {
+        get { return drifting; }
+    }
+
+
 	void Start()
 	{
         //Various stuff
