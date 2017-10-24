@@ -17,11 +17,10 @@ public class MiniMapController : MonoBehaviour
     //Get the player position
     [SerializeField]
     public Transform playerPos;
-    
     //Decide which camera we use for the minimap
     [SerializeField]
     public Camera mapCamera;
-
+    //Get canvas
     private Canvas canvas;
     //Create a list to store map objects by the class we created above
     private static List<MapObject> mapObjectList = new List<MapObject>();
@@ -105,8 +104,9 @@ public class MiniMapController : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
+        //get canvas component
         canvas = transform.parent.GetComponent<Canvas>();
     }
     void Update()

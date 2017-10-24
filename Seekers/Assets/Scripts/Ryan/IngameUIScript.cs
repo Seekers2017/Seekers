@@ -5,28 +5,37 @@ using UnityEngine.UI;
 
 public class IngameUIScript : MonoBehaviour
 {
-    private int currLap;
+    //get entity
     private PlayerManager entity;
 
+    //create slots for UI sprites
     private Image lapCountSprite;
     private Image rankSprite;
     private Image itemSprite;
+
+    //create arrays for sprites that called from Resource folder
     private Sprite[] lapSpriteList;
     private Sprite[] rankSpriteList;
     private Sprite[] itemSpriteList;
 
+    //get entity's check point script
     private CarCheckpointScript checkpointScript;
+
 	// Use this for initialization
 	void Start ()
     {
+        //get entity
         entity = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<PlayerManager>();
 
+        //get check point script from entities
         checkpointScript = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<CarCheckpointScript>();
 
+        //load sprites for sprites into arrays we created above from Resource folder
         lapSpriteList = Resources.LoadAll<Sprite>("LapSprites");
         rankSpriteList = Resources.LoadAll<Sprite>("RankSprites");
         itemSpriteList = Resources.LoadAll<Sprite>("ItemIconSprites");
 
+        //get image slots and link to the variables we set up
         lapCountSprite = gameObject.transform.Find("lapCount").GetComponent<Image>();
         rankSprite = gameObject.transform.Find("rank").GetComponent<Image>();
         itemSprite = gameObject.transform.Find("itemIcon").GetComponent<Image>();
@@ -35,33 +44,48 @@ public class IngameUIScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        currLap = checkpointScript.currLap;
-
+        //get currLap from check point script of entity's
+        int currLap = checkpointScript.currLap;
+        //according to the currlap, decide which sprite to render
+        //it has to be (currlap - 1), you know why
         lapCountSprite.sprite = lapSpriteList[currLap-1];
 
+        //if entity doesn't possess items
         if (entity.HasItem == false)
         {
+            //no matter what icon inside it's currently in the frame,
+            //make it transparent (alpha = 0)
             itemSprite.color = new Color(1, 1, 1, 0);
+            //this method is a faking method, it doesn't actually destroy the icon
+            //only hiding it. Will have to improve if possible ( use Destroy(); and Instantiate(); )
         }
     }
 
+    //Set item sprite display in the frame
     public void SetCollectedItem(ItemNum collectedItemType)
     {
+        //if ItemNum = HealthKit
         if (collectedItemType == ItemNum.HeathKit)
         {
+            //set sprite alpha to 1
             itemSprite.color = new Color(1, 1, 1, 1);
+            //replace the current sprite to the first on of the list
             itemSprite.sprite = itemSpriteList[0];
         }
 
         if (collectedItemType == ItemNum.Bumper)
         {
+            //set sprite alpha to 1
             itemSprite.color = new Color(1, 1, 1, 1);
+            //replace the current sprite to the second on of the list
             itemSprite.sprite = itemSpriteList[1];
         }
 
         if (collectedItemType == ItemNum.SpeedBoost)
         {
+            //set sprite alpha to 1
             itemSprite.color = new Color(1, 1, 1, 1);
+            //replace the current sprite to the third on of the list
             itemSprite.sprite = itemSpriteList[2];
         }
     }
