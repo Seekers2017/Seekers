@@ -15,8 +15,10 @@ ModelImporter:
     400006: Track
     2300000: pCube1
     2300002: Track
+    2300004: //RootNode
     3300000: pCube1
     3300002: Track
+    3300004: //RootNode
     4300000: pCube1
     4300002: Track
     9500000: //RootNode
