@@ -439,7 +439,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh11660
+  m_Name: pb_Mesh12040
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -3820,17 +3820,17 @@ Prefab:
     - target: {fileID: 146134981274913686, guid: 62ef3a699dd6273479cfc439ebc447cc,
         type: 2}
       propertyPath: m_SuspensionSpring.spring
-      value: 25039.578
+      value: 25000
       objectReference: {fileID: 0}
     - target: {fileID: 146134981274913686, guid: 62ef3a699dd6273479cfc439ebc447cc,
         type: 2}
       propertyPath: m_SuspensionSpring.damper
-      value: 4006.3325
+      value: 4000
       objectReference: {fileID: 0}
     - target: {fileID: 146134981274913686, guid: 62ef3a699dd6273479cfc439ebc447cc,
         type: 2}
       propertyPath: m_ForceAppPointDistance
-      value: 0.8971159
+      value: 1.7145833
       objectReference: {fileID: 0}
     - target: {fileID: 146793389571663422, guid: 62ef3a699dd6273479cfc439ebc447cc,
         type: 2}
@@ -3840,7 +3840,7 @@ Prefab:
     - target: {fileID: 146793389571663422, guid: 62ef3a699dd6273479cfc439ebc447cc,
         type: 2}
       propertyPath: m_ForceAppPointDistance
-      value: 0.8971159
+      value: 1.7145833
       objectReference: {fileID: 0}
     - target: {fileID: 146665071918970550, guid: 62ef3a699dd6273479cfc439ebc447cc,
         type: 2}
@@ -3850,7 +3850,7 @@ Prefab:
     - target: {fileID: 146665071918970550, guid: 62ef3a699dd6273479cfc439ebc447cc,
         type: 2}
       propertyPath: m_ForceAppPointDistance
-      value: 0.8971159
+      value: 1.7145833
       objectReference: {fileID: 0}
     - target: {fileID: 146904375878689436, guid: 62ef3a699dd6273479cfc439ebc447cc,
         type: 2}
@@ -3860,7 +3860,42 @@ Prefab:
     - target: {fileID: 146904375878689436, guid: 62ef3a699dd6273479cfc439ebc447cc,
         type: 2}
       propertyPath: m_ForceAppPointDistance
-      value: 0.8971159
+      value: 1.7145833
+      objectReference: {fileID: 0}
+    - target: {fileID: 114778091105418534, guid: 62ef3a699dd6273479cfc439ebc447cc,
+        type: 2}
+      propertyPath: driftDrag
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 146665071918970550, guid: 62ef3a699dd6273479cfc439ebc447cc,
+        type: 2}
+      propertyPath: m_SuspensionSpring.spring
+      value: 25000
+      objectReference: {fileID: 0}
+    - target: {fileID: 146665071918970550, guid: 62ef3a699dd6273479cfc439ebc447cc,
+        type: 2}
+      propertyPath: m_SuspensionSpring.damper
+      value: 4000
+      objectReference: {fileID: 0}
+    - target: {fileID: 146904375878689436, guid: 62ef3a699dd6273479cfc439ebc447cc,
+        type: 2}
+      propertyPath: m_SuspensionSpring.spring
+      value: 25000
+      objectReference: {fileID: 0}
+    - target: {fileID: 146904375878689436, guid: 62ef3a699dd6273479cfc439ebc447cc,
+        type: 2}
+      propertyPath: m_SuspensionSpring.damper
+      value: 4000
+      objectReference: {fileID: 0}
+    - target: {fileID: 146793389571663422, guid: 62ef3a699dd6273479cfc439ebc447cc,
+        type: 2}
+      propertyPath: m_SuspensionSpring.spring
+      value: 25000
+      objectReference: {fileID: 0}
+    - target: {fileID: 146793389571663422, guid: 62ef3a699dd6273479cfc439ebc447cc,
+        type: 2}
+      propertyPath: m_SuspensionSpring.damper
+      value: 4000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62ef3a699dd6273479cfc439ebc447cc, type: 2}

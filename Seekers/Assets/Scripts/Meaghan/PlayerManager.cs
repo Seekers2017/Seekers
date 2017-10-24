@@ -6,13 +6,20 @@ public class PlayerManager : Entity {
 
 
     IngameUIScript uiScript;
-
+    Color defaultColour;
+    GameObject carBody;
+    Renderer renderer;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         uiScript = FindObjectOfType<IngameUIScript>();
+        defaultColour = gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<MeshRenderer>().material.color;
+        renderer = gameObject.GetComponent<Renderer>();
+    }
 
+    void Start()
+    {
         leftBumper.SetActive(false);
         rightBumper.SetActive(false);
         rearBumper.SetActive(false);
@@ -21,7 +28,31 @@ public class PlayerManager : Entity {
     void Update()
     {
         Items();
+
+        if (isBoosting)
+        {
+            UpdateSpeedBoost();
+        }
+
     }
+
+    void LowHealth()
+    {
+
+    }
+
+
+    IEnumerator Flasher()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            renderer.material.color = Color.red;
+            yield return new WaitForSeconds(.1f);
+            renderer.material.color = defaultColour;
+            yield return new WaitForSeconds(.1f);
+        }
+    }
+
     void Items()
     {
         if (hasItem == true)
@@ -61,7 +92,7 @@ public class PlayerManager : Entity {
                     }
                 }
             }
-            else
+            else //speed boost
             {
                 if (Input.GetButton("Fire3"))
                 {

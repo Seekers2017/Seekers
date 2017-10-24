@@ -73,23 +73,28 @@ public class Entity : MonoBehaviour {
     }
 
 
-    //FIX TIMER BUG!!!!
+    //FIX TIMER BUG!!!! START
     protected void SpeedBoost()
+    {
+     
+        //Go faster
+        isBoosting = true;
+
+    
+    }
+
+    protected void UpdateSpeedBoost()
     {
         //They have the speed boost
         boostTimer += Time.deltaTime;
 
-        //Go faster
-        isBoosting = true;
-
         //Go slower
         if (boostTimer >= maxBoostTimer)
         {
-            isBoosting = false;
-
             Debug.Log("Timer has gone off");
 
             boostTimer = 0.0f;
+            isBoosting = false;
         }
     }
 

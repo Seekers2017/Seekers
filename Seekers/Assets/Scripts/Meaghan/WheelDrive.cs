@@ -71,6 +71,7 @@ public class WheelDrive : MonoBehaviour
         wheels = GetComponentsInChildren<WheelCollider>();
         carRigidbody = GetComponent<Rigidbody>();
         drifting = false;
+        releaseDrift = false;
         storeBackAngle = true;
 
         //Create the wheels
@@ -144,7 +145,7 @@ public class WheelDrive : MonoBehaviour
                 //Start timer
                 releaseTimer += Time.deltaTime;
 
-                if (releaseTimer > releaseTimerMax)
+                if (releaseTimer < releaseTimerMax)
                     releaseDrift = true;
             }
             else
@@ -211,9 +212,6 @@ public class WheelDrive : MonoBehaviour
                 wheel.motorTorque = 0.0f;
                 carRigidbody.drag = dragAmount;
             }
-
-
-			
 
 			// Update visual wheels if any
 			if (wheelShape) 
