@@ -23,7 +23,7 @@ public class AI : Entity
     private NodeManage nodeManage;
 
     //Variables for steering
-    private float sensorLength = 5.0f;
+    private float sensorLength = 10.0f;
     private Vector3 frontSensorPos = new Vector3(0.0f, 0.2f, 0.5f);
     private float frontSideSensorPos = 0.2f;
     private float frontSensorAngle = 30.0f;
@@ -52,12 +52,6 @@ public class AI : Entity
     {
         //Functions
         Sensors();
-
-        //Clamp speed
-        if (rb.velocity.magnitude > speed)
-        {
-            rb.velocity = rb.velocity.normalized * speed;
-        }
 
         //Restart the following
         if (targetNode == null)
@@ -233,7 +227,6 @@ public class AI : Entity
             {
                 //Move towards node
                 rb.AddForce((transform.right * avoidMultiplier) * steerSpeed * Time.fixedDeltaTime);
-
             }
         }
 

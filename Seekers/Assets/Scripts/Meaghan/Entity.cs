@@ -20,6 +20,9 @@ public class Entity : MonoBehaviour {
     protected float maxLifeSpan = 5.0f;
     [SerializeField]
     protected float maxBoostTimer = 1.0f;
+    [Tooltip("Time it takes to respawn the car.")]
+    [SerializeField]
+    private float respawnTime = 2.0f;
 
 
 
@@ -42,7 +45,12 @@ public class Entity : MonoBehaviour {
     protected int bumperSelect = 0;
     protected float boostTimer;
     protected bool isBoosting;
-    
+    protected float timer;
+    protected Vector3 storedPosition;
+    protected bool respawn;
+    protected bool hasLowHealth;
+    protected float deathTimer;
+
 
     //Getters and setters
     public int Hits
@@ -72,15 +80,40 @@ public class Entity : MonoBehaviour {
         a_bumper.SetActive(true);
     }
 
+    protected void Respawn()
+    {
+        timer = 0.0f;
 
-    //FIX TIMER BUG!!!! START
+        deathTimer += Time.deltaTime;
+
+        if(deathTimer > respawnTime)
+        {
+            //Reset the positon of the entity
+            transform.position = storedPosition;
+            hits = 0;
+        }
+    }
+
+    protected void PositionTimer()
+    {
+        deathTimer = 0.0f;
+
+        //Start the timer
+        timer += Time.deltaTime;
+
+        //If the timer exceeds 3 seconds
+        if (timer > 2.5f)
+        {
+            storedPosition = transform.position;
+            timer = 0.0f;
+        }
+    }
+
+    //Start
     protected void SpeedBoost()
     {
-     
         //Go faster
         isBoosting = true;
-
-    
     }
 
     protected void UpdateSpeedBoost()
@@ -101,6 +134,11 @@ public class Entity : MonoBehaviour {
 
     protected virtual void OnTriggerEnter(Collider a_other)
     {
+        if (a_other.tag == "Box")
+        {
+            hits++;
+        }
+
         //If they are the items
         if (a_other.tag == "BumperItem")
         { 
