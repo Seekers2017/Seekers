@@ -1028,7 +1028,7 @@ MonoBehaviour:
   stepsAbove: 1
   dragAmount: 1
   driftAngle: 3
-  driftDrag: 2.5
+  driftDrag: 3.5
   releaseTimerMax: 1
   frontTyreDriftAngle: 2.5
   driveType: 2
@@ -1043,13 +1043,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6bebdffe96219c4faa0ef7746ba5315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHits: 0
+  maxHits: 1
   maxLifeSpan: 5
   maxBoostTimer: 1
+  respawnTime: 2
   frontBumper: {fileID: 1940265019657168}
   leftBumper: {fileID: 1964468128171374}
   rearBumper: {fileID: 1240154998504312}
   rightBumper: {fileID: 1422737770886928}
+  flashSpeed: 0
 --- !u!114 &114846270482518354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1106,7 +1108,7 @@ WheelCollider:
     damper: 4006.3318
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620001
-  m_ForceAppPointDistance: 0.8971158
+  m_ForceAppPointDistance: 0.8971159
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -1135,7 +1137,7 @@ WheelCollider:
     damper: 4263.931
     targetPosition: 0.5
   m_SuspensionDistance: 0.1962
-  m_ForceAppPointDistance: 0.8971158
+  m_ForceAppPointDistance: 0.8971159
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -1164,7 +1166,7 @@ WheelCollider:
     damper: 3736.0688
     targetPosition: 0.5
   m_SuspensionDistance: 0.1962
-  m_ForceAppPointDistance: 0.8971158
+  m_ForceAppPointDistance: 0.8971159
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -1193,7 +1195,7 @@ WheelCollider:
     damper: 3993.6672
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620003
-  m_ForceAppPointDistance: 0.8971158
+  m_ForceAppPointDistance: 0.8971159
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
