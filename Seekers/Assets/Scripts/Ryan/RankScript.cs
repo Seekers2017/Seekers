@@ -8,7 +8,7 @@ public class RankScript : MonoBehaviour
     private static List<CarCheckpointScript> rankList = new List<CarCheckpointScript>();
 
     // Use this for initialization
-    void Start ()
+    void Awake ()
     {
         GameObject[] aiTaggedObj = GameObject.FindGameObjectsWithTag("AI");
         GameObject[] playerTaggedObj = GameObject.FindGameObjectsWithTag("Player");
@@ -26,8 +26,8 @@ public class RankScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		
-	}
+        SortAllCars(rankList);
+    }
 
 
     public int GetRank(CarCheckpointScript a_car)
@@ -51,41 +51,46 @@ public class RankScript : MonoBehaviour
         return rankList; 
     }
 
-    private void SortByLap(List<CarCheckpointScript> a_List)
+    private void SortAllCars(List<CarCheckpointScript> a_List)
     {
-
+        //create a temp list for sorting
         List<CarCheckpointScript> tempList = new List<CarCheckpointScript>();
 
-        //add all cars from rankList into tempList
-        
-
-        //sort tempList
-        //1.
+        //Method 1. Bubble Sorting (Manual)
         bool sorted = false;
-        
 
-        while (sorted)
+        while (sorted == false)
         {
+            sorted = true;
+
             for (int i = 0; i < a_List.Count; i++)
             {
                 for (int j = 0; j < a_List.Count; j++)
                 {
                     //car i was ahead
-                    if( CompareRank(a_List[i], a_List[j]) == 1)
+                    if( CompareRank(a_List[i], a_List[j]) == 1 )
                     {
-                        //put a_List[i] in list
+                        tempList.Add(a_List[i]);
+                        sorted = false;
                     }
 
-                    
+                    if (CompareRank(a_List[i], a_List[j]) == -1)
+                    {
+                        tempList.Add(a_List[j]);
+                        sorted = false;
+                    }
+
                 }
             }
         }
 
-        //OR 2. 
-        tempList.Sort(CompareRank);
+        ///Method 2. C# Sort (Automatic)
+        //tempList.AddRange(a_List);
+        //tempList.Sort(CompareRank);
 
 
-        //rankList = tempList
+        a_List.RemoveRange(0, a_List.Count);
+        a_List.AddRange(tempList);
     }
 
     //implement CompareRank function
@@ -97,7 +102,7 @@ public class RankScript : MonoBehaviour
         //(Will have to move the checkpointList to Rank Script later)
         List<Transform> chkpntTransList = car1.checkpointList;
 
-        //
+        //Set Current Lap count as the first check condition
         if (car1.currLap > car2.currLap)
         {
             return 1;
@@ -107,8 +112,9 @@ public class RankScript : MonoBehaviour
         {
             return -1;
         }
-        else
+        else //if both cars in on same lap
         {
+            //compare current check point
             if (car1.currCheckpointCount > car2.currCheckpointCount)
             {
                 return 1;
@@ -117,42 +123,22 @@ public class RankScript : MonoBehaviour
             {
                 return -1;
             }
-            else
+            else // if both having same checkpoint
             {
+                //compare the distance to the next checkpoint they are going
                 if ( (car1.transform.position - chkpntTransList[(car1.currCheckpointCount) + 1].position).sqrMagnitude 
-                    > (car2.transform.position - chkpntTransList[(car2.currCheckpointCount) + 1].position).sqrMagnitude )
+                    < (car2.transform.position - chkpntTransList[(car2.currCheckpointCount) + 1].position).sqrMagnitude )
                 {
                     return 1;
                 }
-                else if ( (car1.transform.position - chkpntTransList[(car1.currCheckpointCount) + 1].position).sqrMagnitude
+                if ( (car1.transform.position - chkpntTransList[(car1.currCheckpointCount) + 1].position).sqrMagnitude
                     > (car2.transform.position - chkpntTransList[(car2.currCheckpointCount) + 1].position).sqrMagnitude )
                 {
                     return -1;
                 }
             }
         }
-
+        // if all conditions are the same, they are tie
         return 0;
-
-
-        //if car1 lap is greater than car2's current lap
-        //return 1
-
-        //if car2's lap is greater than car1's lap
-        //return -1
-
-
-
-
-        //down here - they're on the same lap, compare check points.
-
-        //if car1 checkpoint > car2 checkpoint
-        //return 1
-
-        //if car2 checkpoint > car1 checkpoint
-        //return -1
-
-
-        //here: same lap, same checkpoint, compare distances (car1.transform.position - checkpoint.position).sqrmagnitude < (car2 - checkpoint).sqrmagnitude
     }
 }
