@@ -4,31 +4,25 @@ using UnityEngine;
 
 public class CarCheckpointScript : MonoBehaviour
 {
-    public List<Transform> checkpointList;
     public int currLap;
     public int currCheckpointCount;
+
     public Vector3 startPos;
+    private List<Transform> checkpointList;
     private GameObject checkpointSet;
+    private RankScript rankScript;
 
     // Use this for initialization
-    void Awake ()
+    void Start ()
     {
-        checkpointList = new List<Transform>();
-        checkpointSet = GameObject.FindGameObjectWithTag("CheckpointSet");
+        rankScript = GameObject.Find("GameManager").GetComponent<RankScript>();
+        checkpointList = rankScript.CheckpointList;
+        checkpointSet  = GameObject.FindGameObjectWithTag("CheckpointSet");
         currLap = 1;
         currCheckpointCount = 0;
-        AddCheckpoints();
     }
 
-    //Add all the child checkpoints' transform into checkpointList
-    private void AddCheckpoints()
-    {
-        //check how many children objects under checkpointSet and Add
-        for (int i = 0; i < checkpointSet.transform.childCount; i++)
-        {
-            checkpointList.Add( checkpointSet.transform.GetChild(i).transform );
-        }
-    }
+
 
     //On trigger enter when player goes through a checkpoint 
     private void OnTriggerEnter(Collider other)

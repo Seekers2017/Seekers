@@ -7,6 +7,7 @@ public class IngameUIScript : MonoBehaviour
 {
     //get entity
     private PlayerManager entity;
+    private RankScript rankScript;
 
     //create slots for UI sprites
     private Image lapCountSprite;
@@ -27,6 +28,9 @@ public class IngameUIScript : MonoBehaviour
         //get entity
         entity = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<PlayerManager>();
 
+        //get rankScript
+        rankScript = GameObject.Find("GameManager").GetComponent<RankScript>();
+
         //get check point script from entities
         checkpointScript = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<CarCheckpointScript>();
 
@@ -46,9 +50,15 @@ public class IngameUIScript : MonoBehaviour
     {
         //get currLap from check point script of entity's
         int currLap = checkpointScript.currLap;
+        //get rank from the rankScrip's getter GetRank
+        int rank = rankScript.GetRank(checkpointScript);
         //according to the currlap, decide which sprite to render
         //it has to be (currlap - 1), you know why
         lapCountSprite.sprite = lapSpriteList[currLap-1];
+
+        //according to the rank, decide which sprite to render
+        //it has to be (currlap - 1), you know why
+        rankSprite.sprite = rankSpriteList[rank - 1];
 
         //if entity doesn't possess items
         if (entity.HasItem == false)
