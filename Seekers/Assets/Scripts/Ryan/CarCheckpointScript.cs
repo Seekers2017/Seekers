@@ -8,6 +8,7 @@ public class CarCheckpointScript : MonoBehaviour
     public int currCheckpointCount;
 
     public Vector3 startPos;
+
     private List<Transform> checkpointList;
     private GameObject checkpointSet;
     private RankScript rankScript;
@@ -20,6 +21,7 @@ public class CarCheckpointScript : MonoBehaviour
         checkpointSet  = GameObject.FindGameObjectWithTag("CheckpointSet");
         currLap = 1;
         currCheckpointCount = 0;
+        startPos = gameObject.transform.position;
     }
 
 
