@@ -165,7 +165,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4551148832270510}
-  - component: {fileID: 95964089222656262}
   m_Layer: 0
   m_Name: Mesh_Car
   m_TagString: Untagged
@@ -935,23 +934,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8.168981, y: 4.8635817, z: 4.7797003}
   m_Center: {x: 0, y: 0, z: 0.004089714}
---- !u!95 &95964089222656262
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1491923860846652}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 3aa8f4ebca0ac1d40a4d350a907ee643, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114205394750425442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -963,7 +945,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7091d338a6a121c46adacfad6edfe8af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkpointList: []
   currLap: 0
   currCheckpointCount: 0
   startPos: {x: 0, y: 0, z: 0}
@@ -1043,7 +1024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6bebdffe96219c4faa0ef7746ba5315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHits: 1
+  maxHits: 2
   maxLifeSpan: 5
   maxBoostTimer: 1
   respawnTime: 2
