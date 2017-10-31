@@ -11,12 +11,27 @@ public enum GameStateID
     GameOver
 }
 
-public abstract class FSMState
+public abstract class BaseState
 {
     protected GameStateID stateID;
 
     public GameStateID StateID
     {
         get { return stateID; }
+    }
+
+    public virtual void Start()
+    {
+
+    }
+
+    public virtual void Update()
+    {
+
+    }
+
+    public virtual void Shutdown()
+    {
+
     }
 }
