@@ -48,8 +48,11 @@ ModelImporter:
     400038: transform17
     400040: transform9
     2300000: polySurface29
+    2300002: //RootNode
     3300000: polySurface29
+    3300002: //RootNode
     4300000: polySurface29
+    4300002: Small_Rock
     9500000: //RootNode
   materials:
     importMaterials: 1
