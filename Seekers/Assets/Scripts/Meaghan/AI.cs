@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AI : Entity
-{
-
+{ 
     //Variables
     [SerializeField]
     private float itemSpawnTime = 2.0f;
     [SerializeField]
-    protected float boostSpeed = 500.0f;
+    private float boostSpeed = 20.0f;
     [SerializeField]
-    protected float maxSpeed = 4000.0f;
+    private float maxSpeed = 4000.0f;
     [SerializeField]
-    protected float speed;
+    private float speed;
     [SerializeField]
-    protected float rotation;
+    private float rotation;
+    [SerializeField]
+    private float radius;
+
+    protected List<Entity> carList;
 
     private Rigidbody rb;
     private float accelTimer;
@@ -34,6 +37,8 @@ public class AI : Entity
     private float avoidMultiplier = 0.0f;
     private bool canDetect = true;
     private float itemTimer;
+    private int amountOfCars = 0;
+    private float closestDistance = 10000;
 
     // Use this for initialization
     void Start()
@@ -44,12 +49,31 @@ public class AI : Entity
         leftBumper.SetActive(false);
         rightBumper.SetActive(false);
         rearBumper.SetActive(false);
+
+        carList = new List<Entity>();
+
+        GameObject[] AIs = GameObject.FindGameObjectsWithTag("AI");
+
+        foreach (GameObject car in AIs)
+        {
+            carList.Add(car.GetComponent<Entity>());
+        }
+
+        carList.Add(GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>());
     }
 
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Boost
+        if (isBoosting)
+        {
+            //Alter the speed and boost
+            maxSpeed += boostSpeed;
+            UpdateSpeedBoost();
+        }
+
         //Functions
         Sensors();
 
@@ -62,17 +86,13 @@ public class AI : Entity
         //Start the timer
         accelTimer += Time.fixedDeltaTime;
 
-        if (speed > maxSpeed)
-        {
-            speed = maxSpeed;
-        }
-
-
         //If the timer is greater than 3 seconds
         if (accelTimer > 3.0f)
         {
             //Get the direction then move to the direction
             Vector3 moveDirection = targetNode.gameObject.transform.position - transform.position;
+            moveDirection.y = 0.0f;
+
 
             //Rotation
             if (rb.velocity.magnitude > 5.0f)
@@ -80,43 +100,89 @@ public class AI : Entity
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rb.velocity), rotation * Time.fixedDeltaTime);
             }
 
-            //Move towards node
+
+       //    rb.velocity = Vector3.Lerp(rb.velocity, moveDirection.normalized * speed, Time.fixedDeltaTime * 2.5f);
+
+            ////Move towards node
             rb.AddForce(moveDirection.normalized * speed * Time.fixedDeltaTime);
+
+            if(rb.velocity.magnitude > maxSpeed)
+            {
+                rb.velocity = rb.velocity.normalized * maxSpeed;
+            }
+
+
         }
     }
 
     void Update()
     {
         Items();
+        Interaction();
     }
+
+    private void Interaction()
+    {
+        //Iterate through cars
+        foreach(Entity car in carList)
+        {
+            if(car != this)
+            {
+                Vector3 vecBetween = transform.position - car.transform.position;
+
+                //Check the distance between two things
+                float distance = vecBetween.magnitude;
+
+                if (distance < closestDistance)
+                {
+                    //Check angles
+                    float angle = Vector3.Angle(transform.position, vecBetween);
+                    Debug.Log("Angle: " + angle);
+
+                    //Do behaviours
+
+
+                }
+            }
+        }
+    }
+
+
 
     private void Items()
     {
+        //Has an item
         if (hasItem == true)
         {
+            //Start the timer
             itemTimer += Time.deltaTime;
 
             if (hasBumper == true)
             {
+                //Randomise the bumper select
                 bumperSelect = Random.Range(0, 3);
 
+                //We can use the item
                 if (itemTimer > itemSpawnTime)
                 {
                     //Input the selection to the car
                     if (bumperSelect == 0)
                     {
+                        //Set the bumper
                         Bumper(leftBumper);
                         itemTimer = 0.0f;
                         hasItem = false;
                     }
                     else if (bumperSelect == 1)
                     {
+                        //Set the bumper
                         Bumper(rightBumper);
                         itemTimer = 0.0f;
                         hasItem = false;
                     }
                     else if (bumperSelect == 2)
                     {
+                        //Set the bumper
                         Bumper(rearBumper);
                         itemTimer = 0.0f;
                         hasItem = false;
@@ -125,6 +191,7 @@ public class AI : Entity
             }
             else
             {
+                //We can use the timer
                 if (itemTimer > itemSpawnTime)
                 {
                     //Go fast

@@ -12,38 +12,57 @@ public enum DriveType
 public class WheelDrive : MonoBehaviour
 {
     //TODO:
-    //Private SF on public variables
+    //Fix reverse
+
 
     [Tooltip("Maximum steering angle of the wheels.")]
-	public float maxAngle = 30f;
+    [SerializeField]
+    private float maxAngle = 30f;
 	[Tooltip("Maximum torque applied to the driving wheels.")]
-	public float torque = 1000f;
+    [SerializeField]
+    private float torque = 1000f;
 	[Tooltip("Maximum brake torque applied to the driving wheels.")]
-	public float brakeTorque = 30000f;
+    [SerializeField]
+    private float brakeTorque = 30000f;
     [Tooltip("Increases the speed of the car after a boost is consumed.")]
-    public float boostSpeed = 1500.0f;
+    [SerializeField]
+    private float boostSpeed = 1500.0f;
     [Tooltip("If you need the visual wheels to be attached automatically, drag the wheel shape here.")]
-	public GameObject wheelShape;
+    [SerializeField]
+    private GameObject wheelShape;
 
 	[Tooltip("The vehicle's speed when the physics engine can use different amount of sub-steps (in m/s).")]
-	public float criticalSpeed = 5f;
+    [SerializeField]
+    private float criticalSpeed = 5f;
 	[Tooltip("Simulation sub-steps when the speed is above critical.")]
-	public int stepsBelow = 5;
+    [SerializeField]
+    private int stepsBelow = 5;
 	[Tooltip("Simulation sub-steps when the speed is below critical.")]
-	public int stepsAbove = 1;
+    [SerializeField]
+    private int stepsAbove = 1;
     [Tooltip("Increases the drag of the car while not moving.")]
-    public float dragAmount;
+    [SerializeField]
+    private float dragAmount;
     [Tooltip("Increases the drift angle.")]
-    public float driftAngle = 2.5f;
+    [SerializeField]
+    private float driftAngle = 2.5f;
     [Tooltip("Increases the drift drag when it is released.")]
-    public float driftDrag = 2.5f;
+    [SerializeField]
+    private float driftDrag = 2.5f;
     [Tooltip("The maximum time for the timer that controls the drag after drifting.")]
-    public float releaseTimerMax = 1f;
+    [SerializeField]
+    private float releaseTimerMax = 1f;
     [Tooltip("Alters the angle of the front tyres while drifting.")]
-    public float frontTyreDriftAngle;
+    [SerializeField]
+    private float frontTyreDriftAngle;
+    [Tooltip("The force of the forward momentum during a drift.")]
+    [SerializeField]
+    private float forwardForce = 1000f;
 
     [Tooltip("The vehicle's drive type: rear-wheels drive, front-wheels drive or all-wheels drive.")]
-	public DriveType driveType;
+    [SerializeField]
+    private DriveType driveType;
+
 
     private WheelCollider[] wheels;
     private float speed;
@@ -53,11 +72,10 @@ public class WheelDrive : MonoBehaviour
     private bool storeBackAngle;
     private float driftWheelAngle;
     private bool abilityToDrive;
+    private float angleStore;
 
     private PlayerManager player;
     private Rigidbody carRigidbody;
-
-    
 
 
     public bool Drifting
@@ -75,10 +93,12 @@ public class WheelDrive : MonoBehaviour
 	{
         //Various stuff
         player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<PlayerManager>();
-        wheels = GetComponentsInChildren<WheelCollider>();
         carRigidbody = GetComponent<Rigidbody>();
         drifting = false;
         releaseDrift = false;
+        releaseTimer = releaseTimerMax;
+        wheels = gameObject.GetComponentsInChildren<WheelCollider>();
+
         storeBackAngle = true;
         abilityToDrive = true;
 
@@ -98,7 +118,10 @@ public class WheelDrive : MonoBehaviour
 
 	void Update()
     { 
-        if(abilityToDrive == true)
+
+
+
+        if(abilityToDrive)
         {
             //Changes speed based on criticals 
             wheels[0].ConfigureVehicleSubsteps(criticalSpeed, stepsBelow, stepsAbove);
@@ -120,8 +143,9 @@ public class WheelDrive : MonoBehaviour
                 {
                     //Allow the car to drift with no drag
                     drifting = true;
-                    carRigidbody.angularDrag = 0.0f;
-                    releaseTimerMax = 0.0f;
+                    carRigidbody.angularDrag = 3.5f;
+                    releaseDrift = false;
+                    releaseTimer = 0.0f;
 
                     //Collect the back wheel angle
                     if (storeBackAngle == true)
@@ -157,6 +181,9 @@ public class WheelDrive : MonoBehaviour
 
                     if (releaseTimer < releaseTimerMax)
                         releaseDrift = true;
+                    else 
+                        releaseDrift = false;
+   
                 }
                 else
                 {

@@ -40,21 +40,21 @@ public class PlayerManager : Entity {
 
     void Update()
     {
-        //Respawn check
-        if(hits >= maxHits)
-        {
-            //Set all values back and respawn
-            playerMove.AbilityToDrive = false;
-            rb.drag = 3.0f;
-            hasLowHealth = false;
-            Respawn();
-        }
-        else
-        {
-            //Playe can drive and store position to respawn at
-            playerMove.AbilityToDrive = true;
-            PositionTimer();
-        }
+       ////Respawn check
+       //if(hits >= maxHits)
+       //{
+       //    //Set all values back and respawn
+       //    playerMove.AbilityToDrive = false;
+       //    rb.drag = 3.0f;
+       //    hasLowHealth = false;
+       //    Respawn();
+       //}
+       //else
+       //{
+       //    //Playe can drive and store position to respawn at
+       //    playerMove.AbilityToDrive = true;
+       //    PositionTimer();
+       //}
 
         Items();
 
@@ -81,9 +81,6 @@ public class PlayerManager : Entity {
             renderer.material.color = defaultColour;
         }
     }
-
-  
-
 
     IEnumerator Flasher()
     {

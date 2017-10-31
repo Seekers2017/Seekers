@@ -5,8 +5,6 @@ using UnityEngine;
 public class Entity : MonoBehaviour {
 
     //TODO:
-    //[PLAYER]
-    //Raycasting to the walls to detect position on the track
     //[AI]
     //Improved movement 
     //Radius check (if another car is nearby)
@@ -52,6 +50,7 @@ public class Entity : MonoBehaviour {
     protected float deathTimer;
 
 
+
     //Getters and setters
     public int Hits
     {
@@ -65,12 +64,17 @@ public class Entity : MonoBehaviour {
         set { hasItem = value; }
     }
 
+    public bool HasBumper
+    {
+        get { return hasBumper; }
+        set { hasBumper = value; }
+    }
+
     public bool IsBoosting
     {
         get { return isBoosting; }
         set { isBoosting = value; }
     }
-
 
     protected void Bumper(GameObject a_bumper)
     {
@@ -142,8 +146,7 @@ public class Entity : MonoBehaviour {
         //If they are the items
         if (a_other.tag == "BumperItem")
         { 
-
-            //IF do not have item, get item
+            //If do not have item, get item
             if (hasItem != true)
             {
                 hasItem = true;
@@ -152,7 +155,6 @@ public class Entity : MonoBehaviour {
                 OnCollectItem(a_other.transform.parent.GetComponent<SpawnerScript>());
 
             }
-
         }
         else if (a_other.tag == "SpeedBoost")
         {
