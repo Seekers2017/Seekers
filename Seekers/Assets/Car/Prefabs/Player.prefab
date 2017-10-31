@@ -335,7 +335,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1878939848485240}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22, y: 2, z: -37}
+  m_LocalPosition: {x: -23, y: 2, z: -34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4551148832270510}
@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f29981ed2e753469c2636c9a05d34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAngle: 20
+  maxAngle: 45
   torque: 1000
   brakeTorque: 30000
   boostSpeed: 2000
@@ -1009,7 +1009,7 @@ MonoBehaviour:
   stepsAbove: 1
   dragAmount: 1
   driftAngle: 3
-  driftDrag: 3.5
+  driftDrag: 4
   releaseTimerMax: 1
   frontTyreDriftAngle: 2.5
   driveType: 2
