@@ -15,6 +15,32 @@ ModelImporter:
     100014: polySurface7
     100016: polySurface8
     100018: polySurface9
+    100020: Bumpers
+    100022: Car2
+    100024: Door_R
+    100026: Door_R 1
+    100028: Group_Door_R
+    100030: Group_Door_R1
+    100032: Lights
+    100034: Mesh_BumperBack
+    100036: Mesh_BumperFront
+    100038: Mesh_BumperLeft
+    100040: Mesh_BumperRight
+    100042: Mesh_CarBody1
+    100044: pCylinder17
+    100046: pCylinder17 1
+    100048: pCylinder18
+    100050: pCylinder18 1
+    100052: Suspension_L
+    100054: Suspension_R
+    100056: Wheel_BackL
+    100058: Wheel_BackR
+    100060: Wheel_FrontL
+    100062: Wheel_FrontR
+    100064: Wheel_Top
+    100066: Wheels
+    100068: Wheels_Back
+    100070: Wheels_Front
     400000: Car_Body
     400002: Car_Bonnet
     400004: Mesh_Bumper
@@ -25,6 +51,32 @@ ModelImporter:
     400014: polySurface7
     400016: polySurface8
     400018: polySurface9
+    400020: Bumpers
+    400022: Car2
+    400024: Door_R
+    400026: Door_R 1
+    400028: Group_Door_R
+    400030: Group_Door_R1
+    400032: Lights
+    400034: Mesh_BumperBack
+    400036: Mesh_BumperFront
+    400038: Mesh_BumperLeft
+    400040: Mesh_BumperRight
+    400042: Mesh_CarBody1
+    400044: pCylinder17
+    400046: pCylinder17 1
+    400048: pCylinder18
+    400050: pCylinder18 1
+    400052: Suspension_L
+    400054: Suspension_R
+    400056: Wheel_BackL
+    400058: Wheel_BackR
+    400060: Wheel_FrontL
+    400062: Wheel_FrontR
+    400064: Wheel_Top
+    400066: Wheels
+    400068: Wheels_Back
+    400070: Wheels_Front
     2300000: Car_Body
     2300002: Car_Bonnet
     2300004: Mesh_Bumper
@@ -34,6 +86,23 @@ ModelImporter:
     2300012: polySurface7
     2300014: polySurface8
     2300016: polySurface9
+    2300018: Door_R
+    2300020: Door_R 1
+    2300022: Lights
+    2300024: Mesh_BumperBack
+    2300026: Mesh_BumperFront
+    2300028: Mesh_BumperLeft
+    2300030: Mesh_BumperRight
+    2300032: Mesh_CarBody1
+    2300034: pCylinder17
+    2300036: pCylinder17 1
+    2300038: pCylinder18
+    2300040: pCylinder18 1
+    2300042: Wheel_BackL
+    2300044: Wheel_BackR
+    2300046: Wheel_FrontL
+    2300048: Wheel_FrontR
+    2300050: Wheel_Top
     3300000: Car_Body
     3300002: Car_Bonnet
     3300004: Mesh_Bumper
@@ -43,6 +112,23 @@ ModelImporter:
     3300012: polySurface7
     3300014: polySurface8
     3300016: polySurface9
+    3300018: Door_R
+    3300020: Door_R 1
+    3300022: Lights
+    3300024: Mesh_BumperBack
+    3300026: Mesh_BumperFront
+    3300028: Mesh_BumperLeft
+    3300030: Mesh_BumperRight
+    3300032: Mesh_CarBody1
+    3300034: pCylinder17
+    3300036: pCylinder17 1
+    3300038: pCylinder18
+    3300040: pCylinder18 1
+    3300042: Wheel_BackL
+    3300044: Wheel_BackR
+    3300046: Wheel_FrontL
+    3300048: Wheel_FrontR
+    3300050: Wheel_Top
     4300000: polySurface8
     4300002: Car_Bonnet
     4300004: polySurface19
@@ -52,6 +138,23 @@ ModelImporter:
     4300012: Mesh_Bumper
     4300014: polySurface18
     4300016: Car_Body
+    4300018: Mesh_BumperBack
+    4300020: Mesh_BumperLeft
+    4300022: Mesh_BumperRight
+    4300024: Wheel_BackR
+    4300026: Wheel_BackL
+    4300028: Wheel_FrontL
+    4300030: Wheel_FrontR
+    4300032: Wheel_Top
+    4300034: pCylinder18
+    4300036: pCylinder17
+    4300038: pCylinder18
+    4300040: pCylinder17
+    4300042: Mesh_BumperFront
+    4300044: Mesh_CarBody1
+    4300046: Lights
+    4300048: Door_R
+    4300050: Door_R
     9500000: //RootNode
   materials:
     importMaterials: 1
