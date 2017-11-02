@@ -160,7 +160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1181224222255532
 GameObject:
   m_ObjectHideFlags: 1
@@ -177,7 +177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1236399009143746
 GameObject:
   m_ObjectHideFlags: 1
@@ -194,7 +194,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1288751575342930
 GameObject:
   m_ObjectHideFlags: 1
@@ -628,14 +628,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1152312413105094}
-  m_LocalRotation: {x: -0, y: 0.13052596, z: -0, w: 0.99144495}
-  m_LocalPosition: {x: -39.8, y: 2, z: -23.4}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -40.58, y: 2, z: -26.3}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 4769556127970894}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 15.000001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4386434933353708
 Transform:
   m_ObjectHideFlags: 1
@@ -803,8 +803,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1887130292401380}
-  m_LocalRotation: {x: -0, y: -0.13052596, z: -0, w: 0.99144495}
-  m_LocalPosition: {x: -0.98846763, y: -0.31428573, z: 4.3051457}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.55, y: -0.31428573, z: 4.3051457}
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children:
   - {fileID: 4253721880900366}
@@ -1668,10 +1668,10 @@ MonoBehaviour:
   maxLifeSpan: 5
   maxBoostTimer: 1
   respawnTime: 2
-  frontBumper: {fileID: 0}
-  leftBumper: {fileID: 0}
-  rearBumper: {fileID: 0}
-  rightBumper: {fileID: 0}
+  frontBumper: {fileID: 1715703441943820}
+  leftBumper: {fileID: 1181224222255532}
+  rearBumper: {fileID: 1181224222255532}
+  rightBumper: {fileID: 1180933728816052}
   itemSpawnTime: 2
   boostSpeed: 500
   maxSpeed: 5000
@@ -1687,7 +1687,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.3
-  m_Height: 5.5
+  m_Radius: 1.62
+  m_Height: 6.43
   m_Direction: 2
-  m_Center: {x: 0, y: 0.5, z: 2}
+  m_Center: {x: -0.67, y: -0.23, z: 2.81}
