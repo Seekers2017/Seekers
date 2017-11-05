@@ -14,7 +14,7 @@ public class BumperScript : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        isAlive = true;
+		isAlive = false;
     }
 	
 	// Update is called once per frame

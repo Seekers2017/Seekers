@@ -43,21 +43,6 @@ public class WheelDrive : MonoBehaviour
     [Tooltip("Increases the drag of the car while not moving.")]
     [SerializeField]
     private float dragAmount;
-    [Tooltip("Increases the drift angle.")]
-    [SerializeField]
-    private float driftAngle = 2.5f;
-    [Tooltip("Increases the drift drag when it is released.")]
-    [SerializeField]
-    private float driftDrag = 2.5f;
-    [Tooltip("The maximum time for the timer that controls the drag after drifting.")]
-    [SerializeField]
-    private float releaseTimerMax = 1f;
-    [Tooltip("Alters the angle of the front tyres while drifting.")]
-    [SerializeField]
-    private float frontTyreDriftAngle;
-    [Tooltip("The force of the forward momentum during a drift.")]
-    [SerializeField]
-    private float forwardForce = 1000f;
 
     [Tooltip("The vehicle's drive type: rear-wheels drive, front-wheels drive or all-wheels drive.")]
     [SerializeField]
@@ -66,22 +51,12 @@ public class WheelDrive : MonoBehaviour
 
     private WheelCollider[] wheels;
     private float speed;
-    private bool drifting;
-    private bool releaseDrift;
-    private float releaseTimer;
-    private bool storeBackAngle;
-    private float driftWheelAngle;
     private bool abilityToDrive;
-    private float angleStore;
 
     private PlayerManager player;
     private Rigidbody carRigidbody;
 
 
-    public bool Drifting
-    {
-        get { return drifting; }
-    }
 
     public bool AbilityToDrive
     {
@@ -94,12 +69,8 @@ public class WheelDrive : MonoBehaviour
         //Various stuff
         player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<PlayerManager>();
         carRigidbody = GetComponent<Rigidbody>();
-        drifting = false;
-        releaseDrift = false;
-        releaseTimer = releaseTimerMax;
+		//carRigidbody.centerOfMass = new Vector3 (0f, -0.2f, 0f);
         wheels = gameObject.GetComponentsInChildren<WheelCollider>();
-
-        storeBackAngle = true;
         abilityToDrive = true;
 
         //Create the wheels
@@ -138,64 +109,9 @@ public class WheelDrive : MonoBehaviour
                 if (wheel.rpm > 500)
                     wheel.motorTorque = 0;
 
-
-                if (Input.GetAxis("Right Trigger") == 1)
-                {
-                    //Allow the car to drift with no drag
-                    drifting = true;
-                    carRigidbody.angularDrag = 3.5f;
-                    releaseDrift = false;
-                    releaseTimer = 0.0f;
-
-                    //Collect the back wheel angle
-                    if (storeBackAngle == true)
-                    {
-                        driftWheelAngle = -angle * driftAngle;
-                        storeBackAngle = false;
-                    }
-
-                    //Update the back wheel angles
-                    if (!frontWheel)
-                        wheel.steerAngle = driftWheelAngle;
-                }
-                else
-                {
-                    //Reset values and start the drift drag timer
-                    drifting = false;
-                }
-
                 //Update the front wheel angles
-                if (drifting == false)
-                {
-                    if (frontWheel)
-                        wheel.steerAngle = angle;
-
-                    //Reset the drift angles
-                    driftWheelAngle = 0.0f;
-                    storeBackAngle = true;
-                    if (!frontWheel)
-                        wheel.steerAngle = 0.0f;
-
-                    //Start timer
-                    releaseTimer += Time.deltaTime;
-
-                    if (releaseTimer < releaseTimerMax)
-                        releaseDrift = true;
-                    else 
-                        releaseDrift = false;
-   
-                }
-                else
-                {
-                    if (frontWheel)
-                        wheel.steerAngle = angle * frontTyreDriftAngle;
-                }
-
-                //Change the angular drag depending on whether or not you have just released the drift button
-                if (releaseDrift == true)
-                    carRigidbody.angularDrag = driftDrag;
-                else
-                    carRigidbody.angularDrag = 0.0f;
+                if (frontWheel)
+                    wheel.steerAngle = angle;
 
                 //Checking if they are boosting, increase torque
                 if (player.IsBoosting == true)

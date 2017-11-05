@@ -18,7 +18,7 @@ public class GameStateManagerScript : MonoBehaviour
         gameStates.Add( new PauseState() );
         gameStates.Add( new GameOverState() );
 
-        SwitchGameState(GameStateID.MainMenu);
+		SwitchGameState(GameStateID.InGame);
     }
 	
 	// Update is called once per frame
@@ -29,7 +29,7 @@ public class GameStateManagerScript : MonoBehaviour
             currGameState.Update();
         }
 
-        if (Input.GetKeyDown("0"))
+        if (Input.GetKey("0"))
         {
             SwitchGameState(GameStateID.MainMenu);
             currGameState.Update();
@@ -41,7 +41,7 @@ public class GameStateManagerScript : MonoBehaviour
             currGameState.Update();
         }
 
-        if (Input.GetKeyDown("2"))
+		if (Input.GetButton("Fire1"))
         {
             SwitchGameState(GameStateID.InGame);
             currGameState.Update();
