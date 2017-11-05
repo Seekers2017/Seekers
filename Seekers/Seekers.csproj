@@ -259,7 +259,7 @@
     <Compile Include="Assets\Scripts\Ryan\IngameUIScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\ItemEnumScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\ItemMovementScript.cs" />
-    <Compile Include="Assets\Scripts\Ryan\ＭainMenuScript.cs" />
+    <Compile Include="Assets\Scripts\Ryan\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\Ryan\MakeMapObject.cs" />
     <Compile Include="Assets\Scripts\Ryan\MiniMapController.cs" />
     <Compile Include="Assets\Scripts\Ryan\PauseMenuScript.cs" />

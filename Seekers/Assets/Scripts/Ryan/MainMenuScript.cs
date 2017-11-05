@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ＭainMenuScript : MonoBehaviour
+public class MainMenuScript : MonoBehaviour
 {
     private Image startSprite;
     private Image quitSprite;
@@ -12,7 +12,7 @@ public class ＭainMenuScript : MonoBehaviour
     private Sprite[] quitSpriteList;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         startSpriteList = Resources.LoadAll<Sprite>("MainStartSprites");
         quitSpriteList = Resources.LoadAll<Sprite>("MainQuitSprites");
@@ -21,10 +21,10 @@ public class ＭainMenuScript : MonoBehaviour
         startSprite = gameObject.transform.Find("quit").GetComponent<Image>();
 
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
-		
-	}
+
+    }
 }
