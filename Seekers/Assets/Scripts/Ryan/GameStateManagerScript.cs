@@ -92,6 +92,8 @@ public class MainMenuState : BaseState
 
     public override void Update()
     {
+
+
         ShowLog();
     }
 }
