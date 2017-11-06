@@ -23,8 +23,8 @@ public class PlayerManager : Entity {
     void Awake()
     {
         uiScript = FindObjectOfType<IngameUIScript>();
-        defaultColour = gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<MeshRenderer>().material.color;
-        renderer = gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Renderer>();
+        defaultColour = gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<MeshRenderer>().material.color;
+        renderer = gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Renderer>();
         playerMove = gameObject.GetComponent<WheelDrive>();
         rb = gameObject.GetComponent<Rigidbody>();
     }
