@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class AI : Entity
 { 
+    //TODO:
+    //Behaviours (move)
+    //Boost speed
+    //Bumper issue
+
     //Variables
     [SerializeField]
     private float itemSpawnTime = 2.0f;
@@ -66,13 +71,13 @@ public class AI : Entity
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Boost
-        if (isBoosting)
-        {
-            //Alter the speed and boost
-            maxSpeed += boostSpeed;
-            UpdateSpeedBoost();
-        }
+        ////Boost
+        //if (isBoosting)
+        //{
+        //    //Alter the speed and boost
+        //    maxSpeed += boostSpeed;
+        //    UpdateSpeedBoost();
+        //}
 
         //Functions
         Sensors();
@@ -141,16 +146,48 @@ public class AI : Entity
                     //Do behaviours
                     if(angle >= -24.0f && angle <= 50.0f)
                     {
-                        //Left side
-                        //DEBUG LATER
-                    }
-                    else if (angle >= -85.0f && angle <= -175.0f)
-                    {
                         //Right side
+                        //If I have a right bumper and the other car does not
+                        if(rightBumper.activeSelf == true && car.leftBumper.activeSelf == false)
+                        {
+                            //Drive towards the other car
+                        }
+                        //If we both have a bumper on the corresponding sides
+                        else if (rightBumper.activeSelf == true && car.leftBumper.activeSelf == true)
+                        {
+                            //Drive towards the car
+                        }
+                        //If we can see that they have a bumper and we don't
+                        else if (rightBumper.activeSelf == false && car.leftBumper.activeSelf == true)
+                        {
+                            //Drive away from the car
+                        }
                     }
-                    else if (angle >= -25 && angle <= -84)
+                    else if (angle >= -175 && angle <= -85)
+                    {
+                        //Left side
+                        //Right side
+                        //If I have a left bumper and the other car does not
+                        if (leftBumper.activeSelf == true && car.rightBumper.activeSelf == false)
+                        {
+                            //Drive towards the other car
+                        }
+                        //If we both have a bumper on the corresponding sides
+                        else if (leftBumper.activeSelf == true && car.rightBumper.activeSelf == true)
+                        {
+                            //Drive towards the car
+                        }
+                        //If we can see that they have a bumper and we don't
+                        else if (leftBumper.activeSelf == false && car.rightBumper.activeSelf == true)
+                        {
+                            //Drive away from the car
+                        }
+                    }
+                    else if (angle >= -84 && angle <= -25)
                     {
                         //Front side
+                        
+                        //Ram the backside
                     }
 
                 }

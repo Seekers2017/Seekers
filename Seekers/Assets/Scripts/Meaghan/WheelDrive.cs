@@ -13,7 +13,8 @@ public class WheelDrive : MonoBehaviour
 {
     //TODO:
     //Fix reverse
-
+    //Track slippyness
+    //Fix speed of the car
 
     [Tooltip("Maximum steering angle of the wheels.")]
     [SerializeField]
@@ -48,10 +49,18 @@ public class WheelDrive : MonoBehaviour
     [SerializeField]
     private DriveType driveType;
 
+    public float idealRPM = 500f;
+    public float maxRPM = 1000f;
+
 
     private WheelCollider[] wheels;
+
     private float speed;
     private bool abilityToDrive;
+
+
+    // Aaron's code
+    private float maxSpeed = 100000;
 
     private PlayerManager player;
     private Rigidbody carRigidbody;
@@ -91,7 +100,6 @@ public class WheelDrive : MonoBehaviour
     { 
 
 
-
         if(abilityToDrive)
         {
             //Changes speed based on criticals 
@@ -106,12 +114,10 @@ public class WheelDrive : MonoBehaviour
                 bool frontWheel = (wheelNum < 2); //if wheelnum is 0 or 1, it's a front wheel.
 
                 //Maintain the RPM
-                if (wheel.rpm > 500)
-                    wheel.motorTorque = 0;
-
-                //Update the front wheel angles
-                if (frontWheel)
-                    wheel.steerAngle = angle;
+                if (wheel.rpm < idealRPM)
+                    speed = Mathf.Lerp(speed / 10f, speed, wheel.rpm / idealRPM);
+                else
+                    speed = Mathf.Lerp(speed, 0, (wheel.rpm - idealRPM) / (maxRPM - idealRPM));
 
                 //Checking if they are boosting, increase torque
                 if (player.IsBoosting == true)
@@ -123,11 +129,29 @@ public class WheelDrive : MonoBehaviour
                     speed = torque;
                 }
 
+                //Sharp turn
+                if (Input.GetAxis("Right Trigger") == 1)
+                {
+                    if (!frontWheel)
+                        wheel.steerAngle = -angle * 1.5f;
+                    else
+                        wheel.steerAngle = angle * 1.2f;
+                }
+                else
+                {
+                    if (!frontWheel)
+                        wheel.steerAngle = 0.0f;
+                    else
+                        wheel.steerAngle = angle;
+                }
+
+
                 //If we are holding down the A button, move forward
                 if (Input.GetButton("Fire1"))
                 {
                     //Allow the car to move
                     carRigidbody.drag = 0.0f;
+                    wheel.brakeTorque = 0.0f;
 
 
                     //Back wheels
@@ -163,6 +187,7 @@ public class WheelDrive : MonoBehaviour
                 else
                 {
                     wheel.motorTorque = 0.0f;
+                    wheel.brakeTorque = brakeTorque;
                     carRigidbody.drag = dragAmount;
                 }
 

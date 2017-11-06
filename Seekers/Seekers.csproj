@@ -99,7 +99,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AnimateCarPart.cs" />
     <Compile Include="Assets\OBJExport\OBJExporter.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\Scripts\CameraControls.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\Scripts\IcoBumpin.cs" />
@@ -107,10 +106,9 @@
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Procedural Mesh\ExtrudeRandomEdges.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Runtime Editing\RuntimeEdit.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Vertex Colors\HighlightNearestFace.cs" />
-    <Compile Include="Assets\RespawnScript.cs" />
-    <Compile Include="Assets\Scripts\AntiRollBar.cs" />
     <Compile Include="Assets\Scripts\Liam_G\FallingObject.cs" />
     <Compile Include="Assets\Scripts\Meaghan\AI.cs" />
+    <Compile Include="Assets\Scripts\Meaghan\AnimateCarPart.cs" />
     <Compile Include="Assets\Scripts\Meaghan\Assistance Scripts\AntiRollBar.cs" />
     <Compile Include="Assets\Scripts\Meaghan\Assistance Scripts\EasySuspension.cs" />
     <Compile Include="Assets\Scripts\Meaghan\Assistance Scripts\Reset.cs" />

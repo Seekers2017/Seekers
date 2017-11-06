@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : Entity {
+public class PlayerManager : Entity
+{
 
     [Header("Player Exclusives")]
     [Range(0.1f, 1f)]
@@ -51,21 +52,21 @@ public class PlayerManager : Entity {
 
     void Update()
     {
-       ////Respawn check
-       //if(hits >= maxHits)
-       //{
-       //    //Set all values back and respawn
-       //    playerMove.AbilityToDrive = false;
-       //    rb.drag = 3.0f;
-       //    hasLowHealth = false;
-       //    Respawn();
-       //}
-       //else
-       //{
-       //    //Playe can drive and store position to respawn at
-       //    playerMove.AbilityToDrive = true;
-       //    PositionTimer();
-       //}
+        ////Respawn check
+        //if(hits >= maxHits)
+        //{
+        //    //Set all values back and respawn
+        //    playerMove.AbilityToDrive = false;
+        //    rb.drag = 3.0f;
+        //    hasLowHealth = false;
+        //    Respawn();
+        //}
+        //else
+        //{
+        //    //Playe can drive and store position to respawn at
+        //    playerMove.AbilityToDrive = true;
+        //    PositionTimer();
+        //}
 
         Items();
 
@@ -76,12 +77,12 @@ public class PlayerManager : Entity {
         }
 
         //Low health iteration start
-        if(hits == maxHits - 1)
+        if (hits == maxHits - 1)
         {
             hasLowHealth = true;
         }
 
-        if(hasLowHealth)
+        if (hasLowHealth)
         {
             //Start the function
             LowHealth();
@@ -122,19 +123,19 @@ public class PlayerManager : Entity {
             {
                 if (Input.GetButtonDown("LeftBumper"))
                 {
+                    bumperSelect++;
+
                     //Traverse through item selection
                     if (bumperSelect > 2)
                     {
                         bumperSelect = 0;
                     }
-                    else
-                    {
-                        bumperSelect++;
-                    }
                 }
 
+
+
                 //IF we haven't used the item
-                if(pressedXButton == false)
+                if (pressedXButton == false)
                 {
                     //Preview based on side of the car
                     if (bumperSelect == 0)
@@ -213,6 +214,9 @@ public class PlayerManager : Entity {
         base.OnCollectItem(item);
 
         //Update the UI
-        uiScript.SetCollectedItem(item.CurrItem);
+        if (uiScript != null)
+        {
+            uiScript.SetCollectedItem(item.CurrItem);
+        }
     }
 }

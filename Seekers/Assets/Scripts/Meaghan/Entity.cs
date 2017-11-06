@@ -25,14 +25,10 @@ public class Entity : MonoBehaviour {
 
 
     [Header("Do Not Tamper With")]
-    [SerializeField]
-    protected GameObject frontBumper;
-    [SerializeField]
-    protected GameObject leftBumper;
-    [SerializeField]
-    protected GameObject rearBumper;
-    [SerializeField]
-    protected GameObject rightBumper;
+    public GameObject frontBumper;
+    public GameObject leftBumper;
+    public GameObject rearBumper;
+    public GameObject rightBumper;
     
 
 
@@ -48,7 +44,6 @@ public class Entity : MonoBehaviour {
     protected bool respawn;
     protected bool hasLowHealth;
     protected float deathTimer;
-
 
 
     //Getters and setters
@@ -78,10 +73,13 @@ public class Entity : MonoBehaviour {
 
     protected void Bumper(GameObject a_bumper)
     {
-        //Set the bumper to active
-        a_bumper.GetComponent<BumperScript>().isAlive = true;
-        a_bumper.GetComponent<BumperScript>().lifeSpan = maxLifeSpan;
-        a_bumper.SetActive(true);
+        if(a_bumper != null)
+        {
+            //Set the bumper to active
+            a_bumper.GetComponent<BumperScript>().isAlive = true;
+            a_bumper.GetComponent<BumperScript>().lifeSpan = maxLifeSpan;
+            a_bumper.SetActive(true);
+        }
     }
 
     protected void Respawn()
