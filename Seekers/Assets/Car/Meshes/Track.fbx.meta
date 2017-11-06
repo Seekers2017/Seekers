@@ -21,6 +21,7 @@ ModelImporter:
     3300004: //RootNode
     4300000: pCube1
     4300002: Track
+    4300004: TrackBase
     9500000: //RootNode
   materials:
     importMaterials: 1
