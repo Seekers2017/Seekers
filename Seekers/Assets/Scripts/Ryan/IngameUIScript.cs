@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class IngameUIScript : MonoBehaviour
 {
+    //get game manager
+    private GameStateManagerScript gameManager;
+
     //get entity
     private PlayerManager entity;
     private RankScript rankScript;
@@ -25,6 +28,9 @@ public class IngameUIScript : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        //get game manager
+        gameManager = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>();
+
         //get entity
         entity = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<PlayerManager>();
 
@@ -69,6 +75,12 @@ public class IngameUIScript : MonoBehaviour
             //this method is a faking method, it doesn't actually destroy the icon
             //only hiding it. Will have to improve if possible ( use Destroy(); and Instantiate(); )
         }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            gameManager.SwitchGameState(GameStateID.Pause);
+        }
+
     }
 
     //Set item sprite display in the frame

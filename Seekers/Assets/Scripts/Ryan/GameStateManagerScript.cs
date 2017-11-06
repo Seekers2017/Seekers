@@ -1,14 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStateManagerScript : MonoBehaviour
 {
     private BaseState currGameState;
     private List<BaseState> gameStates;
 
+    public GameStateID currState
+    {
+        get { return currGameState.StateID; }
+    }
+
 	// Use this for initialization
-	void Start ()
+	void Awake ()
     {
         //create all states 
         gameStates = new List<BaseState>();
@@ -18,7 +24,7 @@ public class GameStateManagerScript : MonoBehaviour
         gameStates.Add( new PauseState() );
         gameStates.Add( new GameOverState() );
 
-		SwitchGameState(GameStateID.InGame);
+		SwitchGameState(GameStateID.MainMenu);
     }
 	
 	// Update is called once per frame
@@ -29,45 +35,42 @@ public class GameStateManagerScript : MonoBehaviour
             currGameState.Update();
         }
 
-        if (Input.GetKey("0"))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             SwitchGameState(GameStateID.MainMenu);
             currGameState.Update();
         }
 
-        if (Input.GetKeyDown("1"))
+        if (Input.GetKeyDown(KeyCode.F2))
         {
             SwitchGameState(GameStateID.Tutoriul);
             currGameState.Update();
         }
 
-		if (Input.GetButton("Fire1"))
+		if (Input.GetKeyDown(KeyCode.F3))
         {
             SwitchGameState(GameStateID.InGame);
             currGameState.Update();
         }
 
-        if (Input.GetKeyDown("3"))
+        if (Input.GetKeyDown(KeyCode.F4))
         {
             SwitchGameState(GameStateID.Pause);
             currGameState.Update();
         }
 
-        if (Input.GetKeyDown("4"))
+        if (Input.GetKeyDown(KeyCode.F5))
         {
             SwitchGameState(GameStateID.GameOver);
             currGameState.Update();
         }
     }
 
-    private void SwitchGameState(GameStateID StateID)
+    public void SwitchGameState(GameStateID StateID)
     {
         if (currGameState != null)
         {
-
-            currGameState.Shutdown();
-
-            //shut down current state
+            currGameState.Shutdown();   
         }
 
         for (int i = 0; i < gameStates.Count; i++)
@@ -85,21 +88,53 @@ public class GameStateManagerScript : MonoBehaviour
 
 public class MainMenuState : BaseState
 {
-    private void ShowLog()
+    MainMenuScript mainMenuScript;
+
+    public MainMenuState()
     {
-        Debug.Log("This is Main Menu");
+        stateID = GameStateID.MainMenu;
+    }
+
+    public override void Start()
+    {
+        Time.timeScale = 0.0f;
+        mainMenuScript = GameObject.Find("MainMenuUI").GetComponent<MainMenuScript>();
+        mainMenuScript.gameObject.SetActive(true);
     }
 
     public override void Update()
     {
-
-
         ShowLog();
+    }
+
+    public override void Shutdown()
+    {
+        mainMenuScript.gameObject.SetActive(false);
+    }
+
+    private void ShowLog()
+    {
+        Debug.Log("This is Main Menu");
     }
 }
 
 public class TutoriulState : BaseState
 {
+    public TutoriulState()
+    {
+        stateID = GameStateID.Tutoriul;
+    }
+
+    public override void Start()
+    {
+        base.Start();
+    }
+
+    public override void Update()
+    {
+        ShowLog();
+    }
+
     private void ShowLog()
     {
         Debug.Log("This is Tutoriul");
@@ -108,7 +143,31 @@ public class TutoriulState : BaseState
 
 public class InGameState : BaseState
 {
-    private void ShowLog()
+    IngameUIScript ingameUIScript;
+
+    public InGameState()
+    {
+        stateID = GameStateID.InGame;
+    }
+
+    public override void Start()
+    {
+        Time.timeScale = 1.0f;
+        ingameUIScript = GameObject.Find("IngameUI").GetComponent<IngameUIScript>();
+        ingameUIScript.gameObject.SetActive(true);
+    }
+
+    public override void Update()
+    {
+        ShowLog();
+    }
+
+    public override void Shutdown()
+    {
+        ingameUIScript.gameObject.SetActive(false);
+    }
+
+        private void ShowLog()
     {
         Debug.Log("This is Main Game");
     }
@@ -116,41 +175,57 @@ public class InGameState : BaseState
 
 public class PauseState : BaseState
 {
-    private void ShowLog()
+    PauseMenuScript pauseScript;
+
+    public PauseState()
     {
-        Debug.Log("This is Pause Menu");
+        stateID = GameStateID.Pause;
     }
 
     public override void Start()
     {
-        //pause game here
-        //display the pause ui canvas
         Time.timeScale = 0.0f;
+        pauseScript = GameObject.Find("PauseUI").GetComponent<PauseMenuScript>();
+        pauseScript.gameObject.SetActive(true);
     }
 
     public override void Update()
     {
-        //write code in here that needs to run ONLY while the game is paused.
+        ShowLog();
     }
 
     public override void Shutdown()
     {
-        //hide the pause ui canvas
-        //reset time scale back to regular 100% real time.
-        Time.timeScale = 1.0f;
+        pauseScript.gameObject.SetActive(false);
+    }
+
+    private void ShowLog()
+    {
+        Debug.Log("This is Pause Menu");
     }
 }
 
 public class GameOverState : BaseState
 {
-    private void ShowLog()
+    public GameOverState()
     {
-        Debug.Log("This is Pause Menu");
+        stateID = GameStateID.GameOver;
     }
 
     public override void Start()
     {
         //load the game over scene
         //UnityEngine.SceneManagement.SceneManager.LoadScene("GameOverScene");
+    }
+
+    public override void Update()
+    {
+        //write code in here that needs to run ONLY while the game is paused.
+        ShowLog();
+    }
+
+    private void ShowLog()
+    {
+        Debug.Log("This is Pause Menu");
     }
 }
