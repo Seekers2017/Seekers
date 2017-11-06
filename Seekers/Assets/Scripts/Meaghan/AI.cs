@@ -38,7 +38,7 @@ public class AI : Entity
     private bool canDetect = true;
     private float itemTimer;
     private int amountOfCars = 0;
-    private float closestDistance = 10000;
+    private float closestDistance = 20;
 
     // Use this for initialization
     void Start()
@@ -136,11 +136,22 @@ public class AI : Entity
                 if (distance < closestDistance)
                 {
                     //Check angles
-                    float angle = Vector3.Angle(transform.position, vecBetween);
-                    Debug.Log("Angle: " + angle);
+                    float angle = Vector3.SignedAngle(transform.position, vecBetween, Vector3.up);
 
                     //Do behaviours
-
+                    if(angle >= -24.0f && angle <= 50.0f)
+                    {
+                        //Left side
+                        //DEBUG LATER
+                    }
+                    else if (angle >= -85.0f && angle <= -175.0f)
+                    {
+                        //Right side
+                    }
+                    else if (angle >= -25 && angle <= -84)
+                    {
+                        //Front side
+                    }
 
                 }
             }

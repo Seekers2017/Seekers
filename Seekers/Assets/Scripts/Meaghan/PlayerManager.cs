@@ -9,7 +9,13 @@ public class PlayerManager : Entity {
     [Tooltip("Speed at which the car flashes red.")]
     [SerializeField]
     private float flashSpeed;
-    
+    [SerializeField]
+    private GameObject leftBumperPreview;
+    [SerializeField]
+    private GameObject rightBumperPreview;
+    [SerializeField]
+    private GameObject rearBumperPreview;
+
 
     //Variables 
     private IngameUIScript uiScript;
@@ -17,6 +23,7 @@ public class PlayerManager : Entity {
     private GameObject carBody;
     private Renderer renderer;
     private WheelDrive playerMove;
+    private bool pressedXButton;
     private Rigidbody rb;
 
     // Use this for initialization
@@ -33,9 +40,13 @@ public class PlayerManager : Entity {
     {
         bumperSelect = 0;
         hasLowHealth = false;
+        pressedXButton = false;
         leftBumper.SetActive(false);
         rightBumper.SetActive(false);
         rearBumper.SetActive(false);
+        leftBumperPreview.SetActive(false);
+        rightBumperPreview.SetActive(false);
+        rearBumperPreview.SetActive(false);
     }
 
     void Update()
@@ -112,7 +123,7 @@ public class PlayerManager : Entity {
                 if (Input.GetButtonDown("LeftBumper"))
                 {
                     //Traverse through item selection
-                    if (bumperSelect >= 3)
+                    if (bumperSelect > 2)
                     {
                         bumperSelect = 0;
                     }
@@ -122,21 +133,57 @@ public class PlayerManager : Entity {
                     }
                 }
 
+                //IF we haven't used the item
+                if(pressedXButton == false)
+                {
+                    //Preview based on side of the car
+                    if (bumperSelect == 0)
+                    {
+                        leftBumperPreview.SetActive(true);
+                        rightBumperPreview.SetActive(false);
+                        rearBumperPreview.SetActive(false);
+                    }
+                    else if (bumperSelect == 1)
+                    {
+                        leftBumperPreview.SetActive(false);
+                        rightBumperPreview.SetActive(true);
+                        rearBumperPreview.SetActive(false);
+                    }
+                    else if (bumperSelect == 2)
+                    {
+                        leftBumperPreview.SetActive(false);
+                        rightBumperPreview.SetActive(false);
+                        rearBumperPreview.SetActive(true);
+                    }
+                }
+
                 if (Input.GetButton("Fire3"))
                 {
+                    //Stop the preview
+                    pressedXButton = true;
+
                     //Input the selection to the car
                     if (bumperSelect == 0)
                     {
+                        leftBumperPreview.SetActive(false);
+                        rightBumperPreview.SetActive(false);
+                        rearBumperPreview.SetActive(false);
                         Bumper(leftBumper);
                         hasItem = false;
                     }
                     else if (bumperSelect == 1)
                     {
+                        leftBumperPreview.SetActive(false);
+                        rightBumperPreview.SetActive(false);
+                        rearBumperPreview.SetActive(false);
                         Bumper(rightBumper);
                         hasItem = false;
                     }
                     else if (bumperSelect == 2)
                     {
+                        leftBumperPreview.SetActive(false);
+                        rightBumperPreview.SetActive(false);
+                        rearBumperPreview.SetActive(false);
                         Bumper(rearBumper);
                         hasItem = false;
                     }
@@ -155,12 +202,9 @@ public class PlayerManager : Entity {
         else
         {
             bumperSelect = 0;
+            pressedXButton = false;
         }
     }
-
-
-
-
 
 
     protected override void OnCollectItem(SpawnerScript item)
