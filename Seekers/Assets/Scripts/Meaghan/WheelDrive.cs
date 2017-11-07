@@ -32,7 +32,8 @@ public class WheelDrive : MonoBehaviour
     [SerializeField]
     private GameObject wheelShape;
 
-	[Tooltip("The vehicle's speed when the physics engine can use different amount of sub-steps (in m/s).")]
+
+    [Tooltip("The vehicle's speed when the physics engine can use different amount of sub-steps (in m/s).")]
     [SerializeField]
     private float criticalSpeed = 5f;
 	[Tooltip("Simulation sub-steps when the speed is above critical.")]
@@ -58,14 +59,8 @@ public class WheelDrive : MonoBehaviour
     private float speed;
     private bool abilityToDrive;
 
-
-    // Aaron's code
-    private float maxSpeed = 100000;
-
     private PlayerManager player;
     private Rigidbody carRigidbody;
-
-
 
     public bool AbilityToDrive
     {
@@ -73,33 +68,30 @@ public class WheelDrive : MonoBehaviour
         set { abilityToDrive = value; }
     }
 
+
     void Start()
 	{
         //Various stuff
         player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<PlayerManager>();
         carRigidbody = GetComponent<Rigidbody>();
-		//carRigidbody.centerOfMass = new Vector3 (0f, -0.2f, 0f);
         wheels = gameObject.GetComponentsInChildren<WheelCollider>();
         abilityToDrive = true;
 
-        //Create the wheels
+       //Create the wheels
 		for (int i = 0; i < wheels.Length; ++i) 
 		{
-			var wheel = wheels [i];
-
-			// Create wheel shapes only when needed.
+			// Create wheel shapes only when needed
 			if (wheelShape != null)
 			{
 				var ws = Instantiate (wheelShape);
-				ws.transform.parent = wheel.transform;
-			}
+                ws.transform.parent = wheels[i].transform;
+           }
 		}
-	}
+
+    }
 
 	void Update()
     { 
-
-
         if(abilityToDrive)
         {
             //Changes speed based on criticals 
@@ -110,8 +102,11 @@ public class WheelDrive : MonoBehaviour
 
             for (int wheelNum = 0; wheelNum < 4; ++wheelNum)
             {
+                //Get the wheel colliders
                 WheelCollider wheel = wheels[wheelNum];
-                bool frontWheel = (wheelNum < 2); //if wheelnum is 0 or 1, it's a front wheel.
+                bool frontWheel = (wheelNum < 2); //if wheelnum is 0 or 1, it's a front wheel
+                bool frontLeftWheel = (wheelNum == 0); //Left front wheel
+                bool backLeftWheel = (wheelNum == 2); //Left back wheel 
 
                 //Maintain the RPM
                 if (wheel.rpm < idealRPM)
@@ -199,8 +194,22 @@ public class WheelDrive : MonoBehaviour
                     wheel.GetWorldPose(out p, out q);
                     // Assume that the only child of the wheelcollider is the wheel shape.
                     Transform shapeTransform = wheel.transform.GetChild(0);
-                    shapeTransform.position = p;
-                    shapeTransform.rotation = q;
+
+
+                    if (!backLeftWheel && !frontLeftWheel)
+                    {
+                       shapeTransform.position = p;
+                       shapeTransform.rotation = q;
+                    }
+                    
+                    if (backLeftWheel || frontLeftWheel)
+                    {
+                        Quaternion wheelRotation = new Quaternion(-q.x, -q.y, -q.z, -q.w);
+
+                        shapeTransform.position = p;
+                        shapeTransform.rotation = wheelRotation;
+                    }
+
 
                 }
             }
