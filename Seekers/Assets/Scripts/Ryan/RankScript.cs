@@ -120,6 +120,7 @@ public class RankScript : MonoBehaviour
         {
             rankList.Add(gameObject.GetComponent<CarCheckpointScript>());
         }
+
         foreach (GameObject gameObject in playerTaggedObj)
         {
             rankList.Add(gameObject.GetComponent<CarCheckpointScript>());

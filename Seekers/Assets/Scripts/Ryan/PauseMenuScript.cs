@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum currOption_Pause
 {
@@ -41,7 +42,6 @@ public class PauseMenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Time.timeScale = 0.0f;
 
         if (currPointing == currOption_Pause.RESUME)
         {
@@ -55,7 +55,6 @@ public class PauseMenuScript : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                Time.timeScale = 1.0f;
                 gameManager.SwitchGameState(GameStateID.InGame);
             }
         }
@@ -72,7 +71,7 @@ public class PauseMenuScript : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                gameManager.SwitchGameState(GameStateID.MainMenu);
+                SceneManager.LoadScene("CrusHour");
             }
         }
     }

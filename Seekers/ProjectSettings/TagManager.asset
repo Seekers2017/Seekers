@@ -17,6 +17,8 @@ TagManager:
   - BumperItem
   - Track
   - AI
+  - FallingObject
+  - UI
   layers:
   - Default
   - TransparentFX

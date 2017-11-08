@@ -41,8 +41,6 @@ public class MainMenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Time.timeScale = 0.0f;
-
         if (currPointing == currOption_MainMenu.START)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
@@ -55,8 +53,7 @@ public class MainMenuScript : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                Time.timeScale = 1.0f;
-                gameManager.SwitchGameState(GameStateID.MainMenu);
+                gameManager.SwitchGameState(GameStateID.Tutoriul);
             }
         }
 

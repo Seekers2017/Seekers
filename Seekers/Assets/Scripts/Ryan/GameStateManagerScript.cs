@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,13 @@ public class GameStateManagerScript : MonoBehaviour
 {
     private BaseState currGameState;
     private List<BaseState> gameStates;
+
+    private GameObject mainMenuUI;
+    private GameObject tutorialUI;
+    private GameObject ingameUI;
+    private GameObject pauseUI;
+
+    public List<GameObject> uiObjList;
 
     public GameStateID currState
     {
@@ -24,7 +32,24 @@ public class GameStateManagerScript : MonoBehaviour
         gameStates.Add( new PauseState() );
         gameStates.Add( new GameOverState() );
 
-		SwitchGameState(GameStateID.MainMenu);
+        uiObjList = new List<GameObject>();
+
+        mainMenuUI = GameObject.Find("MainMenuUI");
+        tutorialUI = GameObject.Find("TutoriulUI");
+        ingameUI = GameObject.Find("IngameUI");
+        pauseUI = GameObject.Find("PauseUI");
+
+        uiObjList.Add(mainMenuUI);
+        uiObjList.Add(tutorialUI);
+        uiObjList.Add(ingameUI);
+        uiObjList.Add(pauseUI);
+
+        foreach (GameObject gameObject in uiObjList)
+        {
+            gameObject.SetActive(false);
+        }
+
+        SwitchGameState(GameStateID.MainMenu);
     }
 	
 	// Update is called once per frame
@@ -84,11 +109,47 @@ public class GameStateManagerScript : MonoBehaviour
 
         currGameState.Start();
     }
+
+    ///////////////////////////////
+    ///ADDING UI OBJECTS TO LIST///
+    ///////////////////////////////
+    //private void AddUIObjs()
+    //{
+    //    GameObject[] uiTaggedObj = GameObject.FindGameObjectsWithTag("UI");
+
+    //    //Squeeze them in to rankList
+    //    foreach (GameObject gameObject in uiTaggedObj)
+    //    {
+    //        uiObjList.Add(gameObject);
+    //    }
+
+    //    foreach (GameObject gameObject in uiObjList)
+    //    {
+    //        gameObject.SetActive(false);
+    //    }
+    //}
+
+    ///////////////////////////////
+    ///FINDING INVISIBLE OBJECTS///
+    ///////////////////////////////
+    //public List<GameObject> FindInactiveGameObjects()
+    //{
+    //    GameObject[] all = GameObject.FindObjectsOfType<GameObject>();//Get all of them in the scene
+    //    List<GameObject> objs = new List<GameObject>();
+    //    foreach (GameObject obj in all) //Create a list 
+    //    {
+    //        objs.Add(obj);
+    //    }
+    //    Predicate<GameObject> inactiveFinder = new Predicate<GameObject>((GameObject go) => { return !go.activeInHierarchy; });//Create the Finder
+    //    List<GameObject> results = objs.FindAll(inactiveFinder);//And find inactive ones
+    //    return results;
+    //}
 }
 
 public class MainMenuState : BaseState
 {
-    MainMenuScript mainMenuScript;
+    GameStateManagerScript gm;
+
 
     public MainMenuState()
     {
@@ -98,8 +159,8 @@ public class MainMenuState : BaseState
     public override void Start()
     {
         Time.timeScale = 0.0f;
-        mainMenuScript = GameObject.Find("MainMenuUI").GetComponent<MainMenuScript>();
-        mainMenuScript.gameObject.SetActive(true);
+        gm = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>();
+        gm.uiObjList[0].SetActive(true);
     }
 
     public override void Update()
@@ -109,7 +170,7 @@ public class MainMenuState : BaseState
 
     public override void Shutdown()
     {
-        mainMenuScript.gameObject.SetActive(false);
+        gm.uiObjList[0].SetActive(false);
     }
 
     private void ShowLog()
@@ -120,6 +181,8 @@ public class MainMenuState : BaseState
 
 public class TutoriulState : BaseState
 {
+    GameStateManagerScript gm;
+
     public TutoriulState()
     {
         stateID = GameStateID.Tutoriul;
@@ -127,12 +190,19 @@ public class TutoriulState : BaseState
 
     public override void Start()
     {
-        base.Start();
+        Time.timeScale = 0.0f;
+        gm = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>();
+        gm.uiObjList[1].SetActive(true);
     }
 
     public override void Update()
     {
         ShowLog();
+    }
+
+    public override void Shutdown()
+    {
+        gm.uiObjList[1].SetActive(false);
     }
 
     private void ShowLog()
@@ -143,7 +213,7 @@ public class TutoriulState : BaseState
 
 public class InGameState : BaseState
 {
-    IngameUIScript ingameUIScript;
+    GameStateManagerScript gm;
 
     public InGameState()
     {
@@ -153,8 +223,8 @@ public class InGameState : BaseState
     public override void Start()
     {
         Time.timeScale = 1.0f;
-        ingameUIScript = GameObject.Find("IngameUI").GetComponent<IngameUIScript>();
-        ingameUIScript.gameObject.SetActive(true);
+        gm = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>();
+        gm.uiObjList[2].SetActive(true);
     }
 
     public override void Update()
@@ -164,10 +234,10 @@ public class InGameState : BaseState
 
     public override void Shutdown()
     {
-        ingameUIScript.gameObject.SetActive(false);
+        gm.uiObjList[2].SetActive(false);
     }
 
-        private void ShowLog()
+    private void ShowLog()
     {
         Debug.Log("This is Main Game");
     }
@@ -175,7 +245,7 @@ public class InGameState : BaseState
 
 public class PauseState : BaseState
 {
-    PauseMenuScript pauseScript;
+    GameStateManagerScript gm;
 
     public PauseState()
     {
@@ -185,8 +255,9 @@ public class PauseState : BaseState
     public override void Start()
     {
         Time.timeScale = 0.0f;
-        pauseScript = GameObject.Find("PauseUI").GetComponent<PauseMenuScript>();
-        pauseScript.gameObject.SetActive(true);
+        gm = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>();
+        gm.uiObjList[3].SetActive(true);
+
     }
 
     public override void Update()
@@ -196,7 +267,7 @@ public class PauseState : BaseState
 
     public override void Shutdown()
     {
-        pauseScript.gameObject.SetActive(false);
+        gm.uiObjList[3].SetActive(false);
     }
 
     private void ShowLog()
