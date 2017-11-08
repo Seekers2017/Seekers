@@ -12,8 +12,7 @@ public enum DriveType
 public class WheelDrive : MonoBehaviour
 {
     //TODO:
-    //Fix speed of the car
-    //ROTATION OF THE WHEELS
+    //Break problem
 
     [Tooltip("Maximum steering angle of the wheels.")]
     [SerializeField]
@@ -27,9 +26,6 @@ public class WheelDrive : MonoBehaviour
     [Tooltip("Increases the speed of the car after a boost is consumed.")]
     [SerializeField]
     private float boostSpeed = 1500.0f;
-    [Tooltip("If you need the visual wheels to be attached automatically, drag the wheel shape here.")]
-    [SerializeField]
-    private GameObject wheelShape;
 
 
     [Tooltip("Increases the drag of the car while not moving.")]
@@ -38,13 +34,20 @@ public class WheelDrive : MonoBehaviour
 	[Tooltip("The amount that the back wheels rotate during a sharp turn.")]
 	[SerializeField]
 	private float sharpTurn = 1.2f;
+    [Tooltip("The limit that the ")]
+    [SerializeField]
+    private float rpmLimit = 100000f;
 
     [Tooltip("The vehicle's drive type: rear-wheels drive, front-wheels drive or all-wheels drive.")]
     [SerializeField]
     private DriveType driveType;
 
-    private float idealRPM = 500f;
-    private float maxRPM = 1000f;
+    [Tooltip("The ideal rotation for the wheels (effects the speed.)")]
+    [SerializeField]
+    private float idealRPM = 750f;
+    [Tooltip("The max rotation for the wheels (effects the speed.)")]
+    [SerializeField]
+    private float maxRPM = 1250;
 
 
     private WheelCollider[] wheels;
@@ -54,6 +57,7 @@ public class WheelDrive : MonoBehaviour
     private float criticalSpeed = 5f;
     private int stepsBelow = 5;
     private int stepsAbove = 1;
+    private bool turning;
 
     private PlayerManager player;
     private Rigidbody carRigidbody;
@@ -73,17 +77,7 @@ public class WheelDrive : MonoBehaviour
         carRigidbody = GetComponent<Rigidbody>();
         wheels = gameObject.GetComponentsInChildren<WheelCollider>();
         abilityToDrive = true;
-
-       //Create the wheels
-		for (int i = 0; i < wheels.Length; ++i) 
-		{
-			// Create wheel shapes only when needed
-			if (wheelShape != null)
-			{
-				var ws = Instantiate (wheelShape);
-                ws.transform.parent = wheels[i].transform;
-           }
-		}
+        turning = false;
     }
 
 	void Update()
@@ -120,77 +114,93 @@ public class WheelDrive : MonoBehaviour
                     speed = torque;
                 }
 
-                //Sharp turn
-                if (Input.GetAxis("Right Trigger") == 1)
-                {
-                    if (!frontWheel)
-						wheel.steerAngle = -angle * sharpTurn;
-                    else
-                        wheel.steerAngle = angle * 1.2f;
-                }
-                else
-                {
-                    if (!frontWheel)
-                        wheel.steerAngle = 0.0f;
-                    else
-                        wheel.steerAngle = angle;
-                }
-
-
-                //If we are holding down the A button, move forward
-                if (Input.GetButton("Fire1"))
-                {
-                    wheel.brakeTorque = 0.0f;
-
-                    //Back wheels
-                    if (!frontWheel && driveType != DriveType.FrontWheelDrive)
-                    {
-                        wheel.motorTorque = speed;
-                    }
-
-                    //Front wheels
-                    if (frontWheel && driveType != DriveType.RearWheelDrive)
-                    {
-                        wheel.motorTorque = speed;
-                    }
-                }
-                else if (Input.GetButton("Fire2"))
-                {
-
-                    wheel.brakeTorque = 0.0f;
-
-                    //Back wheels
-                    if (!frontWheel && driveType != DriveType.FrontWheelDrive)
-                    {
-                        wheel.motorTorque = -speed;
-                    }
-
-                    //Front wheels
-                    if (frontWheel && driveType != DriveType.RearWheelDrive)
-                    {
-                        wheel.motorTorque = -speed;
-                    }
-                }
-                else
-                {
-                    wheel.motorTorque = 0.0f;
-                    wheel.brakeTorque = brakeTorque;
-                }
-
-                // Update visual wheels if any
-                if (wheelShape)
-                {
-                    Quaternion q;
-                    Vector3 p;
-
-                    wheel.GetWorldPose(out p, out q);
-                    // Assume that the only child of the wheelcollider is the wheel shape.
-                    Transform shapeTransform = wheel.transform.GetChild(0);
-
-                    shapeTransform.position = p;
-                    shapeTransform.rotation = q;
-                }
+                UpdateWheelAnimation(wheel);
+                Movement(wheel, frontWheel);
+                SharpTurn(wheel, frontWheel, angle);
             }
         }  
 	}
+
+    void UpdateWheelAnimation(WheelCollider a_wheel)
+    {
+        // Update visual wheels
+        Quaternion q;
+        Vector3 p;
+
+        a_wheel.GetWorldPose(out p, out q);
+        // Assume that the only child of the wheelcollider is the wheel shape.
+        Transform shapeTransform = a_wheel.transform.GetChild(0);
+
+        shapeTransform.position = p;
+        shapeTransform.rotation = q;
+    }
+
+    void Movement(WheelCollider a_wheel, bool a_frontWheel)
+    {
+
+        //If we are holding down the A button, move forward
+        if (Input.GetButton("Fire1"))
+        {
+            a_wheel.brakeTorque = 0.0f;
+
+            //Back wheels
+            if (!a_frontWheel && driveType != DriveType.FrontWheelDrive)
+            {
+                a_wheel.motorTorque = speed;
+            }
+
+            //Front wheels
+            if (a_frontWheel && driveType != DriveType.RearWheelDrive)
+            {
+                a_wheel.motorTorque = speed;
+            }
+        }
+        else if (Input.GetButton("Fire2"))
+        {
+            a_wheel.brakeTorque = 0.0f;
+
+            //Back wheels
+            if (!a_frontWheel && driveType != DriveType.FrontWheelDrive)
+            {
+                a_wheel.motorTorque = -speed;
+            }
+
+            //Front wheels
+            if (a_frontWheel && driveType != DriveType.RearWheelDrive)
+            {
+                a_wheel.motorTorque = -speed;
+            }
+        }
+        else
+        {
+            //Stop moving
+            a_wheel.motorTorque = 0.0f;
+            a_wheel.brakeTorque = brakeTorque;
+        }
+    }
+
+    void SharpTurn(WheelCollider a_wheel, bool a_frontWheel, float a_angle)
+    {
+        //Sharp turn
+        if (Input.GetAxis("Right Trigger") == 1)
+        {
+            //Turn the back wheels
+            if (!a_frontWheel)
+                a_wheel.steerAngle = -a_angle * sharpTurn;
+            else
+                a_wheel.steerAngle = 0.0f;
+
+            turning = true;
+        }
+        else
+        {
+            //Normal steering
+            if (!a_frontWheel)
+                a_wheel.steerAngle = 0.0f;
+            else
+                a_wheel.steerAngle = a_angle;
+
+            turning = false;
+        }
+    }
 }

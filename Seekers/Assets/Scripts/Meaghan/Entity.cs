@@ -14,6 +14,7 @@ public class Entity : MonoBehaviour {
     [Header("General")]
     [SerializeField]
     protected int maxHits;
+    [Tooltip("Max lifespan for the bumpers.")]
     [SerializeField]
     protected float maxLifeSpan = 5.0f;
     [SerializeField]
