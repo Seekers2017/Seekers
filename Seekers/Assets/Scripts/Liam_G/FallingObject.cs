@@ -16,9 +16,9 @@ public class FallingObject : MonoBehaviour
     public Transform FallSpawn1;
     public Transform FallSpawn2;
     public Transform FallSpawn3;
-
-    public float Spawnlimite = 5;
-    public float spawnTimer = 1;
+    public float Spawnlimite;
+    public float spawnTimer;
+    public float Timer;
     // Use this for initialization
     void Start ()
     {
@@ -29,6 +29,20 @@ public class FallingObject : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        Timer = 0;
+        Timer++;
+        if(Timer == 1.0f)
+        {
+            GameObject[] objects = GameObject.FindGameObjectsWithTag("FallingBLocks");
+
+            for (int i = 0; i < objects.Length; i++)
+            {
+                Destroy(objects[i]);
+            }
+            //Destroy(GameObject.FindGameObjectsWithTag("FallingBlocks"));
+            Timer = 0;
+        }
+        
 	}
 
     //trigger to start spwning the rocks to fall
@@ -59,9 +73,13 @@ public class FallingObject : MonoBehaviour
                 spawnTimer = Time.time + Spawnlimite;
 
                 Vector3 rndPosWithin;
-                rndPosWithin = new Vector3(Random.Range(FallSpawn.position.x, FallSpawn1.position.x), Random.Range(50, 50), Random.Range(FallSpawn2.position.z, FallSpawn3.position.z));
                 //rndPosWithin = transform.TransformPoint(rndPosWithin * .5f);
-                GameObject FallingObjectSpawner = Instantiate(Block, rndPosWithin, Quaternion.identity);
+
+                for (int i = 0; i < Spawnlimite; ++i)
+                {
+                    rndPosWithin = new Vector3(Random.Range(FallSpawn.position.x, FallSpawn1.position.x), Random.Range(35, 35), Random.Range(FallSpawn2.position.z, FallSpawn3.position.z));
+                    GameObject FallingObjectSpawner = Instantiate(Block, rndPosWithin, Quaternion.identity);
+                }
             }
         }
     }
