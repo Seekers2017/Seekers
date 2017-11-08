@@ -20,8 +20,6 @@ public class AI : Entity
     private float speed;
     [SerializeField]
     private float rotation;
-    [SerializeField]
-    private float radius;
 
     protected List<Entity> carList;
 
@@ -42,7 +40,6 @@ public class AI : Entity
     private float avoidMultiplier = 0.0f;
     private bool canDetect = true;
     private float itemTimer;
-    private int amountOfCars = 0;
     private float closestDistance = 20;
 
     // Use this for initialization
@@ -122,6 +119,7 @@ public class AI : Entity
 
     void Update()
     {
+        //Functions
         Items();
         Interaction();
     }

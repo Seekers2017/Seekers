@@ -12,9 +12,8 @@ public enum DriveType
 public class WheelDrive : MonoBehaviour
 {
     //TODO:
-    //Fix reverse
-    //Track slippyness
     //Fix speed of the car
+    //ROTATION OF THE WHEELS
 
     [Tooltip("Maximum steering angle of the wheels.")]
     [SerializeField]
@@ -24,7 +23,7 @@ public class WheelDrive : MonoBehaviour
     private float torque = 1000f;
 	[Tooltip("Maximum brake torque applied to the driving wheels.")]
     [SerializeField]
-    private float brakeTorque = 30000f;
+    private float brakeTorque = 15000f;
     [Tooltip("Increases the speed of the car after a boost is consumed.")]
     [SerializeField]
     private float boostSpeed = 1500.0f;
@@ -33,15 +32,6 @@ public class WheelDrive : MonoBehaviour
     private GameObject wheelShape;
 
 
-    [Tooltip("The vehicle's speed when the physics engine can use different amount of sub-steps (in m/s).")]
-    [SerializeField]
-    private float criticalSpeed = 5f;
-	[Tooltip("Simulation sub-steps when the speed is above critical.")]
-    [SerializeField]
-    private int stepsBelow = 5;
-	[Tooltip("Simulation sub-steps when the speed is below critical.")]
-    [SerializeField]
-    private int stepsAbove = 1;
     [Tooltip("Increases the drag of the car while not moving.")]
     [SerializeField]
     private float dragAmount;
@@ -53,24 +43,28 @@ public class WheelDrive : MonoBehaviour
     [SerializeField]
     private DriveType driveType;
 
-    public float idealRPM = 500f;
-    public float maxRPM = 1000f;
+    private float idealRPM = 500f;
+    private float maxRPM = 1000f;
 
 
     private WheelCollider[] wheels;
 
     private float speed;
     private bool abilityToDrive;
+    private float criticalSpeed = 5f;
+    private int stepsBelow = 5;
+    private int stepsAbove = 1;
 
     private PlayerManager player;
     private Rigidbody carRigidbody;
+
+
 
     public bool AbilityToDrive
     {
         get { return abilityToDrive; }
         set { abilityToDrive = value; }
     }
-
 
     void Start()
 	{
@@ -90,7 +84,6 @@ public class WheelDrive : MonoBehaviour
                 ws.transform.parent = wheels[i].transform;
            }
 		}
-
     }
 
 	void Update()
@@ -147,10 +140,7 @@ public class WheelDrive : MonoBehaviour
                 //If we are holding down the A button, move forward
                 if (Input.GetButton("Fire1"))
                 {
-                    //Allow the car to move
-                    carRigidbody.drag = 0.0f;
                     wheel.brakeTorque = 0.0f;
-
 
                     //Back wheels
                     if (!frontWheel && driveType != DriveType.FrontWheelDrive)
@@ -166,9 +156,8 @@ public class WheelDrive : MonoBehaviour
                 }
                 else if (Input.GetButton("Fire2"))
                 {
-                    //Allow the car to move
-                    carRigidbody.drag = 0.0f;
 
+                    wheel.brakeTorque = 0.0f;
 
                     //Back wheels
                     if (!frontWheel && driveType != DriveType.FrontWheelDrive)
@@ -186,7 +175,6 @@ public class WheelDrive : MonoBehaviour
                 {
                     wheel.motorTorque = 0.0f;
                     wheel.brakeTorque = brakeTorque;
-                    carRigidbody.drag = dragAmount;
                 }
 
                 // Update visual wheels if any
@@ -194,26 +182,13 @@ public class WheelDrive : MonoBehaviour
                 {
                     Quaternion q;
                     Vector3 p;
+
                     wheel.GetWorldPose(out p, out q);
                     // Assume that the only child of the wheelcollider is the wheel shape.
                     Transform shapeTransform = wheel.transform.GetChild(0);
 
-
-                    if (!backLeftWheel && !frontLeftWheel)
-                    {
-                       shapeTransform.position = p;
-                       shapeTransform.rotation = q;
-                    }
-                    
-                    if (backLeftWheel || frontLeftWheel)
-                    {
-                        Quaternion wheelRotation = new Quaternion(-q.x, -q.y, -q.z, -q.w);
-
-                        shapeTransform.position = p;
-                        shapeTransform.rotation = wheelRotation;
-                    }
-
-
+                    shapeTransform.position = p;
+                    shapeTransform.rotation = q;
                 }
             }
         }  
