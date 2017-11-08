@@ -2075,7 +2075,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e238d222b48bdfd4bb22e5d726956083, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 57.199997
+      value: 45.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e238d222b48bdfd4bb22e5d726956083, type: 3}
       propertyPath: m_LocalRotation.x
@@ -9295,7 +9295,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: f1ee5481028303b4e9a294d1a7c53bd2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.5637627
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f1ee5481028303b4e9a294d1a7c53bd2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9303,7 +9303,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f1ee5481028303b4e9a294d1a7c53bd2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.421159
+      value: -3.8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f1ee5481028303b4e9a294d1a7c53bd2, type: 3}
       propertyPath: m_LocalRotation.x
@@ -11341,7 +11341,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4728881423823862, guid: 2bcb0ddda72f7394ebe4480da655bb96, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4728881423823862, guid: 2bcb0ddda72f7394ebe4480da655bb96, type: 2}
       propertyPath: m_LocalPosition.z
@@ -12048,7 +12048,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 4c19698f1a6282e44b9ac9555d297130, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.73
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 4c19698f1a6282e44b9ac9555d297130, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15275,19 +15275,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f29981ed2e753469c2636c9a05d34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAngle: 60
-  torque: 10000
-  brakeTorque: 30000
+  maxAngle: 40
+  torque: 13000
+  brakeTorque: 20000
   boostSpeed: 2000
   wheelShape: {fileID: 1005141694610716, guid: bbe924e601c51894c80376f44ec22fec, type: 2}
-  criticalSpeed: 5
-  stepsBelow: 5
-  stepsAbove: 1
   dragAmount: 0
-  sharpTurn: 1.2
+  sharpTurn: 1.5
   driveType: 2
-  idealRPM: 500
-  maxRPM: 1000
 --- !u!114 &1939824110
 MonoBehaviour:
   m_ObjectHideFlags: 0
