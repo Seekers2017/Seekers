@@ -41,6 +41,11 @@ ModelImporter:
     100066: Wheels
     100068: Wheels_Back
     100070: Wheels_Front
+    100072: Tire_BackL
+    100074: Tire_BackR
+    100076: Tire_FrontL
+    100078: Tire_FrontR
+    100080: Tire_Top
     400000: Car_Body
     400002: Car_Bonnet
     400004: Mesh_Bumper
@@ -77,6 +82,11 @@ ModelImporter:
     400066: Wheels
     400068: Wheels_Back
     400070: Wheels_Front
+    400072: Tire_BackL
+    400074: Tire_BackR
+    400076: Tire_FrontL
+    400078: Tire_FrontR
+    400080: Tire_Top
     2300000: Car_Body
     2300002: Car_Bonnet
     2300004: Mesh_Bumper
@@ -103,6 +113,11 @@ ModelImporter:
     2300046: Wheel_FrontL
     2300048: Wheel_FrontR
     2300050: Wheel_Top
+    2300052: Tire_BackL
+    2300054: Tire_BackR
+    2300056: Tire_FrontL
+    2300058: Tire_FrontR
+    2300060: Tire_Top
     3300000: Car_Body
     3300002: Car_Bonnet
     3300004: Mesh_Bumper
@@ -129,6 +144,11 @@ ModelImporter:
     3300046: Wheel_FrontL
     3300048: Wheel_FrontR
     3300050: Wheel_Top
+    3300052: Tire_BackL
+    3300054: Tire_BackR
+    3300056: Tire_FrontL
+    3300058: Tire_FrontR
+    3300060: Tire_Top
     4300000: polySurface8
     4300002: Car_Bonnet
     4300004: polySurface19
@@ -155,6 +175,12 @@ ModelImporter:
     4300046: Lights
     4300048: Door_R
     4300050: Door_R
+    4300052: Tire_Top
+    4300054: Tire_BackR
+    4300056: Tire_BackL
+    4300058: Tire_FrontR
+    4300060: Tire_FrontL
+    7400000: Take 001
     9500000: //RootNode
   materials:
     importMaterials: 1
