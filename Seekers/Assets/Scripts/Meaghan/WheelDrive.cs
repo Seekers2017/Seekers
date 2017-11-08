@@ -45,6 +45,9 @@ public class WheelDrive : MonoBehaviour
     [Tooltip("Increases the drag of the car while not moving.")]
     [SerializeField]
     private float dragAmount;
+	[Tooltip("The amount that the back wheels rotate during a sharp turn.")]
+	[SerializeField]
+	private float sharpTurn = 1.2f;
 
     [Tooltip("The vehicle's drive type: rear-wheels drive, front-wheels drive or all-wheels drive.")]
     [SerializeField]
@@ -128,7 +131,7 @@ public class WheelDrive : MonoBehaviour
                 if (Input.GetAxis("Right Trigger") == 1)
                 {
                     if (!frontWheel)
-                        wheel.steerAngle = -angle * 1.5f;
+						wheel.steerAngle = -angle * sharpTurn;
                     else
                         wheel.steerAngle = angle * 1.2f;
                 }
