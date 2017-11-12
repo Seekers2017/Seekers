@@ -5,24 +5,21 @@ using UnityEngine;
 public class AI : Entity
 { 
     //TODO:
+    //Behaviours (move)
+    //Boost speed
     //Bumper issue
-    //Swerve from left to right
 
     //Variables
     [SerializeField]
     private float itemSpawnTime = 2.0f;
     [SerializeField]
-    private float boostSpeed = 60.0f;
+    private float boostSpeed = 20.0f;
     [SerializeField]
-    private float maxSpeed = 40.0f;
+    private float maxSpeed = 4000.0f;
     [SerializeField]
-    private float speed = 20000.0f;
+    private float speed;
     [SerializeField]
     private float rotation;
-    [SerializeField]
-    private float maxMoveTimer = 5.0f;
-    [SerializeField]
-    private float maxFrontMoveTime = 5.0f;
 
     protected List<Entity> carList;
 
@@ -44,14 +41,6 @@ public class AI : Entity
     private bool canDetect = true;
     private float itemTimer;
     private float closestDistance = 20;
-    private float driveTimer;
-    private Vector3 vecBetween;
-    private Vector3 vecAway;
-    private Vector3 moveDirection;
-    private bool detectedCar;
-    private float frontTimer;
-    private bool frontDetectedCar;
-    private float storedSpeed;
 
     // Use this for initialization
     void Start()
@@ -62,8 +51,6 @@ public class AI : Entity
         leftBumper.SetActive(false);
         rightBumper.SetActive(false);
         rearBumper.SetActive(false);
-
-        storedSpeed = maxSpeed;
 
         carList = new List<Entity>();
 
@@ -81,18 +68,13 @@ public class AI : Entity
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Boost
-        if (isBoosting)
-        {
-            //Alter the speed and boost
-            maxSpeed = boostSpeed;
-            UpdateSpeedBoost();
-        }
-        else
-        {
-            //Return to normal
-            maxSpeed = storedSpeed;
-        }
+        ////Boost
+        //if (isBoosting)
+        //{
+        //    //Alter the speed and boost
+        //    maxSpeed += boostSpeed;
+        //    UpdateSpeedBoost();
+        //}
 
         //Functions
         Sensors();
@@ -105,22 +87,34 @@ public class AI : Entity
 
         //Start the timer
         accelTimer += Time.fixedDeltaTime;
-        
-        
 
-        //Get the direction then move to the direction
-        if(!detectedCar && !frontDetectedCar)
+        //If the timer is greater than 3 seconds
+        if (accelTimer > 3.0f)
         {
-            moveDirection = targetNode.gameObject.transform.position - transform.position;
-            driveTimer = 0.0f;
-            frontTimer = 0.0f;
+            //Get the direction then move to the direction
+            Vector3 moveDirection = targetNode.gameObject.transform.position - transform.position;
+            moveDirection.y = 0.0f;
+
+
+            //Rotation
+            if (rb.velocity.magnitude > 5.0f)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rb.velocity), rotation * Time.fixedDeltaTime);
+            }
+
+
+       //    rb.velocity = Vector3.Lerp(rb.velocity, moveDirection.normalized * speed, Time.fixedDeltaTime * 2.5f);
+
+            ////Move towards node
+            rb.AddForce(moveDirection.normalized * speed * Time.fixedDeltaTime);
+
+            if(rb.velocity.magnitude > maxSpeed)
+            {
+                rb.velocity = rb.velocity.normalized * maxSpeed;
+            }
+
+
         }
-        
-
-        //Lock y axis
-        moveDirection.y = 0.0f;
-
-        Movement();
     }
 
     void Update()
@@ -130,28 +124,6 @@ public class AI : Entity
         Interaction();
     }
 
-
-    private void Movement()
-    {
-        //If the timer is greater than 3 seconds
-        if (accelTimer > 3.0f)
-        {
-            //Rotation
-            if (rb.velocity.magnitude > 5.0f)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rb.velocity), rotation * Time.fixedDeltaTime);
-            }
-
-            ////Move towards node
-            rb.AddForce(moveDirection.normalized * speed * Time.fixedDeltaTime);
-
-            if (rb.velocity.magnitude > maxSpeed)
-            {
-                rb.velocity = rb.velocity.normalized * maxSpeed;
-            }
-        }
-    }
-
     private void Interaction()
     {
         //Iterate through cars
@@ -159,8 +131,7 @@ public class AI : Entity
         {
             if(car != this)
             {
-                //Vectors
-                vecBetween = transform.position - car.transform.position;
+                Vector3 vecBetween = transform.position - car.transform.position;
 
                 //Check the distance between two things
                 float distance = vecBetween.magnitude;
@@ -173,54 +144,21 @@ public class AI : Entity
                     //Do behaviours
                     if(angle >= -24.0f && angle <= 50.0f)
                     {
-                        //Start timers
-                        frontTimer += Time.fixedDeltaTime;
-                        driveTimer += Time.fixedDeltaTime;
-
                         //Right side
                         //If I have a right bumper and the other car does not
-                        if (rightBumper.activeSelf == true && car.leftBumper.activeSelf == false)
+                        if(rightBumper.activeSelf == true && car.leftBumper.activeSelf == false)
                         {
                             //Drive towards the other car
-                            if(driveTimer < maxMoveTimer)
-                            {
-                                detectedCar = true;
-                                moveDirection = car.transform.position - transform.position;
-                            }
-                            else
-                            {
-                                detectedCar = false;
-                            }
-
                         }
                         //If we both have a bumper on the corresponding sides
                         else if (rightBumper.activeSelf == true && car.leftBumper.activeSelf == true)
                         {
                             //Drive towards the car
-                            if (driveTimer < maxMoveTimer)
-                            {
-                                detectedCar = true;
-                                moveDirection = car.transform.position - transform.position;
-                            }
-                            else
-                            {
-                                detectedCar = false;
-                            }
                         }
                         //If we can see that they have a bumper and we don't
                         else if (rightBumper.activeSelf == false && car.leftBumper.activeSelf == true)
                         {
                             //Drive away from the car
-                            if (driveTimer < maxMoveTimer)
-                            {
-                                detectedCar = true;
-                                moveDirection = car.transform.position + transform.position;
-                            }
-                            else
-                            {
-                                detectedCar = false;
-                            }
-                            
                         }
                     }
                     else if (angle >= -175 && angle <= -85)
@@ -231,65 +169,31 @@ public class AI : Entity
                         if (leftBumper.activeSelf == true && car.rightBumper.activeSelf == false)
                         {
                             //Drive towards the other car
-                            if (driveTimer < maxMoveTimer)
-                            {
-                                detectedCar = true;
-                                moveDirection = car.transform.position - transform.position;
-                            }
-                            else
-                            {
-                                detectedCar = false;
-                            }
                         }
                         //If we both have a bumper on the corresponding sides
                         else if (leftBumper.activeSelf == true && car.rightBumper.activeSelf == true)
                         {
                             //Drive towards the car
-                            if (driveTimer < maxMoveTimer)
-                            {
-                                detectedCar = true;
-                                moveDirection = car.transform.position - transform.position;
-                            }
-                            else
-                            {
-                                detectedCar = false;
-                            }
                         }
                         //If we can see that they have a bumper and we don't
                         else if (leftBumper.activeSelf == false && car.rightBumper.activeSelf == true)
                         {
                             //Drive away from the car
-                            if (driveTimer < maxMoveTimer)
-                            {
-                                detectedCar = true;
-                                moveDirection = car.transform.position + transform.position;
-                            }
-                            else
-                            {
-                                detectedCar = false;
-                            }
                         }
                     }
                     else if (angle >= -84 && angle <= -25)
                     {
-                        if(frontTimer > maxFrontMoveTime)
-                        {
-                            //Drive towards the car
-                            if (driveTimer < maxMoveTimer)
-                            {
-                                frontDetectedCar = true;
-                                moveDirection = car.transform.position - transform.position;
-                            }
-                            else
-                            {
-                                frontDetectedCar = false;
-                            }
-                        }  
+                        //Front side
+                        
+                        //Ram the backside
                     }
+
                 }
             }
         }
     }
+
+
 
     private void Items()
     {
@@ -444,7 +348,7 @@ public class AI : Entity
     void OnCollisionEnter(Collision a_other)
     {
         //If it is the track edge
-        if (a_other.collider.gameObject.CompareTag("Pla"))
+        if (a_other.collider.gameObject.CompareTag("Border"))
         {
             canDetect = false;
             Debug.Log("Collided with border");
