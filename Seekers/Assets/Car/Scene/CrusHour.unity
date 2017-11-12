@@ -14842,10 +14842,12 @@ MonoBehaviour:
   torque: 13000
   brakeTorque: 20000
   boostSpeed: 2000
-  wheelShape: {fileID: 1005141694610716, guid: bbe924e601c51894c80376f44ec22fec, type: 2}
   dragAmount: 0
   sharpTurn: 1.5
+  rpmLimit: 100000
   driveType: 2
+  idealRPM: 500
+  maxRPM: 1000
 --- !u!114 &1939824110
 MonoBehaviour:
   m_ObjectHideFlags: 0
