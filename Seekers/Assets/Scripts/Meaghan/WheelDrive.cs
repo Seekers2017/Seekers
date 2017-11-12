@@ -127,9 +127,9 @@ public class WheelDrive : MonoBehaviour
                 if (Input.GetAxis("Right Trigger") == 1)
                 {
                     if (!frontWheel)
-						wheel.steerAngle = -angle * sharpTurn;
+                        wheel.steerAngle = -angle * sharpTurn;
                     else
-                        wheel.steerAngle = angle * 1.2f;
+                        wheel.steerAngle = 0.0f;
                 }
                 else
                 {

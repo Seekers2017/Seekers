@@ -5554,6 +5554,11 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300404, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
+--- !u!1 &604621186 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1236399009143746, guid: a5a3be41e9c2bc9428f9f4e9bcf45711,
+    type: 2}
+  m_PrefabInternal: {fileID: 1228054372}
 --- !u!1 &608227259 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100618, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
@@ -5792,6 +5797,11 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300040, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
+--- !u!1 &654541245 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1180933728816052, guid: a5a3be41e9c2bc9428f9f4e9bcf45711,
+    type: 2}
+  m_PrefabInternal: {fileID: 1228054372}
 --- !u!1 &655966925 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100366, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
@@ -6066,6 +6076,11 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300890, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
+--- !u!1 &696442232 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1181224222255532, guid: a5a3be41e9c2bc9428f9f4e9bcf45711,
+    type: 2}
+  m_PrefabInternal: {fileID: 1228054372}
 --- !u!1 &701731081 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100130, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
@@ -10015,7 +10030,20 @@ Prefab:
       propertyPath: m_Center.z
       value: 3.84
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1181224222255532, guid: a5a3be41e9c2bc9428f9f4e9bcf45711, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236399009143746, guid: a5a3be41e9c2bc9428f9f4e9bcf45711, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180933728816052, guid: a5a3be41e9c2bc9428f9f4e9bcf45711, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114672935524385492, guid: a5a3be41e9c2bc9428f9f4e9bcf45711, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a5a3be41e9c2bc9428f9f4e9bcf45711, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1229593536 stripped
@@ -11205,6 +11233,37 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300466, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
+--- !u!1 &1394504304 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1152312413105094, guid: a5a3be41e9c2bc9428f9f4e9bcf45711,
+    type: 2}
+  m_PrefabInternal: {fileID: 1228054372}
+--- !u!114 &1394504305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1394504304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 620749c0d1567eb46b7e9cb94789ea23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHits: 3
+  maxLifeSpan: 5
+  maxBoostTimer: 1
+  respawnTime: 2
+  frontBumper: {fileID: 1541528798}
+  leftBumper: {fileID: 604621186}
+  rearBumper: {fileID: 696442232}
+  rightBumper: {fileID: 654541245}
+  itemSpawnTime: 2
+  boostSpeed: 60
+  maxSpeed: 40
+  speed: 20000
+  rotation: 0
+  maxMoveTimer: 5
+  maxFrontMoveTime: 5
 --- !u!1 &1396783807 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100886, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
@@ -12390,6 +12449,11 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300196, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
+--- !u!1 &1541528798 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1715703441943820, guid: a5a3be41e9c2bc9428f9f4e9bcf45711,
+    type: 2}
+  m_PrefabInternal: {fileID: 1228054372}
 --- !u!1 &1541750681 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100474, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
@@ -14842,12 +14906,10 @@ MonoBehaviour:
   torque: 13000
   brakeTorque: 20000
   boostSpeed: 2000
+  wheelShape: {fileID: 1005141694610716, guid: bbe924e601c51894c80376f44ec22fec, type: 2}
   dragAmount: 0
   sharpTurn: 1.5
-  rpmLimit: 100000
   driveType: 2
-  idealRPM: 500
-  maxRPM: 1000
 --- !u!114 &1939824110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15781,6 +15843,16 @@ Prefab:
     - target: {fileID: 4410400704939804, guid: b8b4caa404404c74987ae765a310e33a, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114481501219602102, guid: b8b4caa404404c74987ae765a310e33a,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114860849769786962, guid: b8b4caa404404c74987ae765a310e33a,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b8b4caa404404c74987ae765a310e33a, type: 2}
