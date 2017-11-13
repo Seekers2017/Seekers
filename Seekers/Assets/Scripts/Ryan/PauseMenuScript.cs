@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using XboxCtrlrInput;
 
 public enum currOption_Pause
 {
@@ -21,6 +22,8 @@ public class PauseMenuScript : MonoBehaviour
     private Sprite[] mainMenuSpriteList;
 
     private currOption_Pause currPointing;
+
+    public XboxController controller;
 
     // Use this for initialization
     void Start()
@@ -45,7 +48,7 @@ public class PauseMenuScript : MonoBehaviour
 
         if (currPointing == currOption_Pause.RESUME)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+            if (XCI.GetButtonDown(XboxButton.DPadUp, controller) || XCI.GetButtonDown(XboxButton.DPadDown, controller))
             {
                 currPointing = currOption_Pause.MAINMENU;
                 resumeSprite.sprite = resumeSpriteList[0];
@@ -53,7 +56,7 @@ public class PauseMenuScript : MonoBehaviour
                 Debug.Log("Moving away from Resume");
             }
 
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (XCI.GetButtonDown(XboxButton.A))
             {
                 gameManager.SwitchGameState(GameStateID.InGame);
             }
@@ -61,7 +64,7 @@ public class PauseMenuScript : MonoBehaviour
 
         else if (currPointing == currOption_Pause.MAINMENU)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+            if (XCI.GetButtonDown(XboxButton.DPadUp, controller) || XCI.GetButtonDown(XboxButton.DPadDown, controller))
             {
                 currPointing = currOption_Pause.RESUME;
                 resumeSprite.sprite = resumeSpriteList[1];
@@ -69,7 +72,7 @@ public class PauseMenuScript : MonoBehaviour
                 Debug.Log("Moving away from Main Menu");
             }
 
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (XCI.GetButtonDown(XboxButton.A))
             {
                 SceneManager.LoadScene("CrusHour");
             }

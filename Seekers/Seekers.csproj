@@ -150,7 +150,6 @@
   <ItemGroup>
     <None Include="Assets\Car\Particles\Delete me.txt" />
     <None Include="Assets\Car\Shaders\Delete me.txt" />
-    <None Include="Assets\Car\Textures\Delete me.txt" />
     <None Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\README.txt" />
     <None Include="Assets\ProCore\ProBuilder\About\Font\SIL Open Font License.txt" />
     <None Include="Assets\ProCore\ProBuilder\About\ThirdPartyLicenses.txt" />

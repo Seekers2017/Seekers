@@ -12,6 +12,9 @@ public enum DriveType
 
 public class WheelDrive : MonoBehaviour
 {
+    //TODO:
+    //Increase slip on drift
+
     [Tooltip("Maximum steering angle of the wheels.")]
     [SerializeField]
     private float maxAngle = 30f;
@@ -42,7 +45,11 @@ public class WheelDrive : MonoBehaviour
     [SerializeField]
     private XboxController controller;
 
+    [Tooltip("Ideal rotation of the wheels of the car.")]
+    [SerializeField]
     private float idealRPM = 500f;
+    [Tooltip("The max rotation of the wheels of the car.")]
+    [SerializeField]
     private float maxRPM = 1000f;
 
 

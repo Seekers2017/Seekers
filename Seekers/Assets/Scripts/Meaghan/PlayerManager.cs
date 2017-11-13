@@ -55,21 +55,21 @@ public class PlayerManager : Entity
 
     void Update()
     {
-        ////Respawn check
-        //if(hits >= maxHits)
-        //{
-        //    //Set all values back and respawn
-        //    playerMove.AbilityToDrive = false;
-        //    rb.drag = 3.0f;
-        //    hasLowHealth = false;
-        //    Respawn();
-        //}
-        //else
-        //{
-        //    //Playe can drive and store position to respawn at
-        //    playerMove.AbilityToDrive = true;
-        //    PositionTimer();
-        //}
+         //Respawn check
+         if(hits >= maxHits)
+         {
+             //Set all values back and respawn
+             playerMove.AbilityToDrive = false;
+             rb.drag = 3.0f;
+             hasLowHealth = false;
+             Respawn();
+         }
+         else
+         {
+             //Playe can drive and store position to respawn at
+             playerMove.AbilityToDrive = true;
+             PositionTimer();
+         }
 
         Items();
 
@@ -124,7 +124,7 @@ public class PlayerManager : Entity
         {
             if (hasBumper == true)
             {
-                if (XCI.GetButton(XboxButton.LeftBumper, controller))
+                if (XCI.GetButtonDown(XboxButton.LeftBumper, controller))
                 {
                     bumperSelect++;
 
@@ -161,7 +161,7 @@ public class PlayerManager : Entity
                     }
                 }
 
-                if (XCI.GetButton(XboxButton.X, controller))
+                if (XCI.GetButtonDown(XboxButton.X, controller))
                 {
                     //Stop the preview
                     pressedXButton = true;
@@ -195,10 +195,10 @@ public class PlayerManager : Entity
             }
             else //speed boost
             {
-                if (XCI.GetButton(XboxButton.X, controller))
+                if (XCI.GetButtonDown(XboxButton.X, controller))
                 {
                     //Go fast
-                    SpeedBoost();
+                    isBoosting = true;
                     hasItem = false;
                 }
             }

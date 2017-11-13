@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using XboxCtrlrInput;
 
 public class IngameUIScript : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class IngameUIScript : MonoBehaviour
     private Sprite[] lapSpriteList;
     private Sprite[] rankSpriteList;
     private Sprite[] itemSpriteList;
+
+    public XboxController controller;
 
     //get entity's check point script
     private CarCheckpointScript checkpointScript;
@@ -76,7 +79,7 @@ public class IngameUIScript : MonoBehaviour
             //only hiding it. Will have to improve if possible ( use Destroy(); and Instantiate(); )
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (XCI.GetButtonDown(XboxButton.Start))
         {
             gameManager.SwitchGameState(GameStateID.Pause);
         }

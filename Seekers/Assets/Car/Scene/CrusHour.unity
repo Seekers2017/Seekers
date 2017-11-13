@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366756, g: 0.48427194, b: 0.5645252, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -5783,6 +5783,11 @@ MeshCollider:
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 4c19698f1a6282e44b9ac9555d297130, type: 3}
   m_PrefabInternal: {fileID: 1451050206}
+--- !u!1 &598872554 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1181224222255532, guid: a5a3be41e9c2bc9428f9f4e9bcf45711,
+    type: 2}
+  m_PrefabInternal: {fileID: 1228054372}
 --- !u!1 &600302351 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100578, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
@@ -6923,6 +6928,11 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300126, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
+--- !u!1 &764997273 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1236399009143746, guid: a5a3be41e9c2bc9428f9f4e9bcf45711,
+    type: 2}
+  m_PrefabInternal: {fileID: 1228054372}
 --- !u!1 &766780404 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100300, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
@@ -9505,6 +9515,11 @@ MeshCollider:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 9feb3f6942e5e3b4faf90c3929a83371, type: 3}
   m_PrefabInternal: {fileID: 29815971}
+--- !u!1 &1158333646 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1180933728816052, guid: a5a3be41e9c2bc9428f9f4e9bcf45711,
+    type: 2}
+  m_PrefabInternal: {fileID: 1228054372}
 --- !u!1 &1158612799 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100572, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
@@ -10274,7 +10289,8 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 64.758
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114949541892396916, guid: a5a3be41e9c2bc9428f9f4e9bcf45711, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a5a3be41e9c2bc9428f9f4e9bcf45711, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1229593536 stripped
@@ -10519,6 +10535,36 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300124, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
+--- !u!1 &1254804758 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1152312413105094, guid: a5a3be41e9c2bc9428f9f4e9bcf45711,
+    type: 2}
+  m_PrefabInternal: {fileID: 1228054372}
+--- !u!114 &1254804759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1254804758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef8d5cc090f419409190a3bf4382b04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHits: 3
+  maxLifeSpan: 5
+  maxBoostTimer: 1
+  respawnTime: 2
+  frontBumper: {fileID: 2000878180}
+  leftBumper: {fileID: 764997273}
+  rearBumper: {fileID: 598872554}
+  rightBumper: {fileID: 1158333646}
+  itemSpawnTime: 2
+  boostSpeed: 40
+  maxSpeed: 20
+  speed: 20000
+  rotation: 3
+  maxMoveTimer: 5
 --- !u!1 &1254954742 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: e3df602e86c874444bb866554db97903, type: 3}
@@ -15199,6 +15245,8 @@ MonoBehaviour:
   sharpTurn: 1.5
   driveType: 2
   controller: 0
+  idealRPM: 500
+  maxRPM: 1000
 --- !u!114 &1939824110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15745,6 +15793,11 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300490, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
+--- !u!1 &2000878180 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1715703441943820, guid: a5a3be41e9c2bc9428f9f4e9bcf45711,
+    type: 2}
+  m_PrefabInternal: {fileID: 1228054372}
 --- !u!1 &2001414291 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100846, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}

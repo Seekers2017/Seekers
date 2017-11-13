@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XboxCtrlrInput;
 
 public class TutorialUIScript : MonoBehaviour
 {
 
     // Use this for initialization
     private GameStateManagerScript gameManager;
+
+    public XboxController controller;
 
     // Use this for initialization
     void Start()
@@ -18,7 +21,7 @@ public class TutorialUIScript : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (Input.anyKeyDown)
+        if (XCI.GetButton(XboxButton.A, controller))
         {
             gameManager.SwitchGameState(GameStateID.InGame);
         }

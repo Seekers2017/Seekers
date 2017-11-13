@@ -58,6 +58,25 @@ public class BumperScript : MonoBehaviour
         if (a_other.transform.tag == ("AI"))
         {
             a_other.gameObject.GetComponent<AI>().Hits++;
+
+            if (isFrontBumper == false)
+            {
+                //Destroy the bumper
+                isAlive = false;
+                gameObject.SetActive(false);
+            }
+        }
+
+        if(a_other.transform.tag == ("Player"))
+        {
+            a_other.gameObject.GetComponent<PlayerManager>().Hits++;
+
+            if (isFrontBumper == false)
+            {
+                //Destroy the bumper
+                isAlive = false;
+                gameObject.SetActive(false);
+            }
         }
     }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using XboxCtrlrInput;
 
 public enum currOption_MainMenu
 {
@@ -20,6 +21,8 @@ public class MainMenuScript : MonoBehaviour
     private Sprite[] quitSpriteList;
 
     private currOption_MainMenu currPointing;
+
+    public XboxController controller;
 
     // Use this for initialization
     void Start()
@@ -43,7 +46,7 @@ public class MainMenuScript : MonoBehaviour
     {
         if (currPointing == currOption_MainMenu.START)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+            if (XCI.GetButtonDown(XboxButton.DPadUp, controller) || XCI.GetButtonDown(XboxButton.DPadDown, controller))
             {
                 currPointing = currOption_MainMenu.QUIT;
                 startSprite.sprite = startSpriteList[0];
@@ -51,7 +54,7 @@ public class MainMenuScript : MonoBehaviour
                 Debug.Log("Moving away from Start");
             }
 
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (XCI.GetButtonDown(XboxButton.A))
             {
                 gameManager.SwitchGameState(GameStateID.Tutoriul);
             }
@@ -59,7 +62,7 @@ public class MainMenuScript : MonoBehaviour
 
         else if (currPointing == currOption_MainMenu.QUIT)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+            if (XCI.GetButtonDown(XboxButton.DPadUp, controller) || XCI.GetButtonDown(XboxButton.DPadDown, controller))
             {
                 currPointing = currOption_MainMenu.START;
                 startSprite.sprite = startSpriteList[1];
@@ -67,7 +70,7 @@ public class MainMenuScript : MonoBehaviour
                 Debug.Log("Moving away from Quit");
             }
 
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (XCI.GetButtonDown(XboxButton.A))
             {
                 Application.Quit();
             }

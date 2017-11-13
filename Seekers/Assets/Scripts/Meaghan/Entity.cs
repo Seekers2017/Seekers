@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour {
 
-    //TODO:
-    //[AI]
-    //Improved movement 
-    //Radius check (if another car is nearby)
-
-
     //Variables
     [Header("General")]
     [SerializeField]
@@ -126,8 +120,6 @@ public class Entity : MonoBehaviour {
         //Go slower
         if (boostTimer >= maxBoostTimer)
         {
-            Debug.Log("Timer has gone off");
-
             boostTimer = 0.0f;
             isBoosting = false;
         }
