@@ -600,7 +600,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1152312413105094}
   m_LocalRotation: {x: -0, y: 0.4999996, z: -0, w: 0.8660257}
-  m_LocalPosition: {x: -10.4, y: 2, z: 26.6}
+  m_LocalPosition: {x: -13.7, y: 2, z: 52.5}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 4769556127970894}
@@ -1665,7 +1665,7 @@ MonoBehaviour:
   boostSpeed: 60
   maxSpeed: 40
   speed: 20000
-  rotation: 0
+  rotation: 45
   maxMoveTimer: 5
   maxFrontMoveTime: 5
 --- !u!136 &136855284858181142
