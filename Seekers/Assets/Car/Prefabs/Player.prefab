@@ -46,7 +46,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1049065541897538
 GameObject:
   m_ObjectHideFlags: 1
@@ -80,7 +80,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1058348038988472
 GameObject:
   m_ObjectHideFlags: 1
@@ -97,7 +97,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1109695726457216
 GameObject:
   m_ObjectHideFlags: 1
@@ -180,7 +180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1196357863342162
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,7 +730,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1878939848485240}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.059998, y: 2.0440865, z: -25.115818}
+  m_LocalPosition: {x: -30.34, y: 2.0440865, z: -25.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4917001201891364}
@@ -973,7 +973,7 @@ Transform:
   m_GameObject: {fileID: 1058348038988472}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.5631454e-14, y: -0.000013147222, z: -165.62436}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 4908343076343736}
   m_RootOrder: 0
@@ -2504,12 +2504,11 @@ MonoBehaviour:
   torque: 13000
   brakeTorque: 20000
   boostSpeed: 2000
+  wheelShape: {fileID: 1005141694610716, guid: bbe924e601c51894c80376f44ec22fec, type: 2}
   dragAmount: 0
   sharpTurn: 1.5
-  rpmLimit: 100000
   driveType: 2
-  idealRPM: 500
-  maxRPM: 1000
+  controller: 1
 --- !u!114 &114801554937598716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2521,7 +2520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6bebdffe96219c4faa0ef7746ba5315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHits: 2
+  maxHits: 3
   maxLifeSpan: 5
   maxBoostTimer: 1
   respawnTime: 2
@@ -2533,6 +2532,7 @@ MonoBehaviour:
   leftBumperPreview: {fileID: 1476441922070522}
   rightBumperPreview: {fileID: 1312033320848358}
   rearBumperPreview: {fileID: 1168458639442600}
+  controller: 1
 --- !u!114 &114827343698029844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2574,7 +2574,7 @@ WheelCollider:
     spring: 39733.59
     damper: 6357.3745
     targetPosition: 0.5
-  m_SuspensionDistance: 0.19620003
+  m_SuspensionDistance: 0.19620001
   m_ForceAppPointDistance: 1.0688595
   m_Mass: 20
   m_WheelDampingRate: 0.25
@@ -2600,10 +2600,10 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.8
   m_SuspensionSpring:
-    spring: 29162.033
-    damper: 4665.9253
+    spring: 29162.027
+    damper: 4665.925
     targetPosition: 0.5
-  m_SuspensionDistance: 0.19620001
+  m_SuspensionDistance: 0.19620003
   m_ForceAppPointDistance: 1.0688595
   m_Mass: 20
   m_WheelDampingRate: 0.25

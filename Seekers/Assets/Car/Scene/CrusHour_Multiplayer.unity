@@ -136,10 +136,10 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.8
   m_SuspensionSpring:
-    spring: 35266.434
-    damper: 5642.63
+    spring: 35266.406
+    damper: 5642.625
     targetPosition: 0.5
-  m_SuspensionDistance: 0.19620003
+  m_SuspensionDistance: 0.19620001
   m_ForceAppPointDistance: 1.0688595
   m_Mass: 20
   m_WheelDampingRate: 0.25
@@ -371,11 +371,11 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.8
   m_SuspensionSpring:
-    spring: 45838.008
-    damper: 7334.0815
+    spring: 45837.97
+    damper: 7334.075
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620001
-  m_ForceAppPointDistance: 1.0688593
+  m_ForceAppPointDistance: 1.0688595
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -1207,13 +1207,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAngle: 40
-  torque: 13000
+  torque: 15000
   brakeTorque: 20000
   boostSpeed: 2000
   wheelShape: {fileID: 1005141694610716, guid: bbe924e601c51894c80376f44ec22fec, type: 2}
   dragAmount: 0
   sharpTurn: 1.5
   driveType: 2
+  controller: 2
 --- !u!114 &175513547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1226,7 +1227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6bebdffe96219c4faa0ef7746ba5315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHits: 2
+  maxHits: 3
   maxLifeSpan: 5
   maxBoostTimer: 1
   respawnTime: 2
@@ -1238,6 +1239,7 @@ MonoBehaviour:
   leftBumperPreview: {fileID: 795627693}
   rightBumperPreview: {fileID: 2087052526}
   rearBumperPreview: {fileID: 1318046569}
+  controller: 2
 --- !u!114 &175513548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1292,8 +1294,8 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 175513541}
-  m_LocalRotation: {x: -0, y: 0.53551584, z: -0, w: 0.84452516}
-  m_LocalPosition: {x: -12.09, y: 2.0440865, z: 33.660004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -21.372063, y: 2.0440865, z: -26.408178}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 865780379}
@@ -1305,7 +1307,7 @@ Transform:
   - {fileID: 1210230523}
   m_Father: {fileID: 0}
   m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 64.758, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &215391004
 Prefab:
   m_ObjectHideFlags: 0
@@ -1526,8 +1528,8 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.8
   m_SuspensionSpring:
-    spring: 45838
-    damper: 7334.0796
+    spring: 45837.97
+    damper: 7334.075
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620001
   m_ForceAppPointDistance: 1.0688595
@@ -1640,7 +1642,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4338607903443082, guid: a5a3be41e9c2bc9428f9f4e9bcf45711, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -22.87
+      value: -40.10751
       objectReference: {fileID: 0}
     - target: {fileID: 4338607903443082, guid: a5a3be41e9c2bc9428f9f4e9bcf45711, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1648,51 +1650,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4338607903443082, guid: a5a3be41e9c2bc9428f9f4e9bcf45711, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 49.07
+      value: -28.038942
       objectReference: {fileID: 0}
     - target: {fileID: 4338607903443082, guid: a5a3be41e9c2bc9428f9f4e9bcf45711, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4338607903443082, guid: a5a3be41e9c2bc9428f9f4e9bcf45711, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.53551584
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4338607903443082, guid: a5a3be41e9c2bc9428f9f4e9bcf45711, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4338607903443082, guid: a5a3be41e9c2bc9428f9f4e9bcf45711, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.84452516
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4338607903443082, guid: a5a3be41e9c2bc9428f9f4e9bcf45711, type: 2}
       propertyPath: m_RootOrder
       value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 23546062575342586, guid: a5a3be41e9c2bc9428f9f4e9bcf45711,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: eefd3d6055c492b43aaea92590c13b53, type: 2}
-    - target: {fileID: 23310114819086870, guid: a5a3be41e9c2bc9428f9f4e9bcf45711,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: eefd3d6055c492b43aaea92590c13b53, type: 2}
-    - target: {fileID: 23498330761561330, guid: a5a3be41e9c2bc9428f9f4e9bcf45711,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: eefd3d6055c492b43aaea92590c13b53, type: 2}
-    - target: {fileID: 136855284858181142, guid: a5a3be41e9c2bc9428f9f4e9bcf45711,
-        type: 2}
-      propertyPath: m_Center.z
-      value: 3.84
-      objectReference: {fileID: 0}
-    - target: {fileID: 4338607903443082, guid: a5a3be41e9c2bc9428f9f4e9bcf45711, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 64.758
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a5a3be41e9c2bc9428f9f4e9bcf45711, type: 2}
@@ -1709,6 +1687,7 @@ GameObject:
   - component: {fileID: 251772916}
   - component: {fileID: 251772915}
   - component: {fileID: 251772914}
+  - component: {fileID: 251772918}
   m_Layer: 0
   m_Name: Main Camera (1)
   m_TagString: MainCamera
@@ -1796,6 +1775,18 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!114 &251772918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 251772912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d38b79641931847ba023c79ba2cd65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneName: CrusHour_Multiplayer
 --- !u!1 &255246500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,11 +1916,11 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.8
   m_SuspensionSpring:
-    spring: 29161.988
-    damper: 4665.9185
+    spring: 29162.027
+    damper: 4665.925
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620003
-  m_ForceAppPointDistance: 1.0688593
+  m_ForceAppPointDistance: 1.0688595
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -2629,11 +2620,11 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.8
   m_SuspensionSpring:
-    spring: 35266.4
-    damper: 5642.6245
+    spring: 35266.406
+    damper: 5642.625
     targetPosition: 0.5
-  m_SuspensionDistance: 0.19620003
-  m_ForceAppPointDistance: 1.0688593
+  m_SuspensionDistance: 0.19620001
+  m_ForceAppPointDistance: 1.0688595
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -3380,13 +3371,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAngle: 40
-  torque: 13000
+  torque: 15000
   brakeTorque: 20000
   boostSpeed: 2000
   wheelShape: {fileID: 1005141694610716, guid: bbe924e601c51894c80376f44ec22fec, type: 2}
   dragAmount: 0
   sharpTurn: 1.5
   driveType: 2
+  controller: 1
 --- !u!114 &713252001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3399,7 +3391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6bebdffe96219c4faa0ef7746ba5315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHits: 2
+  maxHits: 3
   maxLifeSpan: 5
   maxBoostTimer: 1
   respawnTime: 2
@@ -3411,6 +3403,7 @@ MonoBehaviour:
   leftBumperPreview: {fileID: 1035470778}
   rightBumperPreview: {fileID: 114216631}
   rearBumperPreview: {fileID: 1785005650}
+  controller: 1
 --- !u!114 &713252002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3465,8 +3458,8 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 713251995}
-  m_LocalRotation: {x: -0, y: 0.53551584, z: -0, w: 0.84452516}
-  m_LocalPosition: {x: -15.926021, y: 2.0440865, z: 41.80056}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -30.34, y: 2.0440865, z: -25.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1686739969}
@@ -3478,7 +3471,7 @@ Transform:
   - {fileID: 1606729641}
   m_Father: {fileID: 0}
   m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 64.758, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &713497481
 Prefab:
   m_ObjectHideFlags: 0
@@ -3559,6 +3552,10 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 0.38811108
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247720713541362, guid: ba4cb1f9771ead942bfe96c0e144e00b, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba4cb1f9771ead942bfe96c0e144e00b, type: 2}
@@ -13476,8 +13473,8 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.8
   m_SuspensionSpring:
-    spring: 29162
-    damper: 4665.9204
+    spring: 29162.027
+    damper: 4665.925
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620003
   m_ForceAppPointDistance: 1.0688595
@@ -16217,7 +16214,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 3175a6b3b26636440a72b4e3a9fda3ea, type: 2}
+  - {fileID: 2100000, guid: e606be8675d69044fa1b88c9532a130d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17199,7 +17196,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4728881423823862, guid: 2bcb0ddda72f7394ebe4480da655bb96, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4728881423823862, guid: 2bcb0ddda72f7394ebe4480da655bb96, type: 2}
       propertyPath: m_LocalRotation.x
@@ -17421,11 +17418,11 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.8
   m_SuspensionSpring:
-    spring: 39733.598
-    damper: 6357.3755
+    spring: 39733.59
+    damper: 6357.3745
     targetPosition: 0.5
-  m_SuspensionDistance: 0.1962
-  m_ForceAppPointDistance: 1.0688593
+  m_SuspensionDistance: 0.19620001
+  m_ForceAppPointDistance: 1.0688595
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -18381,10 +18378,10 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.8
   m_SuspensionSpring:
-    spring: 39733.57
-    damper: 6357.3706
+    spring: 39733.59
+    damper: 6357.3745
     targetPosition: 0.5
-  m_SuspensionDistance: 0.19619998
+  m_SuspensionDistance: 0.19620001
   m_ForceAppPointDistance: 1.0688595
   m_Mass: 20
   m_WheelDampingRate: 0.25
@@ -18488,7 +18485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d38b79641931847ba023c79ba2cd65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: CrusHour
+  SceneName: CrusHour_Multiplayer
 --- !u!114 &1855612386
 MonoBehaviour:
   m_ObjectHideFlags: 0
