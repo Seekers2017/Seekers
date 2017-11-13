@@ -36,9 +36,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4697750456560632}
-  - component: {fileID: 95387197155647842}
-  - component: {fileID: 65595022350749354}
   - component: {fileID: 114229485346042094}
+  - component: {fileID: 135362909977773934}
   m_Layer: 0
   m_Name: Mesh_PowerUp_001 1
   m_TagString: SpeedBoost
@@ -187,7 +186,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1603849181695790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -31.647556, y: 2.29, z: -22.224117}
+  m_LocalPosition: {x: -17.36189, y: 4.62, z: 30.471724}
   m_LocalScale: {x: 80, y: 80, z: 80}
   m_Children:
   - {fileID: 4338724949982500}
@@ -351,35 +350,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1640500405902312}
   m_Mesh: {fileID: 4300000, guid: 32481c22a04144a4c999a2b29e1b1dbe, type: 3}
---- !u!65 &65595022350749354
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1603849181695790}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &95387197155647842
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1603849181695790}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 32481c22a04144a4c999a2b29e1b1dbe, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114229485346042094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -392,3 +362,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 0
+--- !u!135 &135362909977773934
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1603849181695790}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.022416677
+  m_Center: {x: 0.0012827009, y: 0.0055545093, z: -0.007453093}
