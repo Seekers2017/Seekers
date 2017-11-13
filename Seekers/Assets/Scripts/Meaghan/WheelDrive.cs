@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using XboxCtrlrInput;
 
 [Serializable]
 public enum DriveType
@@ -11,13 +12,6 @@ public enum DriveType
 
 public class WheelDrive : MonoBehaviour
 {
-    //TODO:
-    //Fix speed of the car
-    /// <summary>
-    /// ////////////
-    /// </summary>
-    //ROTATION OF THE WHEELS
-
     [Tooltip("Maximum steering angle of the wheels.")]
     [SerializeField]
     private float maxAngle = 30f;
@@ -34,7 +28,6 @@ public class WheelDrive : MonoBehaviour
     [SerializeField]
     private GameObject wheelShape;
 
-
     [Tooltip("Increases the drag of the car while not moving.")]
     [SerializeField]
     private float dragAmount;
@@ -45,6 +38,9 @@ public class WheelDrive : MonoBehaviour
     [Tooltip("The vehicle's drive type: rear-wheels drive, front-wheels drive or all-wheels drive.")]
     [SerializeField]
     private DriveType driveType;
+
+    [SerializeField]
+    private XboxController controller;
 
     private float idealRPM = 500f;
     private float maxRPM = 1000f;
@@ -60,8 +56,7 @@ public class WheelDrive : MonoBehaviour
 
     private PlayerManager player;
     private Rigidbody carRigidbody;
-
-
+    
 
     public bool AbilityToDrive
     {
@@ -91,13 +86,14 @@ public class WheelDrive : MonoBehaviour
 
 	void Update()
     { 
+
         if(abilityToDrive)
         {
             //Changes speed based on criticals 
             wheels[0].ConfigureVehicleSubsteps(criticalSpeed, stepsBelow, stepsAbove);
 
             //Alters the angle of the car
-            float angle = maxAngle * Input.GetAxis("Horizontal");
+            float angle = maxAngle * XCI.GetAxis(XboxAxis.LeftStickX, controller);
 
             for (int wheelNum = 0; wheelNum < 4; ++wheelNum)
             {
@@ -124,7 +120,7 @@ public class WheelDrive : MonoBehaviour
                 }
 
                 //Sharp turn
-                if (Input.GetAxis("Right Trigger") == 1)
+                if (XCI.GetAxis(XboxAxis.RightTrigger, controller) == 1)
                 {
                     if (!frontWheel)
                         wheel.steerAngle = -angle * sharpTurn;
@@ -141,8 +137,8 @@ public class WheelDrive : MonoBehaviour
 
 
                 //If we are holding down the A button, move forward
-                if (Input.GetButton("Fire1"))
-                {
+                if (XCI.GetButton(XboxButton.A, controller))
+                {                
                     wheel.brakeTorque = 0.0f;
 
                     //Back wheels
@@ -157,7 +153,7 @@ public class WheelDrive : MonoBehaviour
                         wheel.motorTorque = speed;
                     }
                 }
-                else if (Input.GetButton("Fire2"))
+                else if (XCI.GetButton(XboxButton.B, controller))
                 {
 
                     wheel.brakeTorque = 0.0f;

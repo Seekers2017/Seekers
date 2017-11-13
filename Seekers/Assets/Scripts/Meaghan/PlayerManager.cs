@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XboxCtrlrInput;
 
 public class PlayerManager : Entity
 {
@@ -16,6 +17,8 @@ public class PlayerManager : Entity
     private GameObject rightBumperPreview;
     [SerializeField]
     private GameObject rearBumperPreview;
+    [SerializeField]
+    private XboxController controller;
 
 
     //Variables 
@@ -121,7 +124,7 @@ public class PlayerManager : Entity
         {
             if (hasBumper == true)
             {
-                if (Input.GetButtonDown("LeftBumper"))
+                if (XCI.GetButton(XboxButton.LeftBumper, controller))
                 {
                     bumperSelect++;
 
@@ -158,7 +161,7 @@ public class PlayerManager : Entity
                     }
                 }
 
-                if (Input.GetButton("Fire3"))
+                if (XCI.GetButton(XboxButton.X, controller))
                 {
                     //Stop the preview
                     pressedXButton = true;
@@ -192,7 +195,7 @@ public class PlayerManager : Entity
             }
             else //speed boost
             {
-                if (Input.GetButton("Fire3"))
+                if (XCI.GetButton(XboxButton.X, controller))
                 {
                     //Go fast
                     SpeedBoost();

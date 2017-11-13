@@ -443,12 +443,6 @@ public class AI : Entity
 
     void OnCollisionEnter(Collision a_other)
     {
-        //If it is the track edge
-        if (a_other.collider.gameObject.CompareTag("Pla"))
-        {
-            canDetect = false;
-            Debug.Log("Collided with border");
-        }
     }
 
     protected override void OnTriggerEnter(Collider a_other)
