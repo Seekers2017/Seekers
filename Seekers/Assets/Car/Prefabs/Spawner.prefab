@@ -57,9 +57,9 @@ MonoBehaviour:
   speedBoostRate: 1
   minRespawnTime: 1
   maxRespawnTime: 2
-  bumper: {fileID: 1591336892730316, guid: 5654f1eee098c4445834b99c90dda2bf, type: 2}
+  bumper: {fileID: 1285575398205456, guid: f24f90f5c9969094bbb10175189de41e, type: 2}
   healthKit: {fileID: 1591336892730316, guid: 19a6bf06fb9fb44499ac691f08347984, type: 2}
-  speedBoost: {fileID: 1603849181695790, guid: 33c90c01be84f784bace4adec7bf0fe8, type: 2}
+  speedBoost: {fileID: 1967259474145056, guid: e6875938238a0b440a45a9a35fff0f22, type: 2}
 --- !u!135 &135725350863063046
 SphereCollider:
   m_ObjectHideFlags: 1
