@@ -39,6 +39,7 @@ public class FallingObject : MonoBehaviour
             {
                 Destroy(objects[i]);
             }
+
             //Destroy(GameObject.FindGameObjectsWithTag("FallingBlocks"));
             Timer = 0;
         }

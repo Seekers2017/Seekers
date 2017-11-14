@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4410400704939804}
   - component: {fileID: 114860849769786962}
   - component: {fileID: 114481501219602102}
+  - component: {fileID: 114903973771005306}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -64,3 +65,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91ae5014c54efc74682d2c714b952f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114903973771005306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1455203422256302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3121ff6b8712fc444b052b80951706a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableTextures:
+  - {fileID: 2800000, guid: 69fb6a6b59e41be4a8d5aec5ef997c3b, type: 3}
+  - {fileID: 2800000, guid: 738d29bd117c5704eb40c82c0c0292a0, type: 3}
+  - {fileID: 2800000, guid: 944194d71d24d354caa3278b4c90ea6b, type: 3}
+  - {fileID: 2800000, guid: 177bc4ebdd1232745bdf7981507489dc, type: 3}
+  - {fileID: 2800000, guid: 7ffb21841ef13b2469fefa6fa096c2cf, type: 3}
+  - {fileID: 2800000, guid: 1cce0748c1dd27742a9311365c94cbba, type: 3}
+  carMeshRenderers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
