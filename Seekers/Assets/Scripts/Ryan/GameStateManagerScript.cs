@@ -12,6 +12,7 @@ public class GameStateManagerScript : MonoBehaviour
     private GameObject mainMenuUI;
     private GameObject tutorialUI;
     private GameObject ingameUI;
+    private GameObject ingameMultiUI;
     private GameObject pauseUI;
     private GameObject winUI;
 
@@ -30,8 +31,8 @@ public class GameStateManagerScript : MonoBehaviour
         gameStates.Add( new MainMenuState() );
         gameStates.Add( new TutoriulState() );
         gameStates.Add( new InGameState() );
+        gameStates.Add(new InGameMultiState());
         gameStates.Add( new PauseState() );
-        gameStates.Add( new GameOverState() );
         gameStates.Add(new VictoryState());
 
         uiObjList = new List<GameObject>();
@@ -39,12 +40,14 @@ public class GameStateManagerScript : MonoBehaviour
         mainMenuUI = GameObject.Find("MainMenuUI");
         tutorialUI = GameObject.Find("TutoriulUI");
         ingameUI = GameObject.Find("IngameUI");
+        ingameMultiUI = GameObject.Find("IngameMuiltUI");
         pauseUI = GameObject.Find("PauseUI");
         winUI = GameObject.Find("VictoryUI");
 
         uiObjList.Add(mainMenuUI);
         uiObjList.Add(tutorialUI);
         uiObjList.Add(ingameUI);
+        uiObjList.Add(ingameMultiUI);
         uiObjList.Add(pauseUI);
         uiObjList.Add(winUI);
 
@@ -84,13 +87,19 @@ public class GameStateManagerScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F4))
         {
-            SwitchGameState(GameStateID.Pause);
+            SwitchGameState(GameStateID.InGameMuilti);
             currGameState.Update();
         }
 
         if (Input.GetKeyDown(KeyCode.F5))
         {
-            SwitchGameState(GameStateID.GameOver);
+            SwitchGameState(GameStateID.Pause);
+            currGameState.Update();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            SwitchGameState(GameStateID.Victory);
             currGameState.Update();
         }
     }
@@ -247,21 +256,20 @@ public class InGameState : BaseState
     }
 }
 
-public class PauseState : BaseState
+public class InGameMultiState : BaseState
 {
     GameStateManagerScript gm;
 
-    public PauseState()
+    public InGameMultiState()
     {
-        stateID = GameStateID.Pause;
+        stateID = GameStateID.InGameMuilti;
     }
 
     public override void Start()
     {
-        Time.timeScale = 0.0f;
+        Time.timeScale = 1.0f;
         gm = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>();
         gm.uiObjList[3].SetActive(true);
-
     }
 
     public override void Update()
@@ -276,17 +284,17 @@ public class PauseState : BaseState
 
     private void ShowLog()
     {
-        Debug.Log("This is Pause Menu");
+        Debug.Log("This is Main Game");
     }
 }
 
-public class VictoryState : BaseState
+public class PauseState : BaseState
 {
     GameStateManagerScript gm;
 
-    public VictoryState()
+    public PauseState()
     {
-        stateID = GameStateID.Victory;
+        stateID = GameStateID.Pause;
     }
 
     public override void Start()
@@ -309,31 +317,39 @@ public class VictoryState : BaseState
 
     private void ShowLog()
     {
-        Debug.Log("The race is over.");
+        Debug.Log("This is Pause Menu");
     }
 }
 
-public class GameOverState : BaseState
+public class VictoryState : BaseState
 {
-    public GameOverState()
+    GameStateManagerScript gm;
+
+    public VictoryState()
     {
-        stateID = GameStateID.GameOver;
+        stateID = GameStateID.Victory;
     }
 
     public override void Start()
     {
-        //load the game over scene
-        //UnityEngine.SceneManagement.SceneManager.LoadScene("GameOverScene");
+        Time.timeScale = 0.0f;
+        gm = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>();
+        gm.uiObjList[5].SetActive(true);
+
     }
 
     public override void Update()
     {
-        //write code in here that needs to run ONLY while the game is paused.
         ShowLog();
+    }
+
+    public override void Shutdown()
+    {
+        gm.uiObjList[5].SetActive(false);
     }
 
     private void ShowLog()
     {
-        Debug.Log("This is Pause Menu");
+        Debug.Log("The race is over.");
     }
 }

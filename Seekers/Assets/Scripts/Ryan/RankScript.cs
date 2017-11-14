@@ -114,6 +114,7 @@ public class RankScript : MonoBehaviour
         //Find all object with AI and Player Tag, save them in two arrays separately
         GameObject[] aiTaggedObj = GameObject.FindGameObjectsWithTag("AI");
         GameObject[] playerTaggedObj = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] player2TaggedObj = GameObject.FindGameObjectsWithTag("Player2");
 
         //Squeeze them in to rankList
         foreach (GameObject gameObject in aiTaggedObj)
@@ -122,6 +123,11 @@ public class RankScript : MonoBehaviour
         }
 
         foreach (GameObject gameObject in playerTaggedObj)
+        {
+            rankList.Add(gameObject.GetComponent<CarCheckpointScript>());
+        }
+
+        foreach (GameObject gameObject in player2TaggedObj)
         {
             rankList.Add(gameObject.GetComponent<CarCheckpointScript>());
         }

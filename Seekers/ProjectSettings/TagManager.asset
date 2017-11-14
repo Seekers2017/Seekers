@@ -22,6 +22,7 @@ TagManager:
   - FallingBlocks
   - InGameUI
   - VictoryUI
+  - Player2
   layers:
   - Default
   - TransparentFX

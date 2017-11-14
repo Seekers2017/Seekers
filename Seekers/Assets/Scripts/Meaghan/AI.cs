@@ -465,10 +465,15 @@ public class AI : Entity
         }
     }
 
-    protected override void OnCollectItem(SpawnerScript item)
-    {
-        base.OnCollectItem(item);
+    //protected override void OnCollectItem(SpawnerScript item)
+    //{
+    //    //base.OnCollectItem(item);
 
-        //other ai related stuff
-    }
+    //    //other ai related stuff
+    //}
+
+    //protected override void Bumper(GameObject a_bumper)
+    //{
+    //    //do nothing
+    //}
 }

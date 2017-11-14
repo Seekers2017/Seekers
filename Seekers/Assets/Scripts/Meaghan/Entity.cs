@@ -65,13 +65,16 @@ public class Entity : MonoBehaviour {
         set { isBoosting = value; }
     }
 
-    protected void Bumper(GameObject a_bumper)
+    protected virtual void Bumper(GameObject a_bumper)
     {
+        //this is also running on the AI and probably shouldn't be.
         if(a_bumper != null)
         {
             //Set the bumper to active
-            a_bumper.GetComponent<BumperScript>().isAlive = true;
-            a_bumper.GetComponent<BumperScript>().lifeSpan = maxLifeSpan;
+            BumperScript script = a_bumper.GetComponent<BumperScript>();
+
+            script.isAlive = true;
+            script.lifeSpan = maxLifeSpan;
             a_bumper.SetActive(true);
         }
     }
@@ -162,6 +165,16 @@ public class Entity : MonoBehaviour {
     //Function runs when an item is collected
     protected virtual void OnCollectItem(SpawnerScript item)
     {
-        item.Collect();
+        //if the entity tag is "Player" set Collect parameter 0
+        if (gameObject.transform.tag == "Player")
+        {
+            item.Collect(0);
+        }
+
+        //if the entity tag is "Player2" set Collect parameter 1
+        if (gameObject.transform.tag == "Player2")
+        {
+            item.Collect(1);
+        }
     }
 }

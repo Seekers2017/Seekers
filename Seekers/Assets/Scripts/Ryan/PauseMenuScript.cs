@@ -58,7 +58,7 @@ public class PauseMenuScript : MonoBehaviour
 
             if (XCI.GetButtonDown(XboxButton.A))
             {
-                gameManager.SwitchGameState(GameStateID.InGame);
+                gameManager.SwitchGameState(GameStateID.InGameMuilti);
             }
         }
 

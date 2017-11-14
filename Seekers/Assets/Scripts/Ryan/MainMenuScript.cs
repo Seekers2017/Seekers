@@ -40,7 +40,6 @@ public class MainMenuScript : MonoBehaviour
         quitSprite.sprite = quitSpriteList[0];
 
         currPointing = 0;
-        playCount = 0;
     }
 
     // Update is called once per frame
@@ -57,19 +56,14 @@ public class MainMenuScript : MonoBehaviour
             }
 
             //If this is the first time we have played the game
-            if(playCount < 1)
+
+
+            //Load the tutorial
+            if (XCI.GetButtonDown(XboxButton.A, controller))
             {
-                //Load the tutorial
-                if (XCI.GetButtonDown(XboxButton.A))
-                {
-                    playCount++;
-                    gameManager.SwitchGameState(GameStateID.Tutoriul);
-                }
+                gameManager.SwitchGameState(GameStateID.Tutoriul);
             }
-            else
-            {
-                gameManager.SwitchGameState(GameStateID.InGame);
-            }
+
             
         }
 
@@ -83,7 +77,7 @@ public class MainMenuScript : MonoBehaviour
                 Debug.Log("Moving away from Quit");
             }
 
-            if (XCI.GetButtonDown(XboxButton.A))
+            if (XCI.GetButtonDown(XboxButton.A, controller))
             {
                 Application.Quit();
             }

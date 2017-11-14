@@ -21,9 +21,9 @@ public class TutorialUIScript : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (XCI.GetButton(XboxButton.A, controller))
+        if (XCI.GetButtonDown(XboxButton.A, controller))
         {
-            gameManager.SwitchGameState(GameStateID.InGame);
+            gameManager.SwitchGameState(GameStateID.InGameMuilti);
         }
     }
 }

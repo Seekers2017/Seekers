@@ -7,8 +7,8 @@ public enum GameStateID
     MainMenu,
     Tutoriul,
     InGame,
+    InGameMuilti,
     Pause,
-    GameOver,
     Victory
 }
 

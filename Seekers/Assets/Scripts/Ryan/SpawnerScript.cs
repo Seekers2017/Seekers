@@ -50,6 +50,7 @@ public class SpawnerScript : MonoBehaviour
     [SerializeField]
     private GameObject speedBoost;
 
+    private IngameUIMultiScript inGameUIMultiScript;
     private IngameUIScript inGameUIScript;
 
     void Start()
@@ -74,7 +75,7 @@ public class SpawnerScript : MonoBehaviour
 
 
         //get the in-game ui script
-        inGameUIScript = FindObjectOfType<IngameUIScript>();
+        //inGameUIScript = FindObjectOfType<IngameUIScript>();
 
         itemSpawnRateList.Add(healthKitRate);    //index 0
         itemSpawnRateList.Add(bumperRate);       //index 1
@@ -165,7 +166,7 @@ public class SpawnerScript : MonoBehaviour
 
     //Call this when the player collects the item
     //destroy the item, and reset the spawner
-    public void Collect()
+    public void Collect(int a_playerIndex = 0)
     {
         isSpawned = false;
         isPickedUp = true;
@@ -173,8 +174,25 @@ public class SpawnerScript : MonoBehaviour
 
         Destroy(gameObject.transform.GetChild(0).gameObject);
 
+        //loading InGameUIScript here just in case it hasn't been loaded
+        if(inGameUIScript == null)
+            inGameUIScript = FindObjectOfType<IngameUIScript>();
+
+        inGameUIMultiScript = FindObjectOfType<IngameUIMultiScript>();
+
         //tell the ui that you've collected this item type (MOVE THIS LINE INTO WHERE THE PLAYER COLLECTS IT)
-        //inGameUIScript.SetCollectedItem(currActivatedItemNum);
+        //check if we are in Multi or Single mode by checking if the script is active
+        GameStateID currState = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>().currState;
+
+        if (currState == GameStateID.InGame)
+        {
+            inGameUIScript.SetCollectedItem(currActivatedItemNum);
+        }
+
+        if (currState == GameStateID.InGameMuilti)
+        {
+            inGameUIMultiScript.SetCollectedItem(currActivatedItemNum, a_playerIndex);
+        }
 
         totalPickedUpTimes++;
     }
