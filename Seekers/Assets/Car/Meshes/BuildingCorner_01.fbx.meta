@@ -10,8 +10,11 @@ ModelImporter:
     400000: //RootNode
     400002: polySurface2
     2300000: polySurface2
+    2300002: //RootNode
     3300000: polySurface2
+    3300002: //RootNode
     4300000: polySurface2
+    4300002: Corner
     9500000: //RootNode
   materials:
     importMaterials: 1
