@@ -33,7 +33,7 @@ public class FallingObject : MonoBehaviour
         Timer++;
         if(Timer == 1.0f)
         {
-            GameObject[] objects = GameObject.FindGameObjectsWithTag("FallingBLocks");
+            GameObject[] objects = GameObject.FindGameObjectsWithTag("FallingBlocks");
 
             for (int i = 0; i < objects.Length; i++)
             {
