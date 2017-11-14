@@ -21,6 +21,7 @@ public class MainMenuScript : MonoBehaviour
     private Sprite[] quitSpriteList;
 
     private currOption_MainMenu currPointing;
+    private int playCount;
 
     public XboxController controller;
 
@@ -39,6 +40,7 @@ public class MainMenuScript : MonoBehaviour
         quitSprite.sprite = quitSpriteList[0];
 
         currPointing = 0;
+        playCount = 0;
     }
 
     // Update is called once per frame
@@ -54,10 +56,21 @@ public class MainMenuScript : MonoBehaviour
                 Debug.Log("Moving away from Start");
             }
 
-            if (XCI.GetButtonDown(XboxButton.A))
+            //If this is the first time we have played the game
+            if(playCount < 1)
             {
-                gameManager.SwitchGameState(GameStateID.Tutoriul);
+                //Load the tutorial
+                if (XCI.GetButtonDown(XboxButton.A))
+                {
+                    playCount++;
+                    gameManager.SwitchGameState(GameStateID.Tutoriul);
+                }
             }
+            else
+            {
+                gameManager.SwitchGameState(GameStateID.InGame);
+            }
+            
         }
 
         else if (currPointing == currOption_MainMenu.QUIT)

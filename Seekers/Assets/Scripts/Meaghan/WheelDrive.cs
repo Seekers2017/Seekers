@@ -12,9 +12,6 @@ public enum DriveType
 
 public class WheelDrive : MonoBehaviour
 {
-    //TODO:
-    //Increase slip on drift
-
     [Tooltip("Maximum steering angle of the wheels.")]
     [SerializeField]
     private float maxAngle = 30f;
@@ -51,7 +48,7 @@ public class WheelDrive : MonoBehaviour
     [Tooltip("The max rotation of the wheels of the car.")]
     [SerializeField]
     private float maxRPM = 1000f;
-
+    [Tooltip("Traction of the car.")]
 
     private WheelCollider[] wheels;
 
@@ -60,10 +57,14 @@ public class WheelDrive : MonoBehaviour
     private float criticalSpeed = 5f;
     private int stepsBelow = 5;
     private int stepsAbove = 1;
+    private bool isGrounded;
+
 
     private PlayerManager player;
     private Rigidbody carRigidbody;
-    
+
+    public WheelColliderSettings originalSettings;
+    public WheelColliderSettings specialSettings;
 
     public bool AbilityToDrive
     {
@@ -116,6 +117,9 @@ public class WheelDrive : MonoBehaviour
                 else
                     speed = Mathf.Lerp(speed, 0, (wheel.rpm - idealRPM) / (maxRPM - idealRPM));
 
+                //Apply the drag
+
+
                 //Checking if they are boosting, increase torque
                 if (player.IsBoosting == true)
                 {
@@ -141,6 +145,8 @@ public class WheelDrive : MonoBehaviour
                     else
                         wheel.steerAngle = angle;
                 }
+
+               
 
 
                 //If we are holding down the A button, move forward
@@ -199,4 +205,12 @@ public class WheelDrive : MonoBehaviour
             }
         }  
 	}
+}
+
+
+[System.Serializable]
+public class WheelColliderSettings
+{
+    public float stiffness;
+    public float extremumSlip;
 }

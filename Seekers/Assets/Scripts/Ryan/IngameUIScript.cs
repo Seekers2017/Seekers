@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using XboxCtrlrInput;
+using UnityEngine.SceneManagement;
 
 public class IngameUIScript : MonoBehaviour
 {
@@ -28,11 +29,37 @@ public class IngameUIScript : MonoBehaviour
     //get entity's check point script
     private CarCheckpointScript checkpointScript;
 
-	// Use this for initialization
-	void Start ()
+    //For designers
+    [SerializeField]
+    private int maxLaps = 3;
+
+    //Lap and rank values
+    private int currLap;
+    private int rank;
+
+    //Obtain the player manager script
+    private PlayerManager playerManager;
+
+    //Getters and setters
+    public int Rank
     {
+        get { return rank; }
+    }
+
+    public int CurrLap
+    {
+        get { return currLap; }
+    }
+
+    // Use this for initialization
+    void Start ()
+    {
+
         //get game manager
         gameManager = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>();
+
+        //Obtain the player manager
+        playerManager = GameObject.Find("Player").GetComponent<PlayerManager>();
 
         //get entity
         entity = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<PlayerManager>();
@@ -58,9 +85,9 @@ public class IngameUIScript : MonoBehaviour
 	void Update ()
     {
         //get currLap from check point script of entity's
-        int currLap = checkpointScript.currLap;
+        currLap = checkpointScript.currLap;
         //get rank from the rankScrip's getter GetRank
-        int rank = rankScript.GetRank(checkpointScript);
+        rank = rankScript.GetRank(checkpointScript);
         //according to the currlap, decide which sprite to render
         //it has to be (currlap - 1), you know why
         lapCountSprite.sprite = lapSpriteList[currLap-1];
@@ -84,6 +111,24 @@ public class IngameUIScript : MonoBehaviour
             gameManager.SwitchGameState(GameStateID.Pause);
         }
 
+
+        //Check if the race is complete 
+        if (currLap > maxLaps)
+        {
+            //If you win
+            if (rank == 1)
+            {
+                //You win the race
+                playerManager.Win = true;
+                gameManager.SwitchGameState(GameStateID.Victory);
+            }
+            else
+            {
+                //You lose the race
+                playerManager.Win = false;
+                gameManager.SwitchGameState(GameStateID.Victory);
+            }
+        }
     }
 
     //Set item sprite display in the frame

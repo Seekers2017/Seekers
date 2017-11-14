@@ -13,6 +13,7 @@ public class GameStateManagerScript : MonoBehaviour
     private GameObject tutorialUI;
     private GameObject ingameUI;
     private GameObject pauseUI;
+    private GameObject winUI;
 
     public List<GameObject> uiObjList;
 
@@ -31,6 +32,7 @@ public class GameStateManagerScript : MonoBehaviour
         gameStates.Add( new InGameState() );
         gameStates.Add( new PauseState() );
         gameStates.Add( new GameOverState() );
+        gameStates.Add(new VictoryState());
 
         uiObjList = new List<GameObject>();
 
@@ -38,11 +40,13 @@ public class GameStateManagerScript : MonoBehaviour
         tutorialUI = GameObject.Find("TutoriulUI");
         ingameUI = GameObject.Find("IngameUI");
         pauseUI = GameObject.Find("PauseUI");
+        winUI = GameObject.Find("VictoryUI");
 
         uiObjList.Add(mainMenuUI);
         uiObjList.Add(tutorialUI);
         uiObjList.Add(ingameUI);
         uiObjList.Add(pauseUI);
+        uiObjList.Add(winUI);
 
         foreach (GameObject gameObject in uiObjList)
         {
@@ -273,6 +277,39 @@ public class PauseState : BaseState
     private void ShowLog()
     {
         Debug.Log("This is Pause Menu");
+    }
+}
+
+public class VictoryState : BaseState
+{
+    GameStateManagerScript gm;
+
+    public VictoryState()
+    {
+        stateID = GameStateID.Victory;
+    }
+
+    public override void Start()
+    {
+        Time.timeScale = 0.0f;
+        gm = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>();
+        gm.uiObjList[4].SetActive(true);
+
+    }
+
+    public override void Update()
+    {
+        ShowLog();
+    }
+
+    public override void Shutdown()
+    {
+        gm.uiObjList[4].SetActive(false);
+    }
+
+    private void ShowLog()
+    {
+        Debug.Log("The race is over.");
     }
 }
 

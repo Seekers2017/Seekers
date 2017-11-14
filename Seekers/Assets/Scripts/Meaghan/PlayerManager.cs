@@ -29,6 +29,14 @@ public class PlayerManager : Entity
     private WheelDrive playerMove;
     private bool pressedXButton;
     private Rigidbody rb;
+    private bool win;
+
+    //Getter and setter
+    public bool Win
+    {
+        get { return win; }
+        set { win = value; }
+    }
 
     // Use this for initialization
     void Awake()

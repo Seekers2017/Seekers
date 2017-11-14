@@ -19,6 +19,9 @@ TagManager:
   - AI
   - FallingObject
   - UI
+  - FallingBlocks
+  - InGameUI
+  - VictoryUI
   layers:
   - Default
   - TransparentFX

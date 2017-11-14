@@ -8,7 +8,8 @@ public enum GameStateID
     Tutoriul,
     InGame,
     Pause,
-    GameOver
+    GameOver,
+    Victory
 }
 
 public abstract class BaseState
