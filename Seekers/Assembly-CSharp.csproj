@@ -65,7 +65,6 @@
      <Compile Include="Assets\Scripts\Meaghan\Assistance Scripts\AntiRollBar.cs" />
      <Compile Include="Assets\Scripts\Meaghan\Assistance Scripts\EasySuspension.cs" />
      <Compile Include="Assets\Scripts\Meaghan\Assistance Scripts\Reset.cs" />
-     <Compile Include="Assets\Scripts\Meaghan\Assistance Scripts\VehicleSkeletonWizard.cs" />
      <Compile Include="Assets\Scripts\Meaghan\CameraControl.cs" />
      <Compile Include="Assets\Scripts\Meaghan\Entity.cs" />
      <Compile Include="Assets\Scripts\Meaghan\InstantiateCarMaterial.cs" />
