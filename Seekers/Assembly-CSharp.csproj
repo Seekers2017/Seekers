@@ -73,6 +73,7 @@
      <Compile Include="Assets\Scripts\Meaghan\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Meaghan\SetOtherTextures.cs" />
      <Compile Include="Assets\Scripts\Meaghan\StateVictory.cs" />
+     <Compile Include="Assets\Scripts\Meaghan\StateVictoryP2.cs" />
      <Compile Include="Assets\Scripts\Meaghan\WheelDrive.cs" />
      <Compile Include="Assets\Scripts\Ryan\BumperScript.cs" />
      <Compile Include="Assets\Scripts\Ryan\CarCheckpointScript.cs" />
