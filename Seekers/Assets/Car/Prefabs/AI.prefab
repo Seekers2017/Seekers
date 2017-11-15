@@ -666,7 +666,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1152312413105094}
   m_LocalRotation: {x: -0, y: 0.4999996, z: -0, w: 0.8660257}
-  m_LocalPosition: {x: -25.36, y: 2, z: 44.63}
+  m_LocalPosition: {x: -17.6, y: 2, z: 57.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4961521559001376}
@@ -1805,7 +1805,7 @@ MonoBehaviour:
   rightBumper: {fileID: 1180933728816052}
   itemSpawnTime: 2
   boostSpeed: 60
-  maxSpeed: 20
+  maxSpeed: 25
   speed: 10000
   rotation: 3
   maxMoveTimer: 5
