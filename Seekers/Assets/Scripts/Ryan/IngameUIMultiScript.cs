@@ -55,8 +55,8 @@ public class IngameUIMultiScript : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>();
 
         //Obtain the players
-        playerManager = GameObject.Find("Player").GetComponent<PlayerManager>();
-        playerManagerP2 = GameObject.Find("Player2").GetComponent<PlayerManager>();
+        playerManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
+        playerManagerP2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerManager>();
 
         //get entity
         player1 = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<PlayerManager>(); 
