@@ -131,6 +131,12 @@ public class GameStateManagerScript : MonoBehaviour
             currGameState.Update();                                                  //
         }                                                                            //
                                                                                      //
+        if (Input.GetKeyDown(KeyCode.F7)) //Press F7 to enter VictoryP2 Screen       //
+        {                                                                            //
+            SwitchGameState(GameStateID.Victory);                                    //
+            currGameState.Update();                                                  //
+        }                                                                            //
+                                                                                     //
         ///////////////////////////////////////////////////////////////////////////////
     }
 
@@ -376,7 +382,7 @@ public class PauseState : BaseState
     }
 }
 
-//Victory State class : inherit from FSM base class 
+//Victory State class : inherit from FSM base class
 public class VictoryState : BaseState
 {
     //get game manager
@@ -395,7 +401,7 @@ public class VictoryState : BaseState
         Time.timeScale = 0.0f;
         //find Game Manager
         gm = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>();
-        //set the index[4] object (Pause) in UI list to active
+        //set the index[5] object (Pause) in UI list to active
         gm.uiObjList[5].SetActive(true);
 
     }
@@ -411,42 +417,53 @@ public class VictoryState : BaseState
         //set current inactive when shutdown
         gm.uiObjList[5].SetActive(false);
     }
+
     //Display current sate in console
     private void ShowLog()
     {
-        Debug.Log("The race is over.");
+        Debug.Log("The race is over. Player1 Wins");
     }
 }
 
+//VictoryP2 State class : inherit from FSM base class
 public class VictoryStateP2 : BaseState
 {
+    //get game manager
     GameStateManagerScript gm;
 
+    //constructor of the class (The reaseon we need a constructor, read head comment)
     public VictoryStateP2()
     {
-        stateID = GameStateID.Victory;
+        stateID = GameStateID.VictoryP2;
     }
 
+    //Start Game State by overriding Base State
     public override void Start()
     {
+        //set world time scale to 0
         Time.timeScale = 0.0f;
+        //find Game Manager
         gm = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>();
-        gm.uiObjList[5].SetActive(true);
-
+        //set the index[6] object (Pause) in UI list to active
+        gm.uiObjList[6].SetActive(true);
     }
 
     public override void Update()
     {
+        //Display current sate in console
         ShowLog();
     }
 
+
     public override void Shutdown()
     {
+        //set current inactive when shutdown
         gm.uiObjList[6].SetActive(false);
     }
 
+    //Display current sate in console
     private void ShowLog()
     {
-        Debug.Log("The race is over.");
+        Debug.Log("The race is over. Player2 Wins");
     }
 }

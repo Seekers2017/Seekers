@@ -55,28 +55,6 @@ public class SpawnerScript : MonoBehaviour
 
     void Start()
     {
-        ///////////////////////////////////////////////////////////////////////////////////////////
-        ///HOW TO COMUNICATE WITH OTHER CLASSES                                                  //
-        // find object by name.                                                                  //
-        // GameObject.Find("Player").GetComponent<SpawnManagerScript>();                         //
-        //                                                                                       //
-        // find by tag                                                                           //
-        // GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManagerScript>();  //
-        //                                                                                       //
-        // find by type (too powerful + inefficient)                                             //
-        // FindObjectOfType<SpawnManagerScript>();                                               //
-        //                                                                                       //
-        // get access to our spawn manager script                                                //
-        // First thing you have to get the OBJECT, then grab the COMPONENT.                      //
-        // Lastly, assign it to a variable (base on type) declared.                              //
-        // spawnManager = transform.parent.GetComponent<SpawnManagerScript>();                   //
-        //                                                                                       //
-        ///////////////////////////////////////////////////////////////////////////////////////////
-
-
-        //get the in-game ui script
-        //inGameUIScript = FindObjectOfType<IngameUIScript>();
-
         itemSpawnRateList.Add(healthKitRate);    //index 0
         itemSpawnRateList.Add(bumperRate);       //index 1
         itemSpawnRateList.Add(speedBoostRate);   //index 2
@@ -84,15 +62,6 @@ public class SpawnerScript : MonoBehaviour
         SpawnRandItem();
 
         totalPickedUpTimes = 0;
-
-        ////////////////////////////////////////////////////////////////////////////////
-        ///This block is only for referencing                                         //
-        //for (int i = 0; i < gameObject.transform.childCount; i++)                   //
-        //{                                                                           //
-        //    GameObject itemTypeList = gameObject.transform.GetChild(i).gameObject;  //
-        //    itemTypeList.SetActive(false);                                          //
-        //}                                                                           //
-        ////////////////////////////////////////////////////////////////////////////////
     }
 
     // Update is called once per frame
@@ -155,13 +124,6 @@ public class SpawnerScript : MonoBehaviour
         isSpawned = true;
         //Set item is picked up
         isPickedUp = false;
-
-        ///////////////////////////////////////////////////////////////////////////////////
-        ///This block is only for referencing                                            //
-        //int rand = Random.Range(0, this.gameObject.transform.childCount);              //
-        //GameObject itemTypeList = this.gameObject.transform.GetChild(rand).gameObject; //
-        //itemTypeList.SetActive(true);                                                  //
-        ///////////////////////////////////////////////////////////////////////////////////
     }
 
     //Call this when the player collects the item
@@ -195,30 +157,6 @@ public class SpawnerScript : MonoBehaviour
         }
 
         totalPickedUpTimes++;
-    }
-
-
-    //As long as player object stays in the spawner's collision range, triggers this function
-    private void OnTriggerEnter(Collider other) //instead of doing this, let Player call Collect
-    {
-        //if (other.tag == "Player" || other.tag == "AI" && isSpawned == true)
-        //{
-        //    isSpawned = false;
-        //    isPickedUp = true;
-        //    timeUntilRespawn = Random.Range(minRespawnTime, maxRespawnTime);
-            
-        //    Destroy(gameObject.transform.GetChild(0).gameObject);
- 
-        //    //tell the ui that you've collected this item type (MOVE THIS LINE INTO WHERE THE PLAYER COLLECTS IT)
-        //    inGameUIScript.SetCollectedItem(currActivatedItemNum);
-
-        //    totalPickedUpTimes++;
-
-        //    ////////////////////////////////////////////////////////////////////////////////////
-        //    //other.gameObject.GetComponent<PlayerScript>.giveItemEffects (currActivatedItem) //
-        //    ///we will do above line when the player class is done                            //
-        //    ////////////////////////////////////////////////////////////////////////////////////
-        //}
     }
 
     //Generates a number based on the spawning rate

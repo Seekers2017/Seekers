@@ -5,8 +5,6 @@ using XboxCtrlrInput;
 
 public class TutorialUIScript : MonoBehaviour
 {
-
-    // Use this for initialization
     private GameStateManagerScript gameManager;
 
     public XboxController controller;
@@ -21,6 +19,7 @@ public class TutorialUIScript : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+        //press A to skip tutorial and get into multi player mode
         if (XCI.GetButtonDown(XboxButton.A, controller))
         {
             gameManager.SwitchGameState(GameStateID.InGameMuilti);

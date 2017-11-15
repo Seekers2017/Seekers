@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+///////////////////////////////////////////////////////////////////////////////////////////
+//This Script is for making an object a "Map Object", which can be displayed in mini-map //
+///////////////////////////////////////////////////////////////////////////////////////////
 public class MakeMapObject : MonoBehaviour
 {
     //this script should be added to the objects that we need to display on mini-map

@@ -151,21 +151,20 @@ public class IngameUIMultiScript : MonoBehaviour
             {
                 //You win the race
                 playerManagerP2.Win = true;
-                gameManager.SwitchGameState(GameStateID.Victory);
+                gameManager.SwitchGameState(GameStateID.VictoryP2);
             }
             else
             {
                 //You lose the race
                 playerManagerP2.Win = false;
-                gameManager.SwitchGameState(GameStateID.Victory);
+                gameManager.SwitchGameState(GameStateID.VictoryP2);
             }
         }
 
-
-
-        if (XCI.GetButtonDown(XboxButton.Start, controller))
+        //press start button to pause the game
+        if ( XCI.GetButtonDown(XboxButton.Start, controller) )
         {
-            //Switch game states
+            //Switch game states to pause
             gameManager.SwitchGameState(GameStateID.Pause);
         }
 
@@ -195,6 +194,7 @@ public class IngameUIMultiScript : MonoBehaviour
             itemSprite.sprite = itemSpriteList[0];
         }
 
+        //if ItemNum = Bumper
         if (collectedItemType == ItemNum.Bumper)
         {
             //set sprite alpha to 1
@@ -203,6 +203,7 @@ public class IngameUIMultiScript : MonoBehaviour
             itemSprite.sprite = itemSpriteList[1];
         }
 
+        //if ItemNum = SpeedBoost
         if (collectedItemType == ItemNum.SpeedBoost)
         {
             //set sprite alpha to 1

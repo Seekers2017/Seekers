@@ -112,7 +112,6 @@ public class IngameUIScript : MonoBehaviour
             gameManager.SwitchGameState(GameStateID.Pause);
         }
 
-
         //Check if the race is complete 
         if (currLap > maxLaps)
         {

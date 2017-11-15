@@ -10,7 +10,8 @@ public enum GameStateID
     InGame,
     InGameMuilti,
     Pause,
-    Victory
+    Victory,
+    VictoryP2
 }
 
 //abstract class for children classes to inherit
