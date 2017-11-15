@@ -134,7 +134,7 @@ public class IngameUIMultiScript : MonoBehaviour
         //Check if the race is complete 
         if (currLapP1 > maxLaps)
         {
-            //If P1 win
+            //If P1 win (smaller rank number means higher rank (winning) )
             if (rankP1 < rankP2)
             {
                 //P1 win the race
@@ -152,7 +152,7 @@ public class IngameUIMultiScript : MonoBehaviour
         //Check if the race is complete 
         if (currLapP2 > maxLaps)
         {
-            //If P2 win
+            //If P2 win (smaller rank number means higher rank (winning) )
             if (rankP2 < rankP1)
             {
                 //P2 win the race

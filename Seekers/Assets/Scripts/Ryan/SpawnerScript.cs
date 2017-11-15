@@ -146,13 +146,17 @@ public class SpawnerScript : MonoBehaviour
         //check if we are in Multi or Single mode by checking if the script is active
         GameStateID currState = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>().currState;
 
+        //if we are playing single play mode
         if (currState == GameStateID.InGame)
         {
+            //set single play mode's IngameUI to change the item icon
             inGameUIScript.SetCollectedItem(currActivatedItemNum);
         }
 
+        //if we are playing multi play mode
         if (currState == GameStateID.InGameMuilti)
         {
+            //set multi play mode's IngameUI to change the item icon
             inGameUIMultiScript.SetCollectedItem(currActivatedItemNum, a_playerIndex);
         }
 

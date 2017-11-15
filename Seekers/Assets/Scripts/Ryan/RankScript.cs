@@ -36,12 +36,9 @@ public class RankScript : MonoBehaviour
         SortAllCars(rankList);
     }
 
-    //Sort the rank
+    //Sort the rank with C# sorting
     private void SortAllCars(List<CarCheckpointScript> a_List)
     {
-        //create a temp list for sorting
-        //List<CarCheckpointScript> tempList = new List<CarCheckpointScript>();
-
         ///Method 1. Selection Sorting (Manual)
 
         ///Method 2. C# Sort (Automatic)
@@ -49,16 +46,11 @@ public class RankScript : MonoBehaviour
 
     }
 
-    //implement CompareRank function
-    //use C# sort instead
+    //implement CompareRank function by using C# sorting
     //Should only compare 2 cars (1, 0, -1)
-    //Because C# sort is minimum start => [1 is smallest] [0 is tie] [-1 is biggest]
+    //Because C# sorting is minimum start => [1 is smallest] [0 is tie] [-1 is biggest]
     private int CompareRank(CarCheckpointScript car1, CarCheckpointScript car2)
     {
-        //Get the Transform List from car's checkpointList
-        //(Will have to move the checkpointList to Rank Script later)
-        //List<Transform> chkpntTransList = car1.checkpointList;
-
         //Set Current Lap count as the first check condition
         if (car1.currLap > car2.currLap)
         {
@@ -82,28 +74,36 @@ public class RankScript : MonoBehaviour
             }
             else // if both having same checkpoint
             {
+                //var to define which two checkpoints are two car's next checkpoint transform
+                //(use this to check if it's the last check point or not)
                 Transform car1NextCheckpoint;
                 Transform car2NextCheckpoint;
 
+                //if car1 has NOT traversed the last checkpoint (the one before finish/start line)
                 if (car1.currCheckpointCount < checkpointList.Count - 1)
                 {
+                    //car1's next check point is the the current one + 1 of the checkpointList
                     car1NextCheckpoint = checkpointList[(car1.currCheckpointCount) + 1];
                 }
-                else
+                else //if car1 HAS traversed the last checkpoint (the one before finish line)
                 {
+                    //car1's next check point should be the first one in the checkpointList, which is the finish/start line
                     car1NextCheckpoint = checkpointList[0];
                 }
 
+                //if car2 has NOT traversed the last checkpoint (the one before finish/start line)
                 if (car2.currCheckpointCount < checkpointList.Count - 1)
                 {
+                    //car2's next check point is the the current one + 1 of the checkpointList
                     car2NextCheckpoint = checkpointList[(car2.currCheckpointCount) + 1];
                 }
-                else
+                else //if car2 HAS traversed the last checkpoint (the one before finish line)
                 {
+                    //car2's next check point should be the first one in the checkpointList, which is the finish/start line
                     car2NextCheckpoint = checkpointList[0];
                 }
 
-                //compare the distance to the next checkpoint they are going
+                //With both cars' next checkpoints well defined, start to compare the distance to the next checkpoint they are going
                 if ((car1.transform.position - car1NextCheckpoint.position).sqrMagnitude
                     < (car2.transform.position - car2NextCheckpoint.position).sqrMagnitude)
                 {
@@ -133,7 +133,7 @@ public class RankScript : MonoBehaviour
 
     private void AddEntities()
     {
-        //Find all object with AI and Player Tag, save them in two arrays separately
+        //Find all object with AI and Player and Player2 Tag, save them in two arrays separately
         GameObject[] aiTaggedObj = GameObject.FindGameObjectsWithTag("AI");
         GameObject[] playerTaggedObj = GameObject.FindGameObjectsWithTag("Player");
         GameObject[] player2TaggedObj = GameObject.FindGameObjectsWithTag("Player2");

@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// This Script has to be attached to EVERY untity (All players, All AI) to intereact with checkpoint system //
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 public class CarCheckpointScript : MonoBehaviour
 {
     //var to store entity's current lap
@@ -43,7 +47,7 @@ public class CarCheckpointScript : MonoBehaviour
         //check if other's tag is "Checkpoint"
         if (other.CompareTag("Checkpoint"))
         {
-            //if the checkpoint player has gone through the last checkpoint in the List && is going for the first one
+            //if the checkpoint player has gone through the last checkpoint in the List && is going through the first checkpoint of the next lap
             //which means player is just about to finish the lap
             if (currCheckpointCount == checkpointSet.transform.childCount && other.transform == checkpointList[0])
             {
@@ -52,9 +56,11 @@ public class CarCheckpointScript : MonoBehaviour
                 currCheckpointCount = 1;
             }
 
+            //Only when (currCheckpointCount < checkpointList.Count) to increase check current check point count
+            //Otherwise when going through the first checkpoint of a new lap, the system can't find object (exceeding the list)
             if (currCheckpointCount < checkpointList.Count)
             {
-                //if the checkpoint player is about to go through is the next in the list
+                //if the checkpoint player is about to go through the next in the list
                 if (other.transform == checkpointList[currCheckpointCount])
                 {
                     //add player's checkpoint count when it's less than the child count in th list
