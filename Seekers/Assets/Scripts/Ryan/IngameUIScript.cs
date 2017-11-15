@@ -106,6 +106,7 @@ public class IngameUIScript : MonoBehaviour
             //only hiding it. Will have to improve if possible ( use Destroy(); and Instantiate(); )
         }
 
+        //press start button to pause
         if (XCI.GetButtonDown(XboxButton.Start))
         {
             gameManager.SwitchGameState(GameStateID.Pause);
