@@ -1243,7 +1243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d55a042181d76148acfcb89b561060a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLaps: 2
+  maxLaps: 3
   controller: 1
 --- !u!222 &257173316
 CanvasRenderer:

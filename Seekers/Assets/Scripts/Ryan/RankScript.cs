@@ -82,14 +82,36 @@ public class RankScript : MonoBehaviour
             }
             else // if both having same checkpoint
             {
+                Transform car1NextCheckpoint;
+                Transform car2NextCheckpoint;
+
+                if (car1.currCheckpointCount < checkpointList.Count - 1)
+                {
+                    car1NextCheckpoint = checkpointList[(car1.currCheckpointCount) + 1];
+                }
+                else
+                {
+                    car1NextCheckpoint = checkpointList[0];
+                }
+
+                if (car2.currCheckpointCount < checkpointList.Count - 1)
+                {
+                    car2NextCheckpoint = checkpointList[(car2.currCheckpointCount) + 1];
+                }
+                else
+                {
+                    car2NextCheckpoint = checkpointList[0];
+                }
+
                 //compare the distance to the next checkpoint they are going
-                if ((car1.transform.position - checkpointList[(car1.currCheckpointCount) + 1].position).sqrMagnitude
-                    < (car2.transform.position - checkpointList[(car2.currCheckpointCount) + 1].position).sqrMagnitude)
+                if ((car1.transform.position - car1NextCheckpoint.position).sqrMagnitude
+                    < (car2.transform.position - car2NextCheckpoint.position).sqrMagnitude)
                 {
                     return -1;
                 }
-                if ((car1.transform.position - checkpointList[(car1.currCheckpointCount) + 1].position).sqrMagnitude
-                    > (car2.transform.position - checkpointList[(car2.currCheckpointCount) + 1].position).sqrMagnitude)
+
+                if ((car1.transform.position - car1NextCheckpoint.position).sqrMagnitude
+                    > (car2.transform.position - car2NextCheckpoint.position).sqrMagnitude)
                 {
                     return 1;
                 }

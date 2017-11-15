@@ -52,13 +52,16 @@ public class CarCheckpointScript : MonoBehaviour
                 currCheckpointCount = 1;
             }
 
-            //if the checkpoint player is about to go through is the next in the list
-            if (other.transform == checkpointList[currCheckpointCount])
+            if (currCheckpointCount < checkpointList.Count)
             {
-                //add player's checkpoint count when it's less than the child count in th list
-                if (currCheckpointCount < checkpointSet.transform.childCount)
+                //if the checkpoint player is about to go through is the next in the list
+                if (other.transform == checkpointList[currCheckpointCount])
                 {
-                    currCheckpointCount++;
+                    //add player's checkpoint count when it's less than the child count in th list
+                    if (currCheckpointCount < checkpointSet.transform.childCount)
+                    {
+                        currCheckpointCount++;
+                    }
                 }
             }
         }

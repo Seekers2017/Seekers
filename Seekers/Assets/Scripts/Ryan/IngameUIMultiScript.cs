@@ -96,9 +96,15 @@ public class IngameUIMultiScript : MonoBehaviour
         rankP2 = rankScript.GetRank(checkpointP2Script);
 
         //according to the currlap, decide which sprite to render
-        //it has to be (currlap - 1), you know why
-        lapCountP1Sprite.sprite = lapSpriteList[currLapP1 - 1];
-        lapCountP2Sprite.sprite = lapSpriteList[currLapP2 - 1];
+        //it has to be (currlap - 1), you know why.
+
+        //currently we only have 3 lap sprites in Resources, Ryan puts a guard here "currLapP1 != (maxLaps + 1)"
+        //to prevent Argument out of range
+        if (currLapP1 != (maxLaps + 1))
+            lapCountP1Sprite.sprite = lapSpriteList[currLapP1 - 1];
+
+        if (currLapP2 != (maxLaps + 1))
+            lapCountP2Sprite.sprite = lapSpriteList[currLapP2 - 1];
 
         //according to the rank, decide which sprite to render
         //it has to be (currlap - 1), you know why
@@ -128,36 +134,36 @@ public class IngameUIMultiScript : MonoBehaviour
         //Check if the race is complete 
         if (currLapP1 > maxLaps)
         {
-            //If you win
-            if (rankP1 == 1)
+            //If P1 win
+            if (rankP1 < rankP2)
             {
-                //You win the race
+                //P1 win the race
                 playerManager.Win = true;
                 gameManager.SwitchGameState(GameStateID.Victory);
             }
             else
             {
-                //You lose the race
+                //P1 lose the race
                 playerManager.Win = false;
-                gameManager.SwitchGameState(GameStateID.Victory);
+                gameManager.SwitchGameState(GameStateID.VictoryP2);
             }
         }
 
         //Check if the race is complete 
         if (currLapP2 > maxLaps)
         {
-            //If you win
-            if (rankP2 == 1)
+            //If P2 win
+            if (rankP2 < rankP1)
             {
-                //You win the race
+                //P2 win the race
                 playerManagerP2.Win = true;
                 gameManager.SwitchGameState(GameStateID.VictoryP2);
             }
             else
             {
-                //You lose the race
+                //P2 lose the race
                 playerManagerP2.Win = false;
-                gameManager.SwitchGameState(GameStateID.VictoryP2);
+                gameManager.SwitchGameState(GameStateID.Victory);
             }
         }
 
