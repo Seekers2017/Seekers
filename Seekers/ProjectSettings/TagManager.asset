@@ -23,6 +23,7 @@ TagManager:
   - InGameUI
   - VictoryUI
   - Player2
+  - VictoryUIP2
   layers:
   - Default
   - TransparentFX

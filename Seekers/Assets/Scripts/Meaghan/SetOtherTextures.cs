@@ -12,9 +12,10 @@ public class SetOtherTextures : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        //Obtain the current texture
         texture = GetComponent<MeshRenderer>();
 
-       texture.material.SetTexture("_MainTex", carTexture.material.GetTexture("_MainTex"));
+        //Make the texture equal to it's parent
+        texture.material.SetTexture("_MainTex", carTexture.material.GetTexture("_MainTex"));
 	}
-	
 }

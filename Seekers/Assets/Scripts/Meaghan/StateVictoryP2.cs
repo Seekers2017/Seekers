@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using XboxCtrlrInput;
 
-public class StateVictory : MonoBehaviour {
+public class StateVictoryP2 : MonoBehaviour {
 
     //Variables
     private GameStateManagerScript gameManager;
@@ -19,24 +19,24 @@ public class StateVictory : MonoBehaviour {
 
     public XboxController controller;
 
-  
+
 
     // Use this for initialization
-    void Awake ()
+    void Awake()
     {
         //Obtain the script properties
         gameManager = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>();
-        playerManager = GameObject.Find("Player").GetComponent<PlayerManager>();
+        playerManager = GameObject.Find("Player2").GetComponent<PlayerManager>();
         set = gameObject.transform.GetChild(0).GetComponent<Image>();
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
-		//Switch to the main menu
+        //Switch to the main menu
 
         //If you have won
-        if(playerManager.Win == true)
+        if (playerManager.Win == true)
         {
             //Set the winning sprite
             set.sprite = winSprite;
@@ -51,7 +51,5 @@ public class StateVictory : MonoBehaviour {
         {
             //Quit the game
         }
-
-
     }
 }

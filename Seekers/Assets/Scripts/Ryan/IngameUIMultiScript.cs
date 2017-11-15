@@ -32,13 +32,31 @@ public class IngameUIMultiScript : MonoBehaviour
     private CarCheckpointScript checkpointP1Script;
     private CarCheckpointScript checkpointP2Script;
 
-	public XboxController controller;
+    //For designers
+    [SerializeField]
+    private int maxLaps = 3;
+
+    //Rank and lap values
+    private int currLapP1;
+    private int currLapP2;
+    private int rankP1;
+    private int rankP2;
+
+    //Obtain the player manager script
+    private PlayerManager playerManager;
+    private PlayerManager playerManagerP2;
+
+    public XboxController controller;
 
     // Use this for initialization
     void Start()
     {
         //get game manager
         gameManager = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>();
+
+        //Obtain the players
+        playerManager = GameObject.Find("Player").GetComponent<PlayerManager>();
+        playerManagerP2 = GameObject.Find("Player2").GetComponent<PlayerManager>();
 
         //get entity
         player1 = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<PlayerManager>(); 
@@ -70,12 +88,12 @@ public class IngameUIMultiScript : MonoBehaviour
     void Update()
     {
         //get currLap from check point script of entity's
-        int currLapP1 = checkpointP1Script.currLap;
-        int currLapP2 = checkpointP2Script.currLap;
+        currLapP1 = checkpointP1Script.currLap;
+        currLapP2 = checkpointP2Script.currLap;
 
         //get rank from the rankScrip's getter GetRank
-        int rankP1 = rankScript.GetRank(checkpointP1Script);
-        int rankP2 = rankScript.GetRank(checkpointP2Script);
+        rankP1 = rankScript.GetRank(checkpointP1Script);
+        rankP2 = rankScript.GetRank(checkpointP2Script);
 
         //according to the currlap, decide which sprite to render
         //it has to be (currlap - 1), you know why
@@ -107,8 +125,47 @@ public class IngameUIMultiScript : MonoBehaviour
             //only hiding it. Will have to improve if possible ( use Destroy(); and Instantiate(); )
         }
 
-		if (XCI.GetButtonDown(XboxButton.Start, controller))
+        //Check if the race is complete 
+        if (currLapP1 > maxLaps)
         {
+            //If you win
+            if (rankP1 == 1)
+            {
+                //You win the race
+                playerManager.Win = true;
+                gameManager.SwitchGameState(GameStateID.Victory);
+            }
+            else
+            {
+                //You lose the race
+                playerManager.Win = false;
+                gameManager.SwitchGameState(GameStateID.Victory);
+            }
+        }
+
+        //Check if the race is complete 
+        if (currLapP2 > maxLaps)
+        {
+            //If you win
+            if (rankP2 == 1)
+            {
+                //You win the race
+                playerManagerP2.Win = true;
+                gameManager.SwitchGameState(GameStateID.Victory);
+            }
+            else
+            {
+                //You lose the race
+                playerManagerP2.Win = false;
+                gameManager.SwitchGameState(GameStateID.Victory);
+            }
+        }
+
+
+
+        if (XCI.GetButtonDown(XboxButton.Start, controller))
+        {
+            //Switch game states
             gameManager.SwitchGameState(GameStateID.Pause);
         }
 

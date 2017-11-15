@@ -20,10 +20,11 @@ public class InstantiateCarMaterial : MonoBehaviour {
             if (availableTextures.Count == 0)
                 break;
 
+            //Choose a random int for texture assignment
             int randIndex = Random.Range(0, availableTextures.Count);
 
 
-
+            //Set the texture
             carMeshRenderers[i].material.SetTexture("_MainTex", availableTextures[randIndex]);
 
             //Remove it so we don't double up
