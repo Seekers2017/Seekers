@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seekers", "Seekers.csproj", "{3AA65459-9508-DC94-4BDF-7B4635EF755B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seekers.Editor", "Seekers.Editor.csproj", "{9974FAAE-3ACF-4A83-0583-6D70F14024E5}"

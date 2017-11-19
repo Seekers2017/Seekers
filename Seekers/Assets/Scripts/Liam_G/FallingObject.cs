@@ -31,39 +31,8 @@ public class FallingObject : MonoBehaviour
     {
         Timer = 0;
         Timer++;
-        if(Timer == 1.0f)
-        {
-            GameObject[] objects = GameObject.FindGameObjectsWithTag("FallingBlocks");
-
-            for (int i = 0; i < objects.Length; i++)
-            {
-                Destroy(objects[i]);
-            }
-
-            //Destroy(GameObject.FindGameObjectsWithTag("FallingBlocks"));
-            Timer = 0;
-        }
         
 	}
-
-    //trigger to start spwning the rocks to fall
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    //make sure to only let it trigger for players
-    //    if (GameObject.FindGameObjectWithTag("Car"))
-    //    {
-    //        Debug.Log("Block should be falling");
-    //        //spawing location
-    //        GameObject FallingObject = Instantiate(Block, FallSpawn.position, Quaternion.identity);
-    //        GameObject FallingObject1 = Instantiate(Block, FallSpawn1.position, Quaternion.identity);
-    //        GameObject FallingObject2 = Instantiate(Block, FallSpawn2.position, Quaternion.identity);
-    //        GameObject FallingObject3 = Instantiate(Block, FallSpawn3.position, Quaternion.identity);
-    //    }
-    //}
-
-    //Then just do Instantiate(gameObject, Vector3(Random.Range(minY,maxY), 
-    //                         Random.Range(minZ,maxZ), Random.Range(minX,maxX)), 
-    //                         Quaternion.identity)
 
     void OnTriggerEnter(Collider other)
     {
@@ -78,8 +47,9 @@ public class FallingObject : MonoBehaviour
 
                 for (int i = 0; i < Spawnlimite; ++i)
                 {
-                    rndPosWithin = new Vector3(Random.Range(FallSpawn.position.x, FallSpawn1.position.x), Random.Range(35, 35), Random.Range(FallSpawn2.position.z, FallSpawn3.position.z));
+                    rndPosWithin = new Vector3(Random.Range(FallSpawn.position.x, FallSpawn1.position.x), Random.Range(35, 50), Random.Range(FallSpawn2.position.z, FallSpawn3.position.z));
                     GameObject FallingObjectSpawner = Instantiate(Block, rndPosWithin, Quaternion.identity);
+                    Debug.Log("Instantiat Has been Reached");
                 }
             }
         }
