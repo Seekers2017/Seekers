@@ -119,7 +119,6 @@ public class PlayerManager : Entity
     }
 
 
-
     void LowHealth()
     {
         //Start flashing

@@ -57,7 +57,9 @@ public class WheelDrive : MonoBehaviour
     private float criticalSpeed = 5f;
     private int stepsBelow = 5;
     private int stepsAbove = 1;
-    private bool isGrounded;
+    private bool aHasBeenPressed;
+    private float brakeTimer;
+
 
 
     private PlayerManager player;
@@ -79,6 +81,7 @@ public class WheelDrive : MonoBehaviour
         carRigidbody = GetComponent<Rigidbody>();
         wheels = gameObject.GetComponentsInChildren<WheelCollider>();
         abilityToDrive = true;
+        aHasBeenPressed = false;
 
        //Create the wheels
 		for (int i = 0; i < wheels.Length; ++i) 
@@ -97,8 +100,7 @@ public class WheelDrive : MonoBehaviour
 
         if(abilityToDrive)
         {
-            //Changes speed based on criticals 
-            wheels[0].ConfigureVehicleSubsteps(criticalSpeed, stepsBelow, stepsAbove);
+            
 
             //Alters the angle of the car
             float angle = maxAngle * XCI.GetAxis(XboxAxis.LeftStickX, controller);
@@ -111,28 +113,36 @@ public class WheelDrive : MonoBehaviour
                 bool frontLeftWheel = (wheelNum == 0); //Left front wheel
                 bool backLeftWheel = (wheelNum == 2); //Left back wheel 
 
+
+                //Changes speed based on criticals 
+                wheel.ConfigureVehicleSubsteps(criticalSpeed, stepsBelow, stepsAbove);
+
                 //Maintain the RPM
                 if (wheel.rpm < idealRPM)
                     speed = Mathf.Lerp(speed / 10f, speed, wheel.rpm / idealRPM);
                 else
                     speed = Mathf.Lerp(speed, 0, (wheel.rpm - idealRPM) / (maxRPM - idealRPM));
 
-                //Apply the drag
 
 
                 //Checking if they are boosting, increase torque
                 if (player.IsBoosting == true)
                 {
+                    //Boost speed
                     speed = boostSpeed;
                 }
                 else
                 {
+                    //Regular speed
                     speed = torque;
                 }
+
+                
 
                 //Sharp turn
                 if (XCI.GetAxis(XboxAxis.RightTrigger, controller) == 1)
                 {
+                    //Move the back wheels
                     if (!frontWheel)
                         wheel.steerAngle = -angle * sharpTurn;
                     else
@@ -140,6 +150,7 @@ public class WheelDrive : MonoBehaviour
                 }
                 else
                 {
+                    //Move the front wheels
                     if (!frontWheel)
                         wheel.steerAngle = 0.0f;
                     else
@@ -151,8 +162,12 @@ public class WheelDrive : MonoBehaviour
 
                 //If we are holding down the A button, move forward
                 if (XCI.GetButton(XboxButton.A, controller))
-                {                
+                {             
+                    //Set variables   
                     wheel.brakeTorque = 0.0f;
+                    carRigidbody.drag = 1.0f;
+                    carRigidbody.isKinematic = false;
+                    aHasBeenPressed = true;
 
                     //Back wheels
                     if (!frontWheel && driveType != DriveType.FrontWheelDrive)
@@ -169,29 +184,58 @@ public class WheelDrive : MonoBehaviour
                 else if (XCI.GetButton(XboxButton.B, controller))
                 {
 
-                    wheel.brakeTorque = 0.0f;
-
-                    //Back wheels
-                    if (!frontWheel && driveType != DriveType.FrontWheelDrive)
+                    if(aHasBeenPressed == true)
                     {
-                        wheel.motorTorque = -speed;
+                        brakeTimer += Time.deltaTime;
+
+                        if(brakeTimer < 1.5f)
+                        {
+                            //Set variables
+                            wheel.motorTorque = 0.0f;
+                            wheel.brakeTorque = Mathf.Infinity;
+                            carRigidbody.drag = dragAmount;
+                            carRigidbody.isKinematic = false;
+                        }
+                        else
+                        {
+                            //Use the reverse function
+                            aHasBeenPressed = false;
+                        }
                     }
-
-                    //Front wheels
-                    if (frontWheel && driveType != DriveType.RearWheelDrive)
+                    else
                     {
-                        wheel.motorTorque = -speed;
+                        //Set variables
+                        wheel.brakeTorque = 0.0f;
+                        carRigidbody.drag = 1.0f;
+                        carRigidbody.isKinematic = false;
+
+                        //Back wheels
+                        if (!frontWheel && driveType != DriveType.FrontWheelDrive)
+                        {
+                            wheel.motorTorque = -speed;
+                        }
+
+                        //Front wheels
+                        if (frontWheel && driveType != DriveType.RearWheelDrive)
+                        {
+                            wheel.motorTorque = -speed;
+                        }
                     }
                 }
                 else
                 {
+                    //Stop the car moving and resetting values
                     wheel.motorTorque = 0.0f;
-                    wheel.brakeTorque = brakeTorque;
+                    wheel.brakeTorque = Mathf.Infinity;
+                    carRigidbody.drag = dragAmount;
+                    carRigidbody.isKinematic = false;
+                    aHasBeenPressed = false;
                 }
 
                 // Update visual wheels if any
                 if (wheelShape)
                 {
+                    //Create vector and quanternion
                     Quaternion q;
                     Vector3 p;
 
@@ -199,6 +243,7 @@ public class WheelDrive : MonoBehaviour
                     // Assume that the only child of the wheelcollider is the wheel shape.
                     Transform shapeTransform = wheel.transform.GetChild(0);
 
+                    //Alter the transform
                     shapeTransform.position = p;
                     shapeTransform.rotation = q;
                 }
