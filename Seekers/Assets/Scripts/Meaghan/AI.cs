@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class AI : Entity
 {
-    //TODO:
-    //Bumper issue
-    //Swerve from left to right
-
     //Variables
     [SerializeField]
     private float itemSpawnTime = 2.0f;
@@ -25,9 +21,9 @@ public class AI : Entity
     protected List<Entity> carList;
 
     private Rigidbody rb;
-    private float accelTimer;
     private Node targetNode;
     private NodeManage nodeManage;
+    private float accelTimer;
 
     //Variables for steering
     private float sensorLength = 10.0f;
@@ -78,6 +74,8 @@ public class AI : Entity
         carList.Add(GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>());
 
         randDist = Random.Range(-10.0f, 10.0f);
+        dustParticleLeft.Stop();
+        dustParticleRight.Stop();
     }
 
 
@@ -108,7 +106,14 @@ public class AI : Entity
 
         //Start the timer
         accelTimer += Time.fixedDeltaTime;
-
+        
+        //If we can't drive
+        if(drive == false)
+        {
+            //Turn off the particles
+            dustParticleLeft.Stop();
+            dustParticleRight.Stop();
+        }
 
 
         //Get the direction then move to the direction
@@ -158,6 +163,9 @@ public class AI : Entity
         {
             if(drive == true)
             {
+                dustParticleLeft.Play();
+                dustParticleRight.Play();
+
                 //Rotation
                 if (rb.velocity.magnitude > 5.0f)
                 {

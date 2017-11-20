@@ -23,8 +23,8 @@ public class Entity : MonoBehaviour {
     public GameObject leftBumper;
     public GameObject rearBumper;
     public GameObject rightBumper;
-    
-
+    public ParticleSystem dustParticleLeft;
+    public ParticleSystem dustParticleRight;
 
     //He attac, but he also protec (the variables)
     protected int hits;

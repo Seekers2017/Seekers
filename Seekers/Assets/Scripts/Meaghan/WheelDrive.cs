@@ -77,14 +77,17 @@ public class WheelDrive : MonoBehaviour
     void Start()
 	{
         //Various stuff
-        player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<PlayerManager>();
+        player = GetComponent<PlayerManager>();
         carRigidbody = GetComponent<Rigidbody>();
         wheels = gameObject.GetComponentsInChildren<WheelCollider>();
         abilityToDrive = true;
         aHasBeenPressed = false;
 
-       //Create the wheels
-		for (int i = 0; i < wheels.Length; ++i) 
+        player.dustParticleLeft.Stop();
+        player.dustParticleRight.Stop();
+
+        //Create the wheels
+        for (int i = 0; i < wheels.Length; ++i) 
 		{
 			// Create wheel shapes only when needed
 			if (wheelShape != null)
@@ -168,6 +171,8 @@ public class WheelDrive : MonoBehaviour
                     carRigidbody.drag = 1.0f;
                     carRigidbody.isKinematic = false;
                     aHasBeenPressed = true;
+                    player.dustParticleLeft.Play();
+                    player.dustParticleRight.Play();
 
                     //Back wheels
                     if (!frontWheel && driveType != DriveType.FrontWheelDrive)
@@ -195,6 +200,8 @@ public class WheelDrive : MonoBehaviour
                             wheel.brakeTorque = Mathf.Infinity;
                             carRigidbody.drag = dragAmount;
                             carRigidbody.isKinematic = false;
+                            player.dustParticleLeft.Stop();
+                            player.dustParticleRight.Stop();
                         }
                         else
                         {
@@ -208,6 +215,8 @@ public class WheelDrive : MonoBehaviour
                         wheel.brakeTorque = 0.0f;
                         carRigidbody.drag = 1.0f;
                         carRigidbody.isKinematic = false;
+                        player.dustParticleLeft.Play();
+                        player.dustParticleRight.Play();
 
                         //Back wheels
                         if (!frontWheel && driveType != DriveType.FrontWheelDrive)
@@ -230,6 +239,8 @@ public class WheelDrive : MonoBehaviour
                     carRigidbody.drag = dragAmount;
                     carRigidbody.isKinematic = false;
                     aHasBeenPressed = false;
+                    player.dustParticleLeft.Stop();
+                    player.dustParticleRight.Stop();
                 }
 
                 // Update visual wheels if any
