@@ -256,11 +256,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 160.99512, y: 100.725716, z: 134.55582}
   m_Center: {x: 0.00012207031, y: -0.000015258789, z: 0}
---- !u!198 &38783126 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198717425847818764, guid: 62ef3a699dd6273479cfc439ebc447cc,
-    type: 2}
-  m_PrefabInternal: {fileID: 1903458707}
 --- !u!1001 &44268969
 Prefab:
   m_ObjectHideFlags: 0
@@ -434,11 +429,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: f1ee5481028303b4e9a294d1a7c53bd2, type: 3}
   m_PrefabInternal: {fileID: 57435671}
---- !u!198 &67706554 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198075871885603456, guid: 62ef3a699dd6273479cfc439ebc447cc,
-    type: 2}
-  m_PrefabInternal: {fileID: 1903458707}
 --- !u!1001 &69505073
 Prefab:
   m_ObjectHideFlags: 0
@@ -977,38 +967,6 @@ Rigidbody:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 176461807}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!1 &181642938 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1589562374865200, guid: 62ef3a699dd6273479cfc439ebc447cc,
-    type: 2}
-  m_PrefabInternal: {fileID: 1903458707}
---- !u!65 &181642942
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 181642938}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 816.8978, y: 410.87268, z: 415.94504}
-  m_Center: {x: -0.0011918097, y: 108.28441, z: -1007.40375}
---- !u!54 &181642945
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 181642938}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -2524,38 +2482,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 471877947}
---- !u!1 &473128555 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1150736319219282, guid: 62ef3a699dd6273479cfc439ebc447cc,
-    type: 2}
-  m_PrefabInternal: {fileID: 1903458707}
---- !u!65 &473128559
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 473128555}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 816.898, y: 431.25085, z: 461.7098}
-  m_Center: {x: 88.53048, y: -74.389, z: -984.5194}
---- !u!54 &473128562
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 473128555}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &484945626
 Prefab:
   m_ObjectHideFlags: 0
@@ -15090,38 +15016,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 791187153}
---- !u!1 &791858098 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1816731253010450, guid: 62ef3a699dd6273479cfc439ebc447cc,
-    type: 2}
-  m_PrefabInternal: {fileID: 1903458707}
---- !u!65 &791858102
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 791858098}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 816.8983, y: 419.56558, z: 411.5686}
-  m_Center: {x: -2.7892573e-21, y: 112.93076, z: -1303.8326}
---- !u!54 &791858105
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 791858098}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &803800846
 Prefab:
   m_ObjectHideFlags: 0
@@ -15737,38 +15631,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &994137950 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1023226136167632, guid: 62ef3a699dd6273479cfc439ebc447cc,
-    type: 2}
-  m_PrefabInternal: {fileID: 1903458707}
---- !u!65 &994137953
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 994137950}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 848.24176, y: 407.5963, z: 414.1502}
-  m_Center: {x: 104.20354, y: -86.216675, z: -974.4463}
---- !u!54 &994137957
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 994137950}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &994442895
 Prefab:
   m_ObjectHideFlags: 0
@@ -16314,10 +16176,10 @@ Prefab:
       value: 
       objectReference: {fileID: 2074186235}
     m_RemovedComponents:
-    - {fileID: 65348883256378310, guid: 62ef3a699dd6273479cfc439ebc447cc, type: 2}
-    - {fileID: 65118691130022586, guid: 62ef3a699dd6273479cfc439ebc447cc, type: 2}
-    - {fileID: 65753371983562474, guid: 62ef3a699dd6273479cfc439ebc447cc, type: 2}
-    - {fileID: 65939876059362774, guid: 62ef3a699dd6273479cfc439ebc447cc, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 62ef3a699dd6273479cfc439ebc447cc, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1030686125
@@ -19535,7 +19397,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4728881423823862, guid: 2bcb0ddda72f7394ebe4480da655bb96, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4728881423823862, guid: 2bcb0ddda72f7394ebe4480da655bb96, type: 2}
       propertyPath: m_LocalRotation.x
@@ -20942,144 +20804,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 146134981274913686, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_SuspensionSpring.spring
-      value: 24792.268
-      objectReference: {fileID: 0}
-    - target: {fileID: 146134981274913686, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_SuspensionSpring.damper
-      value: 3966.763
-      objectReference: {fileID: 0}
-    - target: {fileID: 146134981274913686, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_SuspensionDistance
-      value: 0.19620001
-      objectReference: {fileID: 0}
-    - target: {fileID: 146904375878689436, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_SuspensionSpring.spring
-      value: 20207.732
-      objectReference: {fileID: 0}
-    - target: {fileID: 146904375878689436, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_SuspensionSpring.damper
-      value: 3233.237
-      objectReference: {fileID: 0}
-    - target: {fileID: 146793389571663422, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_SuspensionSpring.spring
-      value: 28032.74
-      objectReference: {fileID: 0}
-    - target: {fileID: 146793389571663422, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_SuspensionSpring.damper
-      value: 4485.2383
-      objectReference: {fileID: 0}
-    - target: {fileID: 146793389571663422, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_SuspensionDistance
-      value: 0.1962
-      objectReference: {fileID: 0}
-    - target: {fileID: 146665071918970550, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_SuspensionSpring.spring
-      value: 16967.262
-      objectReference: {fileID: 0}
-    - target: {fileID: 146665071918970550, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_SuspensionSpring.damper
-      value: 2714.762
-      objectReference: {fileID: 0}
-    - target: {fileID: 146665071918970550, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_SuspensionDistance
-      value: 0.19620001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1878939848485240, guid: 62ef3a699dd6273479cfc439ebc447cc, type: 2}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 114801554937598716, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: controller
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114778091105418534, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: controller
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114778091105418534, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: dragAmount
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1589562374865200, guid: 62ef3a699dd6273479cfc439ebc447cc, type: 2}
-      propertyPath: m_TagString
-      value: Bumper
-      objectReference: {fileID: 0}
-    - target: {fileID: 146793389571663422, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_ForceAppPointDistance
-      value: 1.1941342
-      objectReference: {fileID: 0}
-    - target: {fileID: 146134981274913686, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_ForceAppPointDistance
-      value: 1.1941342
-      objectReference: {fileID: 0}
-    - target: {fileID: 146904375878689436, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_ForceAppPointDistance
-      value: 1.1941342
-      objectReference: {fileID: 0}
-    - target: {fileID: 146665071918970550, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_ForceAppPointDistance
-      value: 1.1941342
-      objectReference: {fileID: 0}
-    - target: {fileID: 65348883256378310, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_Size.z
-      value: 415.94504
-      objectReference: {fileID: 0}
-    - target: {fileID: 65348883256378310, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_Center.x
-      value: -0.0011918097
-      objectReference: {fileID: 0}
-    - target: {fileID: 65348883256378310, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_Center.z
-      value: -1007.40375
-      objectReference: {fileID: 0}
-    - target: {fileID: 65348883256378310, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_Center.y
-      value: 108.28441
-      objectReference: {fileID: 0}
-    - target: {fileID: 146904375878689436, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: m_SuspensionDistance
-      value: 0.1962
-      objectReference: {fileID: 0}
-    - target: {fileID: 114801554937598716, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: dustParticleLeft
-      value: 
-      objectReference: {fileID: 38783126}
-    - target: {fileID: 114801554937598716, guid: 62ef3a699dd6273479cfc439ebc447cc,
-        type: 2}
-      propertyPath: dustParticleRight
-      value: 
-      objectReference: {fileID: 67706554}
-    m_RemovedComponents:
-    - {fileID: 65348883256378310, guid: 62ef3a699dd6273479cfc439ebc447cc, type: 2}
-    - {fileID: 65118691130022586, guid: 62ef3a699dd6273479cfc439ebc447cc, type: 2}
-    - {fileID: 65753371983562474, guid: 62ef3a699dd6273479cfc439ebc447cc, type: 2}
-    - {fileID: 65939876059362774, guid: 62ef3a699dd6273479cfc439ebc447cc, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62ef3a699dd6273479cfc439ebc447cc, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1915625983
