@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class BumperScript : MonoBehaviour
 {
+    //Hit collision cooldown variables
+    private float hitCooldown;
+    private bool hasHit;
+    private bool collidedPlayer;
+    private PlayerManager currPlayer;
+    private AI currAI;
+    private bool canCollide;
+    private bool addHit;
+
     //Check if it's front bumper
     public bool isFrontBumper;
 
@@ -18,6 +27,7 @@ public class BumperScript : MonoBehaviour
     {
         //set Bumper is live
 		isAlive = true;
+        canCollide = true;
     }
 	
 	// Update is called once per frame
@@ -25,7 +35,46 @@ public class BumperScript : MonoBehaviour
     {
         //check bumper's span every frame
         CheckBumperLiveSpan();
+        Hit();
     }
+
+    private void Hit()
+    {
+        //If we have hit something
+        if (hasHit == true)
+        {
+            canCollide = false;
+
+            //Start the timer
+            hitCooldown += Time.deltaTime;
+
+            //If we can add a hit
+            if(addHit)
+            {
+                //If we have collided with the player
+                if (collidedPlayer == true)
+                {
+                    //Add a hit onto the player
+                    currPlayer.Hits++;
+                    addHit = false;
+                }
+                else
+                {
+                    //Add hit to the AI
+                    currAI.Hits++;
+                    addHit = false;
+                }
+
+                //If the cooldown is greater than five seconds
+                if (hitCooldown > 5.0f)
+                {
+                    canCollide = true;
+                }
+            }
+            
+        }
+    }
+
 
     //when collide with the bumper
     void OnCollisionEnter(Collision a_other)
@@ -47,36 +96,48 @@ public class BumperScript : MonoBehaviour
                 //set self's bumper not alive (bumper destryed)
                 isAlive = false;
                 gameObject.SetActive(false);
-            }
+            }  
         }
 
-        //if we are colliding with AI cars
-        if (a_other.transform.tag == ("AI"))
+        //If we can collide
+        if(canCollide)
         {
-            //add one hit to the AI car
-            a_other.gameObject.GetComponent<AI>().Hits++;
-
-            //at the same time destroy own bumper if its not a front bumper
-            if (isFrontBumper == false)
+            //if we are colliding with AI cars
+            if (a_other.transform.tag == ("AI"))
             {
-                //Destroy the bumper
-                isAlive = false;
-                gameObject.SetActive(false);
+                //We have hit the car
+                currAI = a_other.gameObject.GetComponent<AI>();
+                hitCooldown = 0.0f;
+                hasHit = true;
+                collidedPlayer = false;
+                addHit = true;
+
+                //at the same time destroy own bumper if its not a front bumper
+                if (isFrontBumper == false)
+                {
+                    //Destroy the bumper
+                    isAlive = false;
+                    gameObject.SetActive(false);
+                }
             }
-        }
 
-        //if we are colliding with a Player or a Player2 car
-        if (a_other.transform.tag == ("Player") || a_other.transform.tag == ("Player2"))
-        {
-            //add one hit to the player's car
-            a_other.gameObject.GetComponent<PlayerManager>().Hits++;
-
-            //at the same time destroy own bumper if its not a front bumper
-            if (isFrontBumper == false)
+            //if we are colliding with a Player or a Player2 car
+            if (a_other.transform.tag == ("Player") || a_other.transform.tag == ("Player2"))
             {
-                //Destroy the bumper
-                isAlive = false;
-                gameObject.SetActive(false);
+                //Have hit the car
+                currPlayer = a_other.gameObject.GetComponent<PlayerManager>();
+                hitCooldown = 0.0f;
+                hasHit = true;
+                collidedPlayer = true;
+                addHit = true;
+
+                //at the same time destroy own bumper if its not a front bumper
+                if (isFrontBumper == false)
+                {
+                    //Destroy the bumper
+                    isAlive = false;
+                    gameObject.SetActive(false);
+                }
             }
         }
     }
