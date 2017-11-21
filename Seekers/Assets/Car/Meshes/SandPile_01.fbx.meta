@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: e3df602e86c874444bb866554db97903
-timeCreated: 1508200740
+guid: 13937b844fd8450459430bdcfb8a116d
+timeCreated: 1511240022
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -9,8 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Sand05
-    4300002: SandPile
+    4300000: SandPile
     9500000: //RootNode
   materials:
     importMaterials: 1
