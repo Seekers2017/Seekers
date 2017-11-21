@@ -7707,6 +7707,8 @@ MonoBehaviour:
   Spawnlimite: 5
   spawnTimer: 1
   Timer: 0
+  MaxY: 0
+  MinY: 0
 --- !u!23 &551686598
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8448,20 +8450,6 @@ MeshCollider:
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 4c19698f1a6282e44b9ac9555d297130, type: 3}
   m_PrefabInternal: {fileID: 1451050206}
---- !u!114 &598872558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 598872554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f75e144e140912f4b884839bd767b75a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFrontBumper: 0
-  isAlive: 0
-  lifeSpan: 10
 --- !u!1 &600302351 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100578, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
@@ -9601,20 +9589,6 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300126, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
---- !u!114 &764997277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 764997273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f75e144e140912f4b884839bd767b75a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFrontBumper: 0
-  isAlive: 0
-  lifeSpan: 10
 --- !u!1 &766780404 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100300, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
@@ -12219,20 +12193,6 @@ MeshCollider:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 9feb3f6942e5e3b4faf90c3929a83371, type: 3}
   m_PrefabInternal: {fileID: 29815971}
---- !u!114 &1158333650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1158333646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f75e144e140912f4b884839bd767b75a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFrontBumper: 0
-  isAlive: 0
-  lifeSpan: 10
 --- !u!1 &1158612799 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100572, guid: 34aef976a28f52a4ca5cb5c4fc34403d, type: 3}
@@ -14747,7 +14707,7 @@ Prefab:
     - target: {fileID: 2300004, guid: 4c19698f1a6282e44b9ac9555d297130, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fc9157d85337d66438e9e8fdf8f13a80, type: 2}
+      objectReference: {fileID: 2100000, guid: 0308abf17bae3ac42befeabe461ece88, type: 2}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 4c19698f1a6282e44b9ac9555d297130, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 4c19698f1a6282e44b9ac9555d297130, type: 3}
@@ -17904,6 +17864,8 @@ MonoBehaviour:
   leftBumper: {fileID: 1201851599}
   rearBumper: {fileID: 319579854}
   rightBumper: {fileID: 485764858}
+  dustParticleLeft: {fileID: 0}
+  dustParticleRight: {fileID: 0}
   flashSpeed: 0
   leftBumperPreview: {fileID: 424621687}
   rightBumperPreview: {fileID: 720360098}

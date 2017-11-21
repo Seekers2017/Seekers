@@ -36,7 +36,7 @@ TagManager:
   - DontRender
   - NotInMap
   - Checkpoint
-  - 
+  - FallingBlockTrigger
   - 
   - 
   - 
