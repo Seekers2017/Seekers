@@ -65,9 +65,6 @@ public class WheelDrive : MonoBehaviour
     private PlayerManager player;
     private Rigidbody carRigidbody;
 
-    public WheelColliderSettings originalSettings;
-    public WheelColliderSettings specialSettings;
-
     public bool AbilityToDrive
     {
         get { return abilityToDrive; }
@@ -116,15 +113,18 @@ public class WheelDrive : MonoBehaviour
                 bool frontLeftWheel = (wheelNum == 0); //Left front wheel
                 bool backLeftWheel = (wheelNum == 2); //Left back wheel 
 
-
                 //Changes speed based on criticals 
                 wheel.ConfigureVehicleSubsteps(criticalSpeed, stepsBelow, stepsAbove);
 
-                //Maintain the RPM
-                if (wheel.rpm < idealRPM)
-                    speed = Mathf.Lerp(speed / 10f, speed, wheel.rpm / idealRPM);
-                else
-                    speed = Mathf.Lerp(speed, 0, (wheel.rpm - idealRPM) / (maxRPM - idealRPM));
+                //If the player is not boosting
+                if(player.IsBoosting == false)
+                {
+                    //Maintain the RPM
+                    if (wheel.rpm < idealRPM)
+                        speed = Mathf.Lerp(speed / 10f, speed, wheel.rpm / idealRPM);
+                    else
+                        speed = Mathf.Lerp(speed, 0, (wheel.rpm - idealRPM) / (maxRPM - idealRPM));
+                }
 
 
 
@@ -195,13 +195,21 @@ public class WheelDrive : MonoBehaviour
 
                         if(brakeTimer < 1.5f)
                         {
-                            //Set variables
-                            wheel.motorTorque = 0.0f;
-                            wheel.brakeTorque = Mathf.Infinity;
-                            carRigidbody.drag = dragAmount;
-                            carRigidbody.isKinematic = false;
-                            player.dustParticleLeft.Stop();
-                            player.dustParticleRight.Stop();
+                            if (wheel.isGrounded == true)
+                            {
+                                //Stop the car moving and resetting values
+                                wheel.motorTorque = 0.0f;
+                                wheel.brakeTorque = Mathf.Infinity;
+                                carRigidbody.drag = dragAmount;
+                                carRigidbody.isKinematic = false;
+                                player.dustParticleLeft.Stop();
+                                player.dustParticleRight.Stop();
+                            }
+                            else
+                            {
+                                player.dustParticleLeft.Stop();
+                                player.dustParticleRight.Stop();
+                            }
                         }
                         else
                         {
@@ -233,14 +241,23 @@ public class WheelDrive : MonoBehaviour
                 }
                 else
                 {
-                    //Stop the car moving and resetting values
-                    wheel.motorTorque = 0.0f;
-                    wheel.brakeTorque = Mathf.Infinity;
-                    carRigidbody.drag = dragAmount;
-                    carRigidbody.isKinematic = false;
-                    aHasBeenPressed = false;
-                    player.dustParticleLeft.Stop();
-                    player.dustParticleRight.Stop();
+                    if(wheel.isGrounded == true)
+                    {
+                        //Stop the car moving and resetting values
+                        wheel.motorTorque = 0.0f;
+                        wheel.brakeTorque = Mathf.Infinity;
+                        carRigidbody.drag = dragAmount;
+                        carRigidbody.isKinematic = false;
+                        aHasBeenPressed = false;
+                        player.dustParticleLeft.Stop();
+                        player.dustParticleRight.Stop();
+                    }
+                    else
+                    {
+                        player.dustParticleLeft.Stop();
+                        player.dustParticleRight.Stop();
+                    }
+                    
                 }
 
                 // Update visual wheels if any
@@ -264,9 +281,3 @@ public class WheelDrive : MonoBehaviour
 }
 
 
-[System.Serializable]
-public class WheelColliderSettings
-{
-    public float stiffness;
-    public float extremumSlip;
-}
