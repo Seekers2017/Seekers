@@ -13,7 +13,7 @@ using UnityEngine.SceneManagement;
 public class GameStateManagerScript : MonoBehaviour
 {
     //inherit from base class of the FSMSystem to store current game state
-    private BaseState currGameState;
+    public BaseState currGameState;
 
     //list to store all game state
     private List<BaseState> gameStates;

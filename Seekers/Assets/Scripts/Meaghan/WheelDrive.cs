@@ -100,8 +100,6 @@ public class WheelDrive : MonoBehaviour
 
         if(abilityToDrive)
         {
-            
-
             //Alters the angle of the car
             float angle = maxAngle * XCI.GetAxis(XboxAxis.LeftStickX, controller);
 

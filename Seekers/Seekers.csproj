@@ -121,6 +121,7 @@
     <Compile Include="Assets\Scripts\Meaghan\InstantiateCarMaterial.cs" />
     <Compile Include="Assets\Scripts\Meaghan\Node.cs" />
     <Compile Include="Assets\Scripts\Meaghan\NodeManage.cs" />
+    <Compile Include="Assets\Scripts\Meaghan\PlayAudio.cs" />
     <Compile Include="Assets\Scripts\Meaghan\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Meaghan\SetOtherTextures.cs" />
     <Compile Include="Assets\Scripts\Meaghan\StateVictory.cs" />
