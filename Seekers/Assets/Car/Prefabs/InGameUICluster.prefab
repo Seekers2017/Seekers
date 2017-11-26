@@ -266,10 +266,10 @@ GameObject:
   m_Component:
   - component: {fileID: 224925168083866576}
   - component: {fileID: 222728140948519820}
-  - component: {fileID: 114930672177400332}
+  - component: {fileID: 114471689304808432}
   m_Layer: 0
   m_Name: controllerInstruction
-  m_TagString: Untagged
+  m_TagString: VictoryUIP2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1179,6 +1179,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114471689304808432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1481376575274108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73dc0897f14fa3941bd0e0e5a9a1d317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winSprite: {fileID: 21300000, guid: fd9ae85fab4c2644aa9df7054fca9cc8, type: 3}
+  loseSprite: {fileID: 21300000, guid: f101efa1ce68b2340b470f3527dc71c4, type: 3}
+  controller: 2
 --- !u!114 &114527621983201324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1300,7 +1314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winSprite: {fileID: 21300000, guid: fd9ae85fab4c2644aa9df7054fca9cc8, type: 3}
   loseSprite: {fileID: 21300000, guid: f101efa1ce68b2340b470f3527dc71c4, type: 3}
-  controller: 2
+  controller: 1
 --- !u!114 &114629530941056008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1649,33 +1663,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114930672177400332
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1481376575274108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c8a5c54e87724bc4a8e65c6f25af5ead, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!114 &114942307591898020
 MonoBehaviour:
   m_ObjectHideFlags: 1

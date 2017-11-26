@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4053150309072654}
   - component: {fileID: 33222346432264932}
   - component: {fileID: 23230702906823582}
+  - component: {fileID: 64907584377098636}
   m_Layer: 0
   m_Name: Track_Barrier
   m_TagString: Untagged
@@ -455,6 +456,20 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300004, guid: 4c19698f1a6282e44b9ac9555d297130, type: 3}
+--- !u!64 &64907584377098636
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1124009532717736}
+  m_Material: {fileID: 13400000, guid: 2c0d70c8707f55d4282ff77c7b8147c1, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 3d9f9bcda0c482f4bab147936b789afb, type: 3}
 --- !u!95 &95164419632597896
 Animator:
   serializedVersion: 3
