@@ -1004,8 +1004,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b764a3e364616d4694e9119a2b87d5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winSprite: {fileID: 21300000, guid: ebcf758b2343f204985f48445306085d, type: 3}
-  loseSprite: {fileID: 21300000, guid: da190514d3fe82d40bbd24b193016b04, type: 3}
+  winSprite: {fileID: 21300000, guid: fd9ae85fab4c2644aa9df7054fca9cc8, type: 3}
+  loseSprite: {fileID: 21300000, guid: f101efa1ce68b2340b470f3527dc71c4, type: 3}
   controller: 1
 --- !u!114 &114298669256609382
 MonoBehaviour:
@@ -1298,8 +1298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73dc0897f14fa3941bd0e0e5a9a1d317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winSprite: {fileID: 21300000, guid: ebcf758b2343f204985f48445306085d, type: 3}
-  loseSprite: {fileID: 21300000, guid: da190514d3fe82d40bbd24b193016b04, type: 3}
+  winSprite: {fileID: 21300000, guid: fd9ae85fab4c2644aa9df7054fca9cc8, type: 3}
+  loseSprite: {fileID: 21300000, guid: f101efa1ce68b2340b470f3527dc71c4, type: 3}
   controller: 2
 --- !u!114 &114629530941056008
 MonoBehaviour:
@@ -2708,6 +2708,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.9113333, y: 0.8971408}
   m_AnchorMax: {x: 0.98200005, y: 0.97800004}
-  m_AnchoredPosition: {x: 0, y: 16.399902}
+  m_AnchoredPosition: {x: 0, y: 16.400024}
   m_SizeDelta: {x: 0, y: -4}
   m_Pivot: {x: 0.5, y: 0.5}

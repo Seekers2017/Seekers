@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 47083ca96d9d642488c42e7e5c028dad
-timeCreated: 1509937463
+guid: 3d9f9bcda0c482f4bab147936b789afb
+timeCreated: 1511737112
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -10,7 +10,6 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: Concrete_Perimiter
-    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -80,7 +79,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
