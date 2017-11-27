@@ -110,9 +110,8 @@ GameObject:
   - component: {fileID: 4140209723574844}
   - component: {fileID: 33052708988352920}
   - component: {fileID: 23837027181689720}
-  - component: {fileID: 95164419632597896}
   - component: {fileID: 64255276242162214}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TrackTerrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,23 +469,6 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 3d9f9bcda0c482f4bab147936b789afb, type: 3}
---- !u!95 &95164419632597896
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1662702542585418}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 10719564311e45b41a3b80aecf4c6299, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95717402412592016
 Animator:
   serializedVersion: 3

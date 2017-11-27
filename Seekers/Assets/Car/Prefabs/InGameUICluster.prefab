@@ -29,7 +29,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1009672263837340
 GameObject:
   m_ObjectHideFlags: 1
@@ -171,7 +171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1252461608346294
 GameObject:
   m_ObjectHideFlags: 1
@@ -681,9 +681,9 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294965503
+    m_Bits: 4294951167
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: ce5164805aad163478ea81b56b012f7b, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: 4013b6b99d75d474e874815174cffb2a, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -1409,7 +1409,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 8400000, guid: ce5164805aad163478ea81b56b012f7b, type: 2}
+  m_Texture: {fileID: 8400000, guid: 4013b6b99d75d474e874815174cffb2a, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2483,10 +2483,10 @@ RectTransform:
   m_Father: {fileID: 224442153037002488}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.87500006, y: 0.011407478}
-  m_AnchorMax: {x: 0.99635416, y: 0.1847185}
-  m_AnchoredPosition: {x: -1, y: -0.9000244}
-  m_SizeDelta: {x: 16, y: 12}
+  m_AnchorMin: {x: 0.79552084, y: 0.027}
+  m_AnchorMax: {x: 0.96456254, y: 0.23041005}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224648783218752788
 RectTransform:
@@ -2621,8 +2621,8 @@ RectTransform:
   m_Father: {fileID: 224013245333512880}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.19722916, y: 0.20340742}
-  m_AnchorMax: {x: 0.8034376, y: 0.80248153}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2695,6 +2695,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.9113333, y: 0.8971408}
   m_AnchorMax: {x: 0.98200005, y: 0.97800004}
-  m_AnchoredPosition: {x: 0, y: 16.400024}
+  m_AnchoredPosition: {x: 0, y: 16.399902}
   m_SizeDelta: {x: 0, y: -4}
   m_Pivot: {x: 0.5, y: 0.5}
