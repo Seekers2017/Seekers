@@ -1,10 +1,16 @@
 fileFormatVersion: 2
 guid: 82069f51e7508e34a905127388fee9b0
-timeCreated: 1506304721
+timeCreated: 1511743391
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Block: {instanceID: 0}
+  - FallSpawn: {instanceID: 0}
+  - FallSpawn1: {instanceID: 0}
+  - FallSpawn2: {instanceID: 0}
+  - FallSpawn3: {instanceID: 0}
+  - impact: {fileID: 8300000, guid: d0b40e5322964a64f9f5dffbe6258944, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

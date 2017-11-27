@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54276112664283872}
   - component: {fileID: 64944413268291274}
   - component: {fileID: 135957005421121948}
+  - component: {fileID: 114532002178035972}
   m_Layer: 0
   m_Name: Falling_Rock_01
   m_TagString: FallingBlocks
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1666307481586170}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -48.799, y: 92.946, z: -63.136}
+  m_LocalPosition: {x: -83.049194, y: 192.60756, z: 77.11853}
   m_LocalScale: {x: 0.01727503, y: 0.015194873, z: 0.016238263}
   m_Children: []
   m_Father: {fileID: 0}
@@ -130,6 +131,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114532002178035972
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1666307481586170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a93fcf02f6fe2b469377f791f3f38c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Impact: {fileID: 0}
 --- !u!135 &135957005421121948
 SphereCollider:
   m_ObjectHideFlags: 1

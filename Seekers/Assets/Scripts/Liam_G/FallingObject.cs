@@ -19,6 +19,7 @@ public class FallingObject : MonoBehaviour
     public float Timer;
     public float MaxY = 0;
     public float MinY = 0;
+
     // Use this for initialization
     void Start ()
     {
