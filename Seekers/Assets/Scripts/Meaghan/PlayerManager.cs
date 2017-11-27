@@ -19,6 +19,10 @@ public class PlayerManager : Entity
     private GameObject rearBumperPreview;
     [SerializeField]
     private XboxController controller;
+    [SerializeField]
+    private ParticleSystem speedBoostPart;
+    [SerializeField]
+    private ParticleSystem speedBoostPart2;
 
 
     //Variables 
@@ -59,6 +63,8 @@ public class PlayerManager : Entity
         leftBumperPreview.SetActive(false);
         rightBumperPreview.SetActive(false);
         rearBumperPreview.SetActive(false);
+        speedBoostPart.Stop();
+        speedBoostPart2.Stop();
     }
 
     void Update()
@@ -84,7 +90,18 @@ public class PlayerManager : Entity
         //Boost
         if (isBoosting)
         {
+            //BOOST
             UpdateSpeedBoost();
+
+            //PLay the particles
+            speedBoostPart.Play();
+            speedBoostPart2.Play();
+        }
+        else
+        {
+            //Stop the particles
+            speedBoostPart.Stop();
+            speedBoostPart2.Stop();
         }
 
         //Low health iteration start

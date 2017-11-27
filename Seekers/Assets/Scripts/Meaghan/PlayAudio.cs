@@ -9,7 +9,6 @@ public class PlayAudio : MonoBehaviour {
 
     public AudioSource musicSource;
 
-    private bool isInGame;
     private GameStateManagerScript currState;
 
 	// Use this for initialization
