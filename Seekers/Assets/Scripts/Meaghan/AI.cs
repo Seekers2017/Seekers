@@ -472,6 +472,8 @@ public class AI : Entity
                 //We've reached the node we were trying to get to
                 //Change targetNode to nextNode
                 targetNode = targetNode.next;
+
+                randDist = Random.Range(-10.0f, 10.0f);
             }
         }
     }
