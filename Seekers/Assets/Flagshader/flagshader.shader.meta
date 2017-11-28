@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 3d2d05bc9bfc3024db681519b1c7b253
+timeCreated: 1511741948
+licenseType: Free
+ShaderImporter:
+  defaultTextures:
+  - _Flagcolour: {fileID: 2800000, guid: 3cac17ad3944a8d45ba651377dd325be, type: 3}
+  - _Flagmap: {fileID: 2800000, guid: 5e9f3f11022722a449b306ff91be10a1, type: 3}
+  - _Gradient: {fileID: 2800000, guid: 23ab034009e77834984d2bdfd49d9d17, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

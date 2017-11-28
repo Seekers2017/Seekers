@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlaySound : MonoBehaviour
 {
     public AudioClip Impact;
-    AudioSource audioSource;    
+    AudioSource audioSource;
+    //bool IsAttached;  
 	// Use this for initialization
 	void Start ()
     {
@@ -18,8 +19,13 @@ public class PlaySound : MonoBehaviour
 		
 	}
 
-    void OnCollisionEnter()
+    void OnCollisionEnter(Collision other)
     {
-        audioSource.PlayOneShot(Impact, 0.7f);
+        if (audioSource.GetComponent<AudioSource>() != null)
+        {
+            audioSource.PlayOneShot(Impact, 0.7f);
+        }
+
+        //audioSource.Stop();
     }
 }
