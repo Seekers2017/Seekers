@@ -10,6 +10,7 @@ public enum DriveType
 	AllWheelDrive
 }
 
+
 public class WheelDrive : MonoBehaviour
 {
     [Tooltip("Maximum steering angle of the wheels.")]
@@ -24,9 +25,6 @@ public class WheelDrive : MonoBehaviour
     [Tooltip("Increases the speed of the car after a boost is consumed.")]
     [SerializeField]
     private float boostSpeed = 1500.0f;
-    [Tooltip("If you need the visual wheels to be attached automatically, drag the wheel shape here.")]
-    [SerializeField]
-    private GameObject wheelShape;
 
     [Tooltip("Increases the drag of the car while not moving.")]
     [SerializeField]
@@ -41,6 +39,9 @@ public class WheelDrive : MonoBehaviour
 
     [SerializeField]
     private XboxController controller;
+
+    [SerializeField]
+    private AudioSource driving;
 
     [Tooltip("Ideal rotation of the wheels of the car.")]
     [SerializeField]
@@ -82,17 +83,8 @@ public class WheelDrive : MonoBehaviour
 
         player.dustParticleLeft.Stop();
         player.dustParticleRight.Stop();
+        driving.Stop();
 
-        //Create the wheels
-        for (int i = 0; i < wheels.Length; ++i) 
-		{
-			// Create wheel shapes only when needed
-			if (wheelShape != null)
-			{
-				var ws = Instantiate (wheelShape);
-                ws.transform.parent = wheels[i].transform;
-           }
-		}
     }
 
 	void Update()
@@ -124,8 +116,6 @@ public class WheelDrive : MonoBehaviour
                         speed = Mathf.Lerp(speed, 0, (wheel.rpm - idealRPM) / (maxRPM - idealRPM));
                 }
 
-
-
                 //Checking if they are boosting, increase torque
                 if (player.IsBoosting == true)
                 {
@@ -137,8 +127,6 @@ public class WheelDrive : MonoBehaviour
                     //Regular speed
                     speed = torque;
                 }
-
-                
 
                 //Sharp turn
                 if (XCI.GetAxis(XboxAxis.RightTrigger, controller) == 1)
@@ -158,8 +146,6 @@ public class WheelDrive : MonoBehaviour
                         wheel.steerAngle = angle;
                 }
 
-               
-
 
                 //If we are holding down the A button, move forward
                 if (XCI.GetButton(XboxButton.A, controller))
@@ -171,6 +157,7 @@ public class WheelDrive : MonoBehaviour
                     aHasBeenPressed = true;
                     player.dustParticleLeft.Play();
                     player.dustParticleRight.Play();
+                    driving.Play();
 
                     //Back wheels
                     if (!frontWheel && driveType != DriveType.FrontWheelDrive)
@@ -202,11 +189,13 @@ public class WheelDrive : MonoBehaviour
                                 carRigidbody.isKinematic = false;
                                 player.dustParticleLeft.Stop();
                                 player.dustParticleRight.Stop();
+                                driving.Stop();
                             }
                             else
                             {
                                 player.dustParticleLeft.Stop();
                                 player.dustParticleRight.Stop();
+                                driving.Stop();
                             }
                         }
                         else
@@ -223,6 +212,7 @@ public class WheelDrive : MonoBehaviour
                         carRigidbody.isKinematic = false;
                         player.dustParticleLeft.Play();
                         player.dustParticleRight.Play();
+                        driving.Stop();
 
                         //Back wheels
                         if (!frontWheel && driveType != DriveType.FrontWheelDrive)
@@ -249,18 +239,17 @@ public class WheelDrive : MonoBehaviour
                         aHasBeenPressed = false;
                         player.dustParticleLeft.Stop();
                         player.dustParticleRight.Stop();
+                        driving.Stop();
                     }
                     else
                     {
                         player.dustParticleLeft.Stop();
                         player.dustParticleRight.Stop();
+                        driving.Stop();
                     }
                     
                 }
 
-                // Update visual wheels if any
-                if (wheelShape)
-                {
                     //Create vector and quanternion
                     Quaternion q;
                     Vector3 p;
@@ -272,7 +261,6 @@ public class WheelDrive : MonoBehaviour
                     //Alter the transform
                     shapeTransform.position = p;
                     shapeTransform.rotation = q;
-                }
             }
         }  
 	}
