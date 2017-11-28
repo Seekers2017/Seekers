@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BumperScript : MonoBehaviour
 {
-    //[SerializeField]
-    //private AudioSource collisionSound;
+    [SerializeField]
+    private AudioSource collisionSound;
 
 
     //Hit collision cooldown variables
@@ -18,6 +18,7 @@ public class BumperScript : MonoBehaviour
     private bool addHit;
     private bool collided;
     private bool stillConnected;
+    private bool playSound;
 
     //Check if it's front bumper
     public bool isFrontBumper;
@@ -39,6 +40,7 @@ public class BumperScript : MonoBehaviour
     {
         //set Bumper is live
 		isAlive = true;
+        playSound = false;
         canCollide = true;
     }
 	
@@ -48,6 +50,20 @@ public class BumperScript : MonoBehaviour
         //check bumper's span every frame
         CheckBumperLiveSpan();
         Hit();
+
+        //If we have just 
+        if(playSound == true)
+        {
+            //PLay the sound
+            collisionSound.Play();
+
+            //Break out of the statement (and only play the sound once)
+            playSound = false;
+        }
+        else
+        {
+            collisionSound.Stop();
+        }
     }
 
     private void Hit()
@@ -91,6 +107,8 @@ public class BumperScript : MonoBehaviour
     //when collide with the bumper
     void OnCollisionEnter(Collision a_other)
     {
+        
+
         //if the other object is tagged Bumper
         if (a_other.transform.tag == ("Bumper"))
         {
@@ -114,8 +132,6 @@ public class BumperScript : MonoBehaviour
         //If we can collide
         if(canCollide)
         {
-
-            Debug.Log("I'VE HIT!!!");
 
             //if we are colliding with AI cars
             if (a_other.transform.tag == ("AI"))
