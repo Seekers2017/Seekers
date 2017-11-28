@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4555365685176838}
   - component: {fileID: 33876966403197942}
   - component: {fileID: 23412721287223868}
-  - component: {fileID: 65847893420864358}
   m_Layer: 9
   m_Name: MediumRock_01
   m_TagString: Box
@@ -36,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1013423309454322}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 132.2, y: 0, z: 31.94}
+  m_LocalPosition: {x: 280.43073, y: 0.29343545, z: -35.695564}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,15 +80,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1013423309454322}
   m_Mesh: {fileID: 4300002, guid: b48fc36ede54ca14d87fd9d1384fb179, type: 3}
---- !u!65 &65847893420864358
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1013423309454322}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 261.95605, y: 216.72314, z: 295.0651}
-  m_Center: {x: 0, y: 108.36157, z: 0}

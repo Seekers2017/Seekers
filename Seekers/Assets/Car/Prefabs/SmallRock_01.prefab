@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4055153901878214}
   - component: {fileID: 33508248904013826}
   - component: {fileID: 23465403952475722}
-  - component: {fileID: 65204981879453630}
   m_Layer: 9
   m_Name: SmallRock_01
   m_TagString: Box
@@ -36,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1237632313170888}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.4, y: 0, z: -49.607048}
+  m_LocalPosition: {x: 284.30505, y: 0.2934355, z: -30.246872}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,15 +80,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1237632313170888}
   m_Mesh: {fileID: 4300002, guid: 3a4d71a55264d00489da92f65646beaf, type: 3}
---- !u!65 &65204981879453630
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1237632313170888}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 198.8312, y: 158.69891, z: 186.01257}
-  m_Center: {x: 0, y: 79.34946, z: 0.000030517578}

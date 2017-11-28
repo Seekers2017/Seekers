@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4869149340273260}
   - component: {fileID: 33647448780621968}
   - component: {fileID: 23624424013009582}
-  - component: {fileID: 65976956609439246}
   m_Layer: 9
   m_Name: TinyRock_01
   m_TagString: Box
@@ -36,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1200223164080568}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.3, y: 0, z: -45.3}
+  m_LocalPosition: {x: 290.63516, y: 0.2934355, z: -21.730042}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,15 +80,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1200223164080568}
   m_Mesh: {fileID: 4300000, guid: da544e183d210ed49b46c0cdfacb7d58, type: 3}
---- !u!65 &65976956609439246
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1200223164080568}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 94.29907, y: 53.03357, z: 94.65851}
-  m_Center: {x: 0, y: 26.516785, z: -0.0010070801}
