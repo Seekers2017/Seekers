@@ -1818,8 +1818,8 @@ MonoBehaviour:
   dustParticleLeft: {fileID: 198564269232286062}
   dustParticleRight: {fileID: 198975942821007346}
   itemSpawnTime: 2
-  boostSpeed: 60
-  maxSpeed: 25
+  boostSpeed: 40
+  maxSpeed: 30
   speed: 10000
   rotation: 3
   maxMoveTimer: 5

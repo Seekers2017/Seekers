@@ -21,11 +21,16 @@ public class PlayAudio : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        //If we are in game
-	    if(currState.currGameState.StateID == GameStateID.InGame)
-        {
-            //Play the song
-            musicSource.Play();
-        }
+        //Play the song
+        musicSource.Play();
+
+
+
+        ////If we are in game
+        //if (currState.currGameState.StateID == GameStateID.InGame)
+        //{
+        //    //Play the song
+        //    musicSource.Play();
+        //}
 	}
 }
