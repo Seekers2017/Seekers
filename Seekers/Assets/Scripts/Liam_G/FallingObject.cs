@@ -9,6 +9,7 @@ public class FallingObject : MonoBehaviour
     public GameObject Block;
     //public GameObject FallingObjectSpawner;
 
+    // all the variables used
     public Vector3 BlockSpawn = new Vector3(0, 0, 0);
     public Transform FallSpawn;
     public Transform FallSpawn1;
@@ -23,8 +24,8 @@ public class FallingObject : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        //gets the riged body on the rigidbody component
         RB = GetComponent<Rigidbody>();
-
 	}
 	
 	// Update is called once per frame
@@ -36,20 +37,22 @@ public class FallingObject : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        //checks to see if an object taged with player or player2 has hit the trgger and spawns the falling blocks 
         if(other.gameObject.tag == "Player" || other.gameObject.tag == "Player2")
         {
+            //makes sure theres a small delay before the blocks spawn
             if(Time.time > spawnTimer)
-            {
-                spawnTimer = Time.time + Spawnlimite;
-
+            { 
+                //spawnTimer = Time.time + Spawnlimite;
+                //set a vector3 veriable
                 Vector3 rndPosWithin;
-                //rndPosWithin = transform.TransformPoint(rndPosWithin * .5f);
 
+                // iterates through all the blocks that will spawn which were set in the inspector
                 for (int i = 0; i < Spawnlimite; ++i)
                 {
+                    //creates random positions using the vector3 variable set previusly and spawns the blocks there 
                     rndPosWithin = new Vector3(Random.Range(FallSpawn.position.x, FallSpawn1.position.x), Random.Range(MinY, MaxY), Random.Range(FallSpawn2.position.z, FallSpawn3.position.z));
                     GameObject FallingObjectSpawner = Instantiate(Block, rndPosWithin, Quaternion.identity);
-                    //Debug.Log("Instantiat Has been Reached");
                 }
             }
         }

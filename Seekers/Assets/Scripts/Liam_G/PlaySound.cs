@@ -10,6 +10,7 @@ public class PlaySound : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        //gets the audio source component
         audioSource = GetComponent<AudioSource>();
 	}
 	
@@ -21,11 +22,14 @@ public class PlaySound : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
+        // cheacks to see if the audio source exists and is attached to the object
         if (audioSource.GetComponent<AudioSource>() != null)
         {
+            // plays the sound assigened to it in the inspector
             audioSource.PlayOneShot(Impact, 0.7f);
         }
 
+        //stops the sound from player is currently not used but is here incase
         //audioSource.Stop();
     }
 }
