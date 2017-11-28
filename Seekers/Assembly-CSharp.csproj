@@ -105,6 +105,7 @@
      <Compile Include="Assets\ProCore\ProBuilder\API Examples\Vertex Colors\HighlightNearestFace.cs" />
      <Compile Include="Assets\Scripts\Liam_G\DeleteBlocks.cs" />
      <Compile Include="Assets\Scripts\Liam_G\FallingObject.cs" />
+     <Compile Include="Assets\Scripts\Liam_G\FlagWave.cs" />
      <Compile Include="Assets\Scripts\Liam_G\PlaySound.cs" />
      <Compile Include="Assets\Scripts\Meaghan\AI.cs" />
      <Compile Include="Assets\Scripts\Meaghan\AnimateCarPart.cs" />
@@ -201,6 +202,7 @@
      <None Include="Assets\PostProcessing\Resources\Shaders\ScreenSpaceRaytrace.cginc" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_VertexShader.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.shader" />
+     <None Include="Assets\Flagshader\flagshader.shader" />
      <None Include="Assets\PostProcessing\Editor Resources\Monitors\VectorscopeRender.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.shader" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_ScrollHighlight.shader" />
