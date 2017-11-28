@@ -124,9 +124,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 63564e427155b0a4a97f01e721fe5903, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2d7540c5c4238d340a1270daf744226f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -170,7 +170,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -182,7 +182,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -194,7 +194,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!95 &95977183686788010
 Animator:
   serializedVersion: 3
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a93fcf02f6fe2b469377f791f3f38c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Impact: {fileID: 8300000, guid: 63564e427155b0a4a97f01e721fe5903, type: 3}
+  Impact: {fileID: 8300000, guid: 2d7540c5c4238d340a1270daf744226f, type: 3}
 --- !u!135 &135957005421121948
 SphereCollider:
   m_ObjectHideFlags: 1

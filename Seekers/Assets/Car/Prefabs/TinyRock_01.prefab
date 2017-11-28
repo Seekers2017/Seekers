@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33647448780621968}
   - component: {fileID: 23624424013009582}
   - component: {fileID: 65976956609439246}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TinyRock_01
   m_TagString: Box
   m_Icon: {fileID: 0}

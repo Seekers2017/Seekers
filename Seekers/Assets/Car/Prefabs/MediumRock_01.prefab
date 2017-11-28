@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33876966403197942}
   - component: {fileID: 23412721287223868}
   - component: {fileID: 65847893420864358}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MediumRock_01
   m_TagString: Box
   m_Icon: {fileID: 0}

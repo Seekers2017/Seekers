@@ -83,7 +83,7 @@ public class WheelDrive : MonoBehaviour
 
         player.dustParticleLeft.Stop();
         player.dustParticleRight.Stop();
-        driving.Stop();
+        driving.Pause();
 
     }
 
@@ -157,7 +157,7 @@ public class WheelDrive : MonoBehaviour
                     aHasBeenPressed = true;
                     player.dustParticleLeft.Play();
                     player.dustParticleRight.Play();
-                    driving.Play();
+                    driving.UnPause();
 
                     //Back wheels
                     if (!frontWheel && driveType != DriveType.FrontWheelDrive)
@@ -189,13 +189,13 @@ public class WheelDrive : MonoBehaviour
                                 carRigidbody.isKinematic = false;
                                 player.dustParticleLeft.Stop();
                                 player.dustParticleRight.Stop();
-                                driving.Stop();
+                                driving.Pause();
                             }
                             else
                             {
                                 player.dustParticleLeft.Stop();
                                 player.dustParticleRight.Stop();
-                                driving.Stop();
+                                driving.Pause();
                             }
                         }
                         else
@@ -212,7 +212,7 @@ public class WheelDrive : MonoBehaviour
                         carRigidbody.isKinematic = false;
                         player.dustParticleLeft.Play();
                         player.dustParticleRight.Play();
-                        driving.Stop();
+                        driving.UnPause();
 
                         //Back wheels
                         if (!frontWheel && driveType != DriveType.FrontWheelDrive)
@@ -239,13 +239,13 @@ public class WheelDrive : MonoBehaviour
                         aHasBeenPressed = false;
                         player.dustParticleLeft.Stop();
                         player.dustParticleRight.Stop();
-                        driving.Stop();
+                        driving.Pause();
                     }
                     else
                     {
                         player.dustParticleLeft.Stop();
                         player.dustParticleRight.Stop();
-                        driving.Stop();
+                        driving.Pause();
                     }
                     
                 }

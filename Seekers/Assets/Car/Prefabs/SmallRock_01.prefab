@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33508248904013826}
   - component: {fileID: 23465403952475722}
   - component: {fileID: 65204981879453630}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SmallRock_01
   m_TagString: Box
   m_Icon: {fileID: 0}
