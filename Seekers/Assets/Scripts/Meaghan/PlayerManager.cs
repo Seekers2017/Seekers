@@ -23,6 +23,8 @@ public class PlayerManager : Entity
     private ParticleSystem speedBoostPart;
     [SerializeField]
     private ParticleSystem speedBoostPart2;
+    [SerializeField]
+    private AudioSource collisionSound;
 
 
     //Variables 
@@ -240,6 +242,15 @@ public class PlayerManager : Entity
         }
     }
 
+
+    private void OnCollisionEnter(Collision a_other)
+    {
+        if(a_other.transform.tag == ("Bumper"))
+        {
+            //Play the sound
+            collisionSound.PlayOneShot(collisionSound.clip, 0.1f);
+        }
+    }
 
     protected override void OnCollectItem(SpawnerScript item)
     {
