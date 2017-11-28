@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 0f8a0b4d53796b74b883c9abe0ee730b
+timeCreated: 1511849749
+licenseType: Free
+ShaderImporter:
+  defaultTextures:
+  - _tracksmooth: {fileID: 2800000, guid: 81d207f2564315b47bc774fdff7ccf89, type: 3}
+  - _trackmid: {fileID: 2800000, guid: 850fd1a077d3a5d4aae02d0c8de87f6a, type: 3}
+  - _trackrough: {fileID: 2800000, guid: eaa410735b0bfa04681fd9f40e09d09e, type: 3}
+  - _Track: {fileID: 2800000, guid: 5d0b227dc60c57b459b7de56eed2b38a, type: 3}
+  - _Track_Map: {fileID: 2800000, guid: 3eb29efab4eaafb4992c4a1b5393094d, type: 3}
+  - _TrackNormal: {fileID: 2800000, guid: c3ecd6620e499a34893d82bb6f6cf910, type: 3}
+  - _TrackFineNormal: {fileID: 2800000, guid: fdc99ecbd47bbf340bb586b7d95d3954, type: 3}
+  - _TrackMIdNormal: {fileID: 2800000, guid: 7f6dff97be8e2454ab8a0a7bb66514cd, type: 3}
+  - _TrackRoughNormal: {fileID: 2800000, guid: 83cd6a82df3c43f4cbf8f72c9cea93d9, type: 3}
+  - _Midemmisive: {fileID: 2800000, guid: b40e7ca529209d041849a47d86686db1, type: 3}
+  - _metalmid: {fileID: 2800000, guid: ea8f2200d2c037a46b30d623454a9ea4, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
