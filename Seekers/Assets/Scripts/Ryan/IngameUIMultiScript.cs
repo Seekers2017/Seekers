@@ -139,11 +139,13 @@ public class IngameUIMultiScript : MonoBehaviour
             {
                 //P1 win the race
                 playerManager.Win = true;
+                gameManager.SwitchGameState(GameStateID.Victory);
             }
             else
             {
                 //P1 lose the race
                 playerManager.Win = false;
+                gameManager.SwitchGameState(GameStateID.VictoryP2);
             }
         }
 
@@ -155,11 +157,13 @@ public class IngameUIMultiScript : MonoBehaviour
             {
                 //P2 win the race
                 playerManagerP2.Win = true;
+                gameManager.SwitchGameState(GameStateID.VictoryP2);
             }
             else
             {
                 //P2 lose the race
                 playerManagerP2.Win = false;
+                gameManager.SwitchGameState(GameStateID.Victory);
             }
         }
 

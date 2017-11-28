@@ -9,7 +9,6 @@ public class StateVictory : MonoBehaviour {
     //Variables
     private GameStateManagerScript gameManager;
     private PlayerManager playerManager;
-    private WheelDrive wheelDrive;
 
     [SerializeField]
     private Sprite winSprite;
@@ -20,7 +19,7 @@ public class StateVictory : MonoBehaviour {
 
     public XboxController controller;
 
-  
+    /// //////././///,hghyfrtrff
 
     // Use this for initialization
     void Awake ()
@@ -28,30 +27,24 @@ public class StateVictory : MonoBehaviour {
         //Obtain the script properties
         gameManager = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>();
         playerManager = GameObject.Find("Player").GetComponent<PlayerManager>();
-        wheelDrive = GameObject.Find("Player").GetComponent<WheelDrive>();
         set = gameObject.transform.GetChild(0).GetComponent<Image>();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
+		//Switch to the main menu
 
         //If you have won
         if(playerManager.Win == true)
         {
             //Set the winning sprite
             set.sprite = winSprite;
-
-            //Stop driving
-            wheelDrive.AbilityToDrive = false;
         }
         else
         {
             //Set the losing sprite
             set.sprite = loseSprite;
-
-            //Stop driving
-            wheelDrive.AbilityToDrive = false;
         }
 
         if (XCI.GetButtonDown(XboxButton.A))
