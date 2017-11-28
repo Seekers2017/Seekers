@@ -13,11 +13,14 @@ public class BumperScript : MonoBehaviour
     //Setup Bumper's life span
     public float lifeSpan;
 
+    private bool canHit;
+
     // Use this for initialization
     void Start()
     {
         //set Bumper is live
         isAlive = true;
+        canHit = true;
     }
 
     // Update is called once per frame
@@ -53,8 +56,15 @@ public class BumperScript : MonoBehaviour
         //if we are colliding with AI cars
         if (a_other.transform.tag == ("AI"))
         {
-            //add one hit to the AI car
-            a_other.gameObject.GetComponent<AI>().Hits++;
+            if (canHit == true)
+            {
+                //add one hit to the AI car
+                a_other.gameObject.GetComponent<AI>().Hits++;
+
+                //Can't hit the car anymore
+                canHit = false;
+            }
+            
 
             //at the same time destroy own bumper if its not a front bumper
             if (isFrontBumper == false)
@@ -68,8 +78,15 @@ public class BumperScript : MonoBehaviour
         //if we are colliding with a Player or a Player2 car
         if (a_other.transform.tag == ("Player") || a_other.transform.tag == ("Player2"))
         {
-            //add one hit to the player's car
-            a_other.gameObject.GetComponent<PlayerManager>().Hits++;
+            if(canHit == true)
+            {
+                //add one hit to the player's car
+                a_other.gameObject.GetComponent<PlayerManager>().Hits++;
+
+                //Can't hit the car anymore
+                canHit = false;
+            }
+            
 
             //at the same time destroy own bumper if its not a front bumper
             if (isFrontBumper == false)
@@ -78,6 +95,23 @@ public class BumperScript : MonoBehaviour
                 isAlive = false;
                 gameObject.SetActive(false);
             }
+        }
+    }
+
+    private void OnCollisionStay(Collision a_other)
+    {
+        if (a_other.transform.tag == ("Player") || a_other.transform.tag == ("Player2") || a_other.transform.tag == ("AI"))
+        {
+            canHit = false;
+        }
+    }
+
+
+    private void OnCollisionExit(Collision a_other)
+    {
+        if (a_other.transform.tag == ("Player") || a_other.transform.tag == ("Player2") || a_other.transform.tag == ("AI"))
+        {
+            canHit = true;
         }
     }
 

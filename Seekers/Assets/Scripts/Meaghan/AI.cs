@@ -8,11 +8,11 @@ public class AI : Entity
     [SerializeField]
     private float itemSpawnTime = 2.0f;
     [SerializeField]
-    private float boostSpeed = 60.0f;
+    private float boostSpeed = 40.0f;
     [SerializeField]
-    private float maxSpeed = 40.0f;
+    private float maxSpeed = 30.0f;
     [SerializeField]
-    private float speed = 20000.0f;
+    private float speed = 10000.0f;
     [SerializeField]
     private float rotation = 3.0f;
     [SerializeField]
@@ -59,6 +59,7 @@ public class AI : Entity
         rightBumper.SetActive(false);
         rearBumper.SetActive(false);
         drive = true;
+
 
         storedSpeed = maxSpeed;
 
@@ -132,23 +133,25 @@ public class AI : Entity
 
     void Update()
     {
-        //Respawn check
-        if (hits >= maxHits)
+        if(accelTimer > 6.0f)
         {
-            //Set all values back and respawn
-            drive = false;
-            rb.drag = 3.0f;
-            hasLowHealth = false;
-            Respawn();
+            //Respawn check
+            if (hits >= maxHits)
+            {
+                //Set all values back and respawn
+                drive = false;
+                rb.drag = 3.0f;
+                hasLowHealth = false;
+                Respawn();
+            }
+            else
+            {
+                //Playe can drive and store position to respawn at
+                drive = true;
+                rb.drag = 0.0f;
+                PositionTimer();
+            }
         }
-        else
-        {
-            //Playe can drive and store position to respawn at
-            drive = true;
-            PositionTimer();
-        }
-
-
 
         //Functions
         Items();
