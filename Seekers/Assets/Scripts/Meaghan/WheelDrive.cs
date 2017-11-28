@@ -60,6 +60,7 @@ public class WheelDrive : MonoBehaviour
     private int stepsAbove = 1;
     private bool aHasBeenPressed;
     private float brakeTimer;
+    private float accelTimer;
 
 
 
@@ -88,128 +89,76 @@ public class WheelDrive : MonoBehaviour
     }
 
 	void Update()
-    { 
+    {
+        accelTimer += Time.deltaTime;
 
-        if(abilityToDrive)
+        if(accelTimer > 3.0f)
         {
-            //Alters the angle of the car
-            float angle = maxAngle * XCI.GetAxis(XboxAxis.LeftStickX, controller);
-
-            for (int wheelNum = 0; wheelNum < 4; ++wheelNum)
+            if (abilityToDrive)
             {
-                //Get the wheel colliders
-                WheelCollider wheel = wheels[wheelNum];
-                bool frontWheel = (wheelNum < 2); //if wheelnum is 0 or 1, it's a front wheel
-                bool frontLeftWheel = (wheelNum == 0); //Left front wheel
-                bool backLeftWheel = (wheelNum == 2); //Left back wheel 
+                //Alters the angle of the car
+                float angle = maxAngle * XCI.GetAxis(XboxAxis.LeftStickX, controller);
 
-                //Changes speed based on criticals 
-                wheel.ConfigureVehicleSubsteps(criticalSpeed, stepsBelow, stepsAbove);
-
-                //If the player is not boosting
-                if(player.IsBoosting == false)
+                for (int wheelNum = 0; wheelNum < 4; ++wheelNum)
                 {
-                    //Maintain the RPM
-                    if (wheel.rpm < idealRPM)
-                        speed = Mathf.Lerp(speed / 10f, speed, wheel.rpm / idealRPM);
-                    else
-                        speed = Mathf.Lerp(speed, 0, (wheel.rpm - idealRPM) / (maxRPM - idealRPM));
-                }
+                    //Get the wheel colliders
+                    WheelCollider wheel = wheels[wheelNum];
+                    bool frontWheel = (wheelNum < 2); //if wheelnum is 0 or 1, it's a front wheel
+                    bool frontLeftWheel = (wheelNum == 0); //Left front wheel
+                    bool backLeftWheel = (wheelNum == 2); //Left back wheel 
 
-                //Checking if they are boosting, increase torque
-                if (player.IsBoosting == true)
-                {
-                    //Boost speed
-                    speed = boostSpeed;
-                }
-                else
-                {
-                    //Regular speed
-                    speed = torque;
-                }
+                    //Changes speed based on criticals 
+                    wheel.ConfigureVehicleSubsteps(criticalSpeed, stepsBelow, stepsAbove);
 
-                //Sharp turn
-                if (XCI.GetAxis(XboxAxis.RightTrigger, controller) == 1)
-                {
-                    //Move the back wheels
-                    if (!frontWheel)
-                        wheel.steerAngle = -angle * sharpTurn;
-                    else
-                        wheel.steerAngle = 0.0f;
-                }
-                else
-                {
-                    //Move the front wheels
-                    if (!frontWheel)
-                        wheel.steerAngle = 0.0f;
-                    else
-                        wheel.steerAngle = angle;
-                }
-
-
-                //If we are holding down the A button, move forward
-                if (XCI.GetButton(XboxButton.A, controller))
-                {             
-                    //Set variables   
-                    wheel.brakeTorque = 0.0f;
-                    carRigidbody.drag = 1.0f;
-                    carRigidbody.isKinematic = false;
-                    aHasBeenPressed = true;
-                    player.dustParticleLeft.Play();
-                    player.dustParticleRight.Play();
-                    driving.UnPause();
-
-                    //Back wheels
-                    if (!frontWheel && driveType != DriveType.FrontWheelDrive)
+                    //If the player is not boosting
+                    if (player.IsBoosting == false)
                     {
-                        wheel.motorTorque = speed;
-                    }
-
-                    //Front wheels
-                    if (frontWheel && driveType != DriveType.RearWheelDrive)
-                    {
-                        wheel.motorTorque = speed;
-                    }
-                }
-                else if (XCI.GetButton(XboxButton.B, controller))
-                {
-
-                    if(aHasBeenPressed == true)
-                    {
-                        brakeTimer += Time.deltaTime;
-
-                        if(brakeTimer < 1.5f)
-                        {
-                            if (wheel.isGrounded == true)
-                            {
-                                //Stop the car moving and resetting values
-                                wheel.motorTorque = 0.0f;
-                                wheel.brakeTorque = Mathf.Infinity;
-                                carRigidbody.drag = dragAmount;
-                                carRigidbody.isKinematic = false;
-                                player.dustParticleLeft.Stop();
-                                player.dustParticleRight.Stop();
-                                driving.Pause();
-                            }
-                            else
-                            {
-                                player.dustParticleLeft.Stop();
-                                player.dustParticleRight.Stop();
-                                driving.Pause();
-                            }
-                        }
+                        //Maintain the RPM
+                        if (wheel.rpm < idealRPM)
+                            speed = Mathf.Lerp(speed / 10f, speed, wheel.rpm / idealRPM);
                         else
-                        {
-                            //Use the reverse function
-                            aHasBeenPressed = false;
-                        }
+                            speed = Mathf.Lerp(speed, 0, (wheel.rpm - idealRPM) / (maxRPM - idealRPM));
+                    }
+
+                    //Checking if they are boosting, increase torque
+                    if (player.IsBoosting == true)
+                    {
+                        //Boost speed
+                        speed = boostSpeed;
                     }
                     else
                     {
-                        //Set variables
+                        //Regular speed
+                        speed = torque;
+                    }
+
+                    //Sharp turn
+                    if (XCI.GetAxis(XboxAxis.RightTrigger, controller) == 1)
+                    {
+                        //Move the back wheels
+                        if (!frontWheel)
+                            wheel.steerAngle = -angle * sharpTurn;
+                        else
+                            wheel.steerAngle = 0.0f;
+                    }
+                    else
+                    {
+                        //Move the front wheels
+                        if (!frontWheel)
+                            wheel.steerAngle = 0.0f;
+                        else
+                            wheel.steerAngle = angle;
+                    }
+
+
+                    //If we are holding down the A button, move forward
+                    if (XCI.GetButton(XboxButton.A, controller))
+                    {
+                        //Set variables   
                         wheel.brakeTorque = 0.0f;
                         carRigidbody.drag = 1.0f;
                         carRigidbody.isKinematic = false;
+                        aHasBeenPressed = true;
                         player.dustParticleLeft.Play();
                         player.dustParticleRight.Play();
                         driving.UnPause();
@@ -217,38 +166,93 @@ public class WheelDrive : MonoBehaviour
                         //Back wheels
                         if (!frontWheel && driveType != DriveType.FrontWheelDrive)
                         {
-                            wheel.motorTorque = -speed;
+                            wheel.motorTorque = speed;
                         }
 
                         //Front wheels
                         if (frontWheel && driveType != DriveType.RearWheelDrive)
                         {
-                            wheel.motorTorque = -speed;
+                            wheel.motorTorque = speed;
                         }
                     }
-                }
-                else
-                {
-                    if(wheel.isGrounded == true)
+                    else if (XCI.GetButton(XboxButton.B, controller))
                     {
-                        //Stop the car moving and resetting values
-                        wheel.motorTorque = 0.0f;
-                        wheel.brakeTorque = Mathf.Infinity;
-                        carRigidbody.drag = dragAmount;
-                        carRigidbody.isKinematic = false;
-                        aHasBeenPressed = false;
-                        player.dustParticleLeft.Stop();
-                        player.dustParticleRight.Stop();
-                        driving.Pause();
+
+                        if (aHasBeenPressed == true)
+                        {
+                            brakeTimer += Time.deltaTime;
+
+                            if (brakeTimer < 1.5f)
+                            {
+                                if (wheel.isGrounded == true)
+                                {
+                                    //Stop the car moving and resetting values
+                                    wheel.motorTorque = 0.0f;
+                                    wheel.brakeTorque = Mathf.Infinity;
+                                    carRigidbody.drag = dragAmount;
+                                    carRigidbody.isKinematic = false;
+                                    player.dustParticleLeft.Stop();
+                                    player.dustParticleRight.Stop();
+                                    driving.Pause();
+                                }
+                                else
+                                {
+                                    player.dustParticleLeft.Stop();
+                                    player.dustParticleRight.Stop();
+                                    driving.Pause();
+                                }
+                            }
+                            else
+                            {
+                                //Use the reverse function
+                                aHasBeenPressed = false;
+                            }
+                        }
+                        else
+                        {
+                            //Set variables
+                            wheel.brakeTorque = 0.0f;
+                            carRigidbody.drag = 1.0f;
+                            carRigidbody.isKinematic = false;
+                            player.dustParticleLeft.Play();
+                            player.dustParticleRight.Play();
+                            driving.UnPause();
+
+                            //Back wheels
+                            if (!frontWheel && driveType != DriveType.FrontWheelDrive)
+                            {
+                                wheel.motorTorque = -speed;
+                            }
+
+                            //Front wheels
+                            if (frontWheel && driveType != DriveType.RearWheelDrive)
+                            {
+                                wheel.motorTorque = -speed;
+                            }
+                        }
                     }
                     else
                     {
-                        player.dustParticleLeft.Stop();
-                        player.dustParticleRight.Stop();
-                        driving.Pause();
+                        if (wheel.isGrounded == true)
+                        {
+                            //Stop the car moving and resetting values
+                            wheel.motorTorque = 0.0f;
+                            wheel.brakeTorque = Mathf.Infinity;
+                            carRigidbody.drag = dragAmount;
+                            carRigidbody.isKinematic = false;
+                            aHasBeenPressed = false;
+                            player.dustParticleLeft.Stop();
+                            player.dustParticleRight.Stop();
+                            driving.Pause();
+                        }
+                        else
+                        {
+                            player.dustParticleLeft.Stop();
+                            player.dustParticleRight.Stop();
+                            driving.Pause();
+                        }
+
                     }
-                    
-                }
 
                     //Create vector and quanternion
                     Quaternion q;
@@ -261,8 +265,10 @@ public class WheelDrive : MonoBehaviour
                     //Alter the transform
                     shapeTransform.position = p;
                     shapeTransform.rotation = q;
+                }
             }
-        }  
+        }
+        
 	}
 }
 
