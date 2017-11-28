@@ -209,7 +209,7 @@ public class MainMenuState : BaseState
     //Display current sate in console
     private void ShowLog()
     {
-        Debug.Log("This is Main Menu");
+        //Debug.Log("This is Main Menu");
     }
 }
 
@@ -251,7 +251,7 @@ public class TutoriulState : BaseState
     //Display current sate in console
     private void ShowLog()
     {
-        Debug.Log("This is Tutoriul");
+      //  Debug.Log("This is Tutoriul");
     }
 }
 
@@ -335,7 +335,7 @@ public class InGameMultiState : BaseState
     //Display current sate in console
     private void ShowLog()
     {
-        Debug.Log("This is Main Game");
+       // Debug.Log("This is Main Game");
     }
 }
 

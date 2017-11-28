@@ -25,7 +25,7 @@ public class StateVictoryP2 : MonoBehaviour {
     void Awake()
     {
         //Obtain the script properties
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameStateManagerScript>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameStateManagerScript>();
         playerManager = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerManager>();
         set = gameObject.transform.GetChild(0).GetComponent<Image>();
     }

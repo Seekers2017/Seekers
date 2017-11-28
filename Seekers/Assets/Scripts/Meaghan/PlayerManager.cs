@@ -93,9 +93,15 @@ public class PlayerManager : Entity
             //BOOST
             UpdateSpeedBoost();
 
-            //PLay the particles
-            speedBoostPart.Play();
-            speedBoostPart2.Play();
+            //Play the particles
+            if (speedBoostPart.isPlaying == false)
+            {
+                speedBoostPart.Play();
+            }
+            if (speedBoostPart2.isPlaying == false)
+            {
+                speedBoostPart2.Play();
+            }
         }
         else
         {

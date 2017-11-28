@@ -156,6 +156,7 @@
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Vertex Colors\HighlightNearestFace.cs" />
     <Compile Include="Assets\Scripts\Liam_G\DeleteBlocks.cs" />
     <Compile Include="Assets\Scripts\Liam_G\FallingObject.cs" />
+    <Compile Include="Assets\Scripts\Liam_G\FlagWave.cs" />
     <Compile Include="Assets\Scripts\Liam_G\PlaySound.cs" />
     <Compile Include="Assets\Scripts\Meaghan\AI.cs" />
     <Compile Include="Assets\Scripts\Meaghan\AnimateCarPart.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="Assets\XInput\XInputDotNet\Examples\XInputTestCS.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Flagshader\flagshader.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\ParadeRender.shader" />

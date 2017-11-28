@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BumperScript : MonoBehaviour
 {
+    //[SerializeField]
+    //private AudioSource collisionSound;
+
+
     //Hit collision cooldown variables
     private float hitCooldown;
     private bool hasHit;
@@ -12,6 +16,8 @@ public class BumperScript : MonoBehaviour
     private AI currAI;
     private bool canCollide;
     private bool addHit;
+    private bool collided;
+    private bool stillConnected;
 
     //Check if it's front bumper
     public bool isFrontBumper;
@@ -21,9 +27,15 @@ public class BumperScript : MonoBehaviour
 
     //Setup Bumper's life span
     public float lifeSpan;
-    
-	// Use this for initialization
-	void Start ()
+
+    public bool Collided
+    {
+        get { return Collided; }
+        set { Collided = value; }
+    }
+
+    // Use this for initialization
+    void Start ()
     {
         //set Bumper is live
 		isAlive = true;
@@ -66,7 +78,7 @@ public class BumperScript : MonoBehaviour
                 }
 
                 //If the cooldown is greater than five seconds
-                if (hitCooldown > 5.0f)
+                if (hitCooldown > 5.0f && stillConnected == false)
                 {
                     canCollide = true;
                 }
@@ -102,6 +114,9 @@ public class BumperScript : MonoBehaviour
         //If we can collide
         if(canCollide)
         {
+
+            Debug.Log("I'VE HIT!!!");
+
             //if we are colliding with AI cars
             if (a_other.transform.tag == ("AI"))
             {
@@ -139,6 +154,23 @@ public class BumperScript : MonoBehaviour
                     gameObject.SetActive(false);
                 }
             }
+        }
+    }
+
+    //To make sure that they do not constantly hit each other
+    private void OnCollisionStay(Collision a_other)
+    {
+        if(a_other.transform.tag == ("Player") || a_other.transform.tag == ("Player2") || a_other.transform.tag == ("AI"))
+        {
+            stillConnected = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision a_other)
+    {
+        if (a_other.transform.tag == ("Player") || a_other.transform.tag == ("Player2") || a_other.transform.tag == ("AI"))
+        {
+            stillConnected = false;
         }
     }
 

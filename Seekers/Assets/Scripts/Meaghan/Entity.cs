@@ -26,7 +26,7 @@ public class Entity : MonoBehaviour {
     public ParticleSystem dustParticleLeft;
     public ParticleSystem dustParticleRight;
 
-    //He attac, but he also protec (the variables)
+    //He attacc, but he also protecc (the variables)
     protected int hits;
     protected bool hasBumper;
     protected bool hasItem;
@@ -67,7 +67,6 @@ public class Entity : MonoBehaviour {
 
     protected virtual void Bumper(GameObject a_bumper)
     {
-        //this is also running on the AI and probably shouldn't be.
         if(a_bumper != null)
         {
             //Set the bumper to active
