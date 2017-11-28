@@ -112,7 +112,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _metalmid:
         m_Texture: {fileID: 2800000, guid: ea8f2200d2c037a46b30d623454a9ea4, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 15, y: 15}
         m_Offset: {x: 0, y: 0}
     - _node_2566:
         m_Texture: {fileID: 2800000, guid: b40e7ca529209d041849a47d86686db1, type: 3}

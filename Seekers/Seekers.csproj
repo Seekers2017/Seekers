@@ -262,6 +262,7 @@
     <None Include="Assets\ProCore\ProBuilder\Shader\pb_VertexShader.shader" />
     <None Include="Assets\ProCore\ProBuilder\readme.txt" />
     <None Include="Assets\ShaderForge\Powerups.shader" />
+    <None Include="Assets\TerrainShade\TerrainShader.shader" />
     <None Include="Assets\Track(Final)\Track forge.shader" />
     <None Include="Assets\XInput\XInputDotNet\MITLicense.txt" />
   </ItemGroup>
