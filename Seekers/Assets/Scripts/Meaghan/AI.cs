@@ -133,8 +133,6 @@ public class AI : Entity
 
     void Update()
     {
-        if(accelTimer > 6.0f)
-        {
             //Respawn check
             if (hits >= maxHits)
             {
@@ -151,7 +149,6 @@ public class AI : Entity
                 rb.drag = 0.0f;
                 PositionTimer();
             }
-        }
 
         //Functions
         Items();
@@ -473,7 +470,7 @@ public class AI : Entity
                 //Change targetNode to nextNode
                 targetNode = targetNode.next;
 
-                randDist = Random.Range(-5.0f, 5.0f);
+                randDist = Random.Range(-7.0f, 7.0f);
             }
         }
     }
