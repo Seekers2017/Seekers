@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4400518701204266}
   - component: {fileID: 33068663953599532}
   - component: {fileID: 23310547536823146}
-  - component: {fileID: 65815188705646586}
   m_Layer: 0
   m_Name: SandPile_01
   m_TagString: Box
@@ -36,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1612292545398430}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 36.349255, y: -25.2, z: 129.53}
+  m_LocalPosition: {x: -36.91885, y: 0.29346633, z: -6.1746836}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,15 +80,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1612292545398430}
   m_Mesh: {fileID: 4300000, guid: 13937b844fd8450459430bdcfb8a116d, type: 3}
---- !u!65 &65815188705646586
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1612292545398430}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 536.59546, y: 149.71431, z: 533.3334}
-  m_Center: {x: -0.0009765625, y: 74.85693, z: -0.00024414062}
