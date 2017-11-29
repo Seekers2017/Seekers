@@ -27,7 +27,6 @@ public class VictoryP2 : MonoBehaviour {
     [SerializeField]
     private int maxLaps;
 
-    [SerializeField]
     private SpriteRenderer spriteRenderer;
 
     [SerializeField]

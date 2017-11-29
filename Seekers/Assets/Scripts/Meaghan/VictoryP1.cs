@@ -22,7 +22,6 @@ public class VictoryP1 : MonoBehaviour {
     [SerializeField]
     private int maxLaps;
 
-    [SerializeField]
     private SpriteRenderer spriteRenderer;
 
     [SerializeField]
@@ -76,6 +75,7 @@ public class VictoryP1 : MonoBehaviour {
         {
             //Stop driving
             drive.AbilityToDrive = false;
+            hasFinished = true;
 
             if(currRank == 1)
             {

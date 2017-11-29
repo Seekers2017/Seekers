@@ -32,9 +32,6 @@ public class IngameUIMultiScript : MonoBehaviour
     private CarCheckpointScript checkpointP1Script;
     private CarCheckpointScript checkpointP2Script;
 
-    //For designers
-    [SerializeField]
-    private int maxLaps = 3;
 
     //Rank and lap values
     private int currLapP1;
@@ -97,14 +94,8 @@ public class IngameUIMultiScript : MonoBehaviour
 
         //according to the currlap, decide which sprite to render
         //it has to be (currlap - 1), you know why.
-
-        //currently we only have 3 lap sprites in Resources, Ryan puts a guard here "currLapP1 != (maxLaps + 1)"
-        //to prevent Argument out of range
-        if (currLapP1 != (maxLaps + 1))
-            lapCountP1Sprite.sprite = lapSpriteList[currLapP1 - 1];
-
-        if (currLapP2 != (maxLaps + 1))
-            lapCountP2Sprite.sprite = lapSpriteList[currLapP2 - 1];
+        lapCountP1Sprite.sprite = lapSpriteList[currLapP1 - 1];
+        lapCountP2Sprite.sprite = lapSpriteList[currLapP2 - 1];
 
         //according to the rank, decide which sprite to render
         //it has to be (currlap - 1), you know why
@@ -131,42 +122,7 @@ public class IngameUIMultiScript : MonoBehaviour
             //only hiding it. Will have to improve if possible ( use Destroy(); and Instantiate(); )
         }
 
-        //Check if the race is complete 
-        if (currLapP1 > maxLaps)
-        {
-            //If P1 win (smaller rank number means higher rank (winning) )
-            if (rankP1 < rankP2)
-            {
-                //P1 win the race
-                playerManager.Win = true;
-                gameManager.SwitchGameState(GameStateID.Victory);
-            }
-            else
-            {
-                //P1 lose the race
-                playerManager.Win = false;
-                gameManager.SwitchGameState(GameStateID.VictoryP2);
-            }
-        }
-
-        //Check if the race is complete 
-        if (currLapP2 > maxLaps)
-        {
-            //If P2 win (smaller rank number means higher rank (winning) )
-            if (rankP2 < rankP1)
-            {
-                //P2 win the race
-                playerManagerP2.Win = true;
-                gameManager.SwitchGameState(GameStateID.VictoryP2);
-            }
-            else
-            {
-                //P2 lose the race
-                playerManagerP2.Win = false;
-                gameManager.SwitchGameState(GameStateID.Victory);
-            }
-        }
-
+       
         //press start button to pause the game
         if ( XCI.GetButtonDown(XboxButton.Start, controller) )
         {
