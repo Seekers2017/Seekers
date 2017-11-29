@@ -3686,6 +3686,14 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 415983a09a33ea541b64471f48710796, type: 3}
+    - target: {fileID: 1145350644639988, guid: 62ef3a699dd6273479cfc439ebc447cc, type: 2}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243354400859362, guid: 62ef3a699dd6273479cfc439ebc447cc, type: 2}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 114427169501278022, guid: 62ef3a699dd6273479cfc439ebc447cc, type: 2}
