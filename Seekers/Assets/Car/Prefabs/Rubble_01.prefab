@@ -21,8 +21,7 @@ GameObject:
   - component: {fileID: 4484613989777644}
   - component: {fileID: 33733402875631912}
   - component: {fileID: 23404011652721564}
-  - component: {fileID: 65097877625036928}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rubble_01
   m_TagString: Box
   m_Icon: {fileID: 0}
@@ -81,15 +80,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1874252575435836}
   m_Mesh: {fileID: 4300000, guid: e238d222b48bdfd4bb22e5d726956083, type: 3}
---- !u!65 &65097877625036928
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1874252575435836}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.76315, y: 2.4588118, z: 5.4708414}
-  m_Center: {x: 0, y: 1.2259905, z: 0}
