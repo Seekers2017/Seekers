@@ -12429,6 +12429,12 @@ Prefab:
       propertyPath: m_ForceAppPointDistance
       value: 1.4173173
       objectReference: {fileID: 0}
+    - target: {fileID: 114537707666412014, guid: 62ef3a699dd6273479cfc439ebc447cc,
+        type: 2}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 114409945617133534, guid: b309d04e19df1f64bb5181e17d512e07,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 114427169501278022, guid: 62ef3a699dd6273479cfc439ebc447cc, type: 2}
