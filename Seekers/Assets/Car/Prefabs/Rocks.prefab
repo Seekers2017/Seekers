@@ -89,7 +89,6 @@ GameObject:
   - component: {fileID: 4154132201570710}
   - component: {fileID: 33892228059171762}
   - component: {fileID: 23776553716969570}
-  - component: {fileID: 65828950380846280}
   m_Layer: 9
   m_Name: TallRock_01 (7)
   m_TagString: Untagged
@@ -18882,18 +18881,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 377.62213, y: 394.19452, z: 383.16934}
   m_Center: {x: -2.1614075, y: 197.09726, z: 1.8305817}
---- !u!65 &65828950380846280
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1010715122053740}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 487.7253, y: 780.20123, z: 475.7887}
-  m_Center: {x: 5.989517, y: 390.10062, z: -1.8220978}
 --- !u!65 &65898972313733154
 BoxCollider:
   m_ObjectHideFlags: 1
