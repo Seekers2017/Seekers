@@ -473,7 +473,7 @@ public class AI : Entity
                 //Change targetNode to nextNode
                 targetNode = targetNode.next;
 
-                randDist = Random.Range(-7.0f, 7.0f);
+                randDist = Random.Range(-5.0f, 5.0f);
             }
         }
     }
