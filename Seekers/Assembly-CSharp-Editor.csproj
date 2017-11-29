@@ -176,6 +176,7 @@
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_UnlitVertexColor.shader" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_FacePicker.shader" />
      <None Include="Assets\PostProcessing\Editor Resources\UI\Trackball.shader" />
+     <None Include="Assets\TerrainShade\TerrainShader.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.cginc" />
      <None Include="Assets\ProCore\ProBuilder\About\Font\SIL Open Font License.txt" />
      <None Include="Assets\PostProcessing\Resources\Shaders\TAA.shader" />
